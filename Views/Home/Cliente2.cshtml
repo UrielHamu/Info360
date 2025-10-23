@@ -1,0 +1,58 @@
+@{
+    ViewData["Title"] = "Cliente1";
+}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - NombreProyecto</title>
+    <link rel="stylesheet" href="site.css" asp-append-version="true" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+ <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href='@Url.Action("IniciarSesion", "Home")'>Descuentos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Empresas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Vencimientos</a>
+        </li>
+    </div>
+</nav>
+
+<h2>Explorá marcas y negocios para vos:</h2>
+<form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="" aria-label="Search"/>
+        <button class="btn btn-outline-success" type="submit">Buscar empresa</button>
+      </form>
+
+<div class="card" style="width: 18rem;">
+  <img src="" class="card-img-top" alt="Local1">
+  <div class="card-body">
+    <p class="card-text"></p>
+  </div>
+</div>
+<div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+  </div>
+</div>
+<div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+  </div>
+</div>
+
+<footer>
+        <a href="https://www.instagram.com/"><img src="~/img/instagram.png" alt="logoInstagram"></a>
+        <a href="https://twitter.com"><img src="~/img/twitter.png" alt="logoTweeter"></a>
+        <a href="https://www.youtube.com"><img src="~/img/youtube.png" alt="logoYoutube"></a>
+  </footer>
+</body>

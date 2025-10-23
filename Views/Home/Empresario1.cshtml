@@ -1,0 +1,46 @@
+@{
+    ViewData["Title"] = "Empresario1";
+}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - NombreProyecto</title>
+    <link rel="stylesheet" href="site.css" asp-append-version="true" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+  <body>
+
+ <header> 
+    <ul class="nav justify-content-end">
+  <li class="nav-item">
+    <a class="nav-link" href='@Url.Action("Modificar", "Home")'>Modificar</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href='@Url.Action("Stock", "Home")'>Stock</a>
+  </li>
+   <li class="nav-item">
+    <a class="nav-link" href='@Url.Action("Descuentos", "Home")'>Descuentos</a>
+  </li>
+</ul>
+
+</header>
+
+
+<h1>Hola Mateo, ingresaste al panel del dueño del local. </h1>
+<h2>Gestioná tu stock de forma eficiente, reducí el desperdicio y hacé crecer tu supermercado.</h2>
+
+<h2>Tu negocio hoy en números:</h2>
+ <div class="contenedor-cajas">
+            <div class="caja"><i>Productos en stock:</i> &nbsp; 0</div>
+            <div class="caja"><i>Próximos a vencer:</i> &nbsp; 7</div>
+            <div class="caja"><i>Descuentos activos:</i> &nbsp; 4</div>
+            <div class="caja"><i>Ventas registradas:</i> &nbsp; $560</div>
+        </div>
+    </main>
+<footer>
+        <a href="https://www.instagram.com/"><img src="~/img/instagram.png" alt="logoInstagram"></a>
+        <a href="https://twitter.com"><img src="~/img/twitter.png" alt="logoTweeter"></a>
+        <a href="https://www.youtube.com"><img src="~/img/youtube.png" alt="logoYoutube"></a>
+  </footer>
+</body>

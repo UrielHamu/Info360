@@ -1,0 +1,61 @@
+@{
+    ViewData["Title"] = "Registrarse";
+}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - NombreProyecto</title>
+    <link rel="stylesheet" href="site.css" asp-append-version="true" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+  <body>
+  <header> 
+    <ul class="nav justify-content-end">
+  <li class="nav-item">
+    <a class="nav-link" href='@Url.Action("IniciarSesion", "Home")'>Iniciar sesión</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href='@Url.Action("Registrarse", "Home")'>Registrarse</a>
+  </li>
+</ul>
+</header>
+
+<img src="~/img/Logo.png" alt="Foto1">
+<form action='@Url.Action("recibirRegistro", "Home")' method="POST" enctype="application/x-www-form-urlencoded">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Nombre de usuario</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text"></div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+    <input type="password" class="form-control" id="exampleInputPassword1">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Email</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text"></div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Empresa</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text"></div>
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">No soy un robot</label>
+  </div>
+  <div>
+    <h3>Ya tenes cuenta?</h3>
+    <a href='@Url.Action("IniciarSesion", "Home")'>Iniciar sesión</a>
+  </div>
+  <button type="submit" class="btn btn-primary">Registrarse</button>
+</form>
+<footer>
+        <a href="https://www.instagram.com/"><img src="~/img/instagram.png" alt="logoInstagram"></a>
+        <a href="https://twitter.com"><img src="~/img/twitter.png" alt="logoTweeter"></a>
+        <a href="https://www.youtube.com"><img src="~/img/youtube.png" alt="logoYoutube"></a>
+  </footer>
+</body>
+</html>

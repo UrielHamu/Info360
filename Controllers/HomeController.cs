@@ -17,4 +17,43 @@ public class HomeController : Controller
     {
         return View("index");
     }
+    public IActionResult IniciarSesion()
+    {
+        return View("IniciarSesion");
+    }    
+    public IActionResult recibirInicioDeSesion()
+    {
+        return View("filtro");
+    }    
+    public IActionResult Registrarse()
+    {
+        return View("Registrarse");
+    }
+    public IActionResult recibirRegistro()
+    {
+        return View("filtro");
+    }    
+
+    public IActionResult recibirFiltro(bool empresario)
+    {
+        if(empresario){
+        return View("Empresario1");
+        }
+        else{
+        return View("Descuentos");
+        }
+    }    
+    public IActionResult descuentos()
+    {
+        return View("Descuentos");
+    }    public IActionResult Empresas()
+    {
+        return View("Empresas");
+    }    public IActionResult Vencimiento()
+    {
+        return View("Vencimiento");
+    }
+
+
+    
 }

@@ -1,5 +1,5 @@
-﻿@{
-    ViewData["Title"] = "Index";
+@{
+    ViewData["Title"] = "IniciarSesion";
 }
 <head>
     <meta charset="utf-8" />
@@ -22,21 +22,25 @@
 </header>
 
 <img src="~/img/Logo.png" alt="Foto1">
-<h1>Cada día se desperdician toneladas de alimentos que todavía están en buen estado, solo porque no se venden antes de su fecha de vencimiento.</h1>
-<img src="~/img/Foto2.png" alt="Foto2">
-<h2>FIFO nace para darle una segunda oportunidad  a los alimentos próximos a vencerse y evita que termine en la basura.</h2>
-<img src="~/img/Foto3.png" alt="Foto3">
-<h1>¿Por qué lo hacemos?</h1>
-<section class="Info">
-  <div>Promovemos un uso responsable y sostenible de los recursos.</div>
-  <div>Brindamos herramientas para mejorar la gestión del stock.</div>
-  <div>Impulsamos un modelo más inteligente y sustentable.</div>
-  <div>Ayudamos a vender antes de desechar.</div>
-</section>
+<form action='@Url.Action("recibirInicioDeSesion", "Home")' method="POST" enctype="application/x-www-form-urlencoded">
+ <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Nombre de usuario</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text"></div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+    <input type="password" class="form-control" id="exampleInputPassword1">
+  </div>
+   <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+</form>
+    <h3>No tenes cuenta?</h3>
+    <a href='@Url.Action("Registrarse", "Home")'>Registrarse</a>
+</div>
 <footer>
         <a href="https://www.instagram.com/"><img src="~/img/instagram.png" alt="logoInstagram"></a>
         <a href="https://twitter.com"><img src="~/img/twitter.png" alt="logoTweeter"></a>
         <a href="https://www.youtube.com"><img src="~/img/youtube.png" alt="logoYoutube"></a>
   </footer>
-</body>
+  </body>
 </html>
