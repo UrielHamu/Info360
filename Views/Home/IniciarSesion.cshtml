@@ -23,19 +23,29 @@
 
 <img src="~/img/Logo.png" alt="Foto1">
 <form action='@Url.Action("recibirInicioDeSesion", "Home")' method="POST" enctype="application/x-www-form-urlencoded">
- <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Nombre de usuario</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <div id="emailHelp" class="form-text"></div>
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
-  </div>
-   <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-</form>
-    <h3>No tenes cuenta?</h3>
-    <a href='@Url.Action("Registrarse", "Home")'>Registrarse</a>
+ <div class="dropdown-menu">
+  <form class="px-4 py-3">
+    <div class="mb-3">
+      <label for="exampleDropdownFormEmail1" class="form-label">Nombre de usuario</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+      <label for="exampleDropdownFormPassword1" class="form-label">Contraseña</label>
+      <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
+    </div>
+    <div class="mb-3">
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="dropdownCheck">
+        <label class="form-check-label" for="dropdownCheck">
+          Recordarme
+        </label>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Iniciar sesion</button>
+  </form>
+  <div class="dropdown-divider"></div>
+  <a class="dropdown-item" href="#">No tenes cuenta? Registrate!</a>
+  <a class="dropdown-item" href="#">Te olvidaste tu contraseña?</a>
 </div>
 <footer>
         <a href="https://www.instagram.com/"><img src="~/img/instagram.png" alt="logoInstagram"></a>
