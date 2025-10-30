@@ -8,30 +8,30 @@ namespace TP10.Models
         private static string _connectionString =
             "Server=A-PHZ2-CIDI-33;Database=FIFO;Integrated Security=True;TrustServerCertificate=True;";
 
-        public static Usuario Login(string NombreUsuario, string Contraseña)
+        public static Usuarios Login(string NombreUsuario, string Contraseña)
         {
-            Usuario usuario = new Usuario();
+            Usuarios usuario = new Usuarios();
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 string query = "SELECT * FROM Usuarios WHERE [NombreUsuario] = @NombreUsuario AND [Contraseña] = @Contraseña";
-                usuario = connection.QueryFirstOrDefault<Usuario>(query, new { NombreUsuario, Contraseña });
+                usuario = connection.QueryFirstOrDefault<Usuarios>(query, new { NombreUsuario, Contraseña });
             }
             return usuario;
         }
 
-        public static bool sePuedeRegistrar(Usuario usuario)
+        public static bool sePuedeRegistrar(Usuarios usuario)
         {
             bool sePudo;
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 string query = "SELECT * FROM Usuarios WHERE NombreUsuario = @NombreUsuario";
-                Usuario existente = connection.QueryFirstOrDefault<Usuario>(query, new { NombreUsuario = usuario.NombreUsuario });
+                Usuarios existente = connection.QueryFirstOrDefault<Usuarios>(query, new { NombreUsuario = usuario.NombreUsuario });
                 sePudo = (existente == null);
             }
             return sePudo;
         }
 
-        public static bool registrar(Usuario usuario)
+        public static bool registrar(Usuarios usuario)
         {
             bool sePudo = sePuedeRegistrar(usuario);
             if (sePudo)
@@ -51,16 +51,69 @@ namespace TP10.Models
             return sePudo;
         }
 
-        public static string traerUsuario(string NombreUsuario)
-{
-    string username;
+        public static Usuarios traerUsuario(string NombreUsuario)
+        {
+            Usuarios usuario = new Usuarios();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT * FROM Usuarios WHERE [NombreUsuario] = @NombreUsuario";
+                usuario = connection.QueryFirstOrDefault<string>(query, new { NombreUsuario });
+            }
+            return usuario;
+        }
+      public static void CargarProductos(Productos producto)
+      {
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    string query = @"INSERT INTO Productos (Nombre, Foto, Categoria)
+                                     VALUES (@NombreUsuario, @Contraseña, @IdCategoria)";
+                    connection.Execute(query, new
+                    {
+                        Nombre = producto.Nombre,
+                        Contraseña = producto.Foto,
+                        IdCategoria = producto.IdCategoria
+                    });
+                }
+      }
+   public static void EliminarProductos(int idProducto)
+    {
     using (SqlConnection connection = new SqlConnection(_connectionString))
     {
-        string query = "SELECT NombreUsuario FROM Usuarios WHERE [NombreUsuario] = @NombreUsuario";
-        username = connection.QueryFirstOrDefault<string>(query, new { NombreUsuario });
+        string query = @"DELETE FROM Productos WHERE IdProducto = @IdProducto";
+        connection.Execute(query, new { IdProducto = idProducto });
     }
-    return username;
+    }
+public static string BuscarLocal(int id)
+{
+    using (SqlConnection connection = new SqlConnection(_connectionString))
+    {
+        string query = "SELECT Nombre FROM Locales WHERE Id = @Id";
+        string nombreLocal = connection.QueryFirstOrDefault<string>(query, new { Id = id });
+        return nombreLocal;
+    }
 }
+    public static void ModificarProductos(Productos producto)
+    {
+          using (SqlConnection connection = new SqlConnection(_connectionString))
+    {
+        string query = @"UPDATE Productos SET Nombre = @nombreProducto, Foto = @fotoProducto, Categoria = @categoriaProducto WHERE IdProducto = @IdProducto";
+        connection.Execute(query, new { IdProducto = producto.Id, nombreProducto = producto.Nombre, fotoProducto = producto.Foto, categoriaProducto = producto.Categoria });
+    }
+
+    }
+   public static List<Productos> VerProductosCategoria()
+    {
+    using (SqlConnection connection = new SqlConnection(_connectionString))
+    {
+        string query = "SELECT * FROM Productos ORDER BY IdCategoria";
+        List<Productos> list = connection.Query<Productos>(query).ToList();
+        return list;
+    }
+    }
+    
+
+
+
 
     }
 }

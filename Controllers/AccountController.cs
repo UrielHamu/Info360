@@ -13,27 +13,24 @@ public class AccountController : Controller
     
     [HttpPost]
     public IActionResult RecibirInicioDeSesion(string Username, string Password)
-{
-    if (!string.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(Password))
     {
-        Usuario usuario = BD.traerUsuario(Username);
+        Usuarios usuario = BD.traerUsuario(Username);
 
-        if (usuario != null)
+        if (usuario == null||usuario.Contraseña!=Password)
+        {
+            return RedirectToAction("IniciarSesion", "Account");
+        }
+        else if(usuario.EsCliente)
         {
             HttpContext.Session.SetString("user", Objeto.ObjectToString(usuario));
             return RedirectToAction("HomeCliente", "Cliente");
         }
-        else
+        else(!usuario.EsCliente)
         {
-            return RedirectToAction("Login", "Account");
+            HttpContext.Session.SetString("user", Objeto.ObjectToString(usuario));
+            return RedirectToAction("HomeDueño", "Dueño");
         }
-    }
-    else
-    {
-        return RedirectToAction("IniciarSesion", "Account");
-    }
-}
-
+    } 
 
     public IActionResult cerrarSesion(){
         HttpContext.Session.SetString("id", 0.ToString());
@@ -45,12 +42,11 @@ public class AccountController : Controller
 
     public IActionResult recibirRegistro(string username, string password, string nombre, string apellido, string foto){
         if(username!=null && password!=null && nombre!=null && apellido!=null && foto!=null){
-            Usuario usuario=new Usuario(username, password, nombre, apellido, foto, DateTime.Now);
+            Usuarios usuario=new Usuarios(username, password, nombre, apellido, foto, DateTime.Now);
             BD.registrar(usuario);
             return View("loginForm");
         } else{
             return View("registrarse");
         }
     }
-}
 }
