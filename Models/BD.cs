@@ -1,4 +1,4 @@
-namespace TP10.Models
+namespace Info360.Models
 {
     using Microsoft.Data.SqlClient;
     using Dapper;
@@ -39,7 +39,7 @@ namespace TP10.Models
                 using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
                     string query = @"INSERT INTO Usuarios (NombreUsuario, Contraseña, FechaRegistro)
-                                     VALUES (@NombreUsuario, @Contraseña, @FechaRegistro)";
+                    VALUES (@NombreUsuario, @Contraseña, @FechaRegistro)";
                     connection.Execute(query, new
                     {
                         NombreUsuario = usuario.NombreUsuario,
@@ -110,10 +110,45 @@ public static string BuscarLocal(int id)
         return list;
     }
     }
-    
+    public static List<Productos> VerProductosMayorAMenor()
+{
+    using (SqlConnection connection = new SqlConnection(_connectionString))
+    {
+        string query = @"
+            SELECT *
+            FROM Productos 
+            INNER JOIN LocalesProductosVto  ON Producto.Id = LocalesProductoVto.IdProducto
+            ORDER BY porcentajeDescuento DESC";
 
-
-
-
+        return connection.Query<Productos>(query).ToList();
     }
 }
+
+    public static List<Productos> VerProductosMenorAMayor()
+{
+    using (SqlConnection connection = new SqlConnection(_connectionString))
+    {
+        string query = @"
+            SELECT *
+            FROM Productos 
+            INNER JOIN LocalesProductosVto  ON Producto.Id = LocalesProductoVto.IdProducto
+            ORDER BY porcentajeDescuento ASC";
+
+        return connection.Query<Productos>(query).ToList();
+    }
+}
+    public static List<Productos> verProductosMiLocal(int Id)
+{
+       using (SqlConnection connection = new SqlConnection(_connectionString))
+    {
+        string query = @"
+            SELECT *
+            FROM Productos 
+            INNER JOIN LocalesProductosVto  ON Producto.Id = LocalesProductoVto.IdProducto
+            WHERE LocalesProductosVto.IdLocal = @Id";
+
+        return connection.Query<Productos>(query).ToList();
+    }
+
+}
+}}

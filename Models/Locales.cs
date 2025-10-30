@@ -1,4 +1,4 @@
-namespace TP10.Models;
+namespace Info360.Models;
 public class Locales
 {
     public int Id;

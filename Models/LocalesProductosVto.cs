@@ -1,4 +1,4 @@
-namespace TP10.Models;
+namespace Info360.Models;
 public class LocalesProductosVto
 {
     public int Id;
@@ -6,4 +6,5 @@ public class LocalesProductosVto
     public int IdProducto;
     public DateTime FechaVencimiento;
     public int Cantidad;
+    public int porcentajeDescuento;
 }

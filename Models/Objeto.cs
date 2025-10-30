@@ -1,3 +1,4 @@
+namespace Info360.Models;
 using Newtonsoft.Json; 
 public static class Objeto
 {
