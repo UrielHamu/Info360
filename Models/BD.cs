@@ -57,7 +57,7 @@ namespace Info360.Models
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 string query = "SELECT * FROM Usuarios WHERE [NombreUsuario] = @NombreUsuario";
-                usuario = connection.QueryFirstOrDefault<string>(query, new { NombreUsuario });
+                usuario = connection.QueryFirstOrDefault<Usuarios>(query, new { NombreUsuario });
             }
             return usuario;
         }
@@ -96,8 +96,8 @@ public static string BuscarLocal(int id)
     {
           using (SqlConnection connection = new SqlConnection(_connectionString))
     {
-        string query = @"UPDATE Productos SET Nombre = @nombreProducto, Foto = @fotoProducto, Categoria = @categoriaProducto WHERE IdProducto = @IdProducto";
-        connection.Execute(query, new { IdProducto = producto.Id, nombreProducto = producto.Nombre, fotoProducto = producto.Foto, categoriaProducto = producto.Categoria });
+        string query = @"UPDATE Productos SET Nombre = @nombreProducto, Foto = @fotoProducto, Categoria = @IdCategoriaProducto WHERE IdProducto = @IdProducto";
+        connection.Execute(query, new { IdProducto = producto.Id, nombreProducto = producto.Nombre, fotoProducto = producto.Foto, categoriaProducto = producto.IdCategoria});
     }
 
     }

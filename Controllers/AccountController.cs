@@ -38,7 +38,6 @@ public class AccountController : Controller
     public IActionResult registrarseCliente(){
         return View("RegistrarseCliente");
     }
-
     public IActionResult recibirRegistroCliente(string username, string password, string mail, string rol, int idProvincia){
         if(username!=null && password!=null && mail!=null && rol!=null && idProvincia!=null){
             Usuarios usuario=new Usuarios(username, password, mail, rol, DateTime.Now);
