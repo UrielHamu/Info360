@@ -1,80 +1,66 @@
-namespace TP07.Models;
-
-using Microsoft.Data.SqlClient;
-using Dapper;
-
-public static class BD
+namespace TP10.Models
 {
-    private static string _connectionString =
-        "Server=localhost;Database=ToDoList;Integrated Security=True;TrustServerCertificate=True;";
+    using Microsoft.Data.SqlClient;
+    using Dapper;
 
-    public static Usuario Login(string username, string password)
+    public static class BD
     {
-        Usuario usuario;
-        using (SqlConnection connection = new SqlConnection(_connectionString))
-        {
-            string query = "SELECT * FROM Usuarios WHERE [username] = @username AND [password] = @password";
-            usuario = connection.QueryFirstOrDefault<Usuario>(query, new { username, password });
-        }
-        return usuario;
-    }
+        private static string _connectionString =
+            "Server=A-PHZ2-CIDI-33;Database=FIFO;Integrated Security=True;TrustServerCertificate=True;";
 
-    public static bool sePuedeRegistrar(Usuario usuario)
-    {
-        bool sePudo;
-        using (SqlConnection connection = new SqlConnection(_connectionString))
+        public static Usuario Login(string NombreUsuario, string Contraseña)
         {
-            string query = "SELECT * FROM Usuarios WHERE username = @username";
-            Usuario existente = connection.QueryFirstOrDefault<Usuario>(query, new { username = usuario.username });
-            sePudo = (existente == null);
-        }
-        return sePudo;
-    }
-
-    public static bool registrar(Usuario usuario)
-    {
-        bool sePudo = sePuedeRegistrar(usuario);
-        if (sePudo)
-        {
+            Usuario usuario = new Usuario();
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                string query = @"INSERT INTO Usuarios (username, password, nombre, apellido, foto, ultimoLogin)
-                                 VALUES (@username, @password, @nombre, @apellido, @foto, @ultimoLogin)";
-                connection.Execute(query, new
-                {
-                    username = usuario.username,
-                    password = usuario.password,
-                    nombre = usuario.nombre,
-                    apellido = usuario.apellido,
-                    foto = usuario.foto,
-                    ultimoLogin = usuario.ultimoLogin
-                });
+                string query = "SELECT * FROM Usuarios WHERE [NombreUsuario] = @NombreUsuario AND [Contraseña] = @Contraseña";
+                usuario = connection.QueryFirstOrDefault<Usuario>(query, new { NombreUsuario, Contraseña });
             }
+            return usuario;
         }
-        return sePudo;
-    }
-    public static string traerDueño(string NombreUsuario)
-    {
-     {
-        string username = "";
-        using (SqlConnection connection = new SqlConnection(_connectionString))
+
+        public static bool sePuedeRegistrar(Usuario usuario)
         {
-            string query = "SELECT NombreUsuario FROM Dueños WHERE [NombreUsuario] = @NombreUsuario ";
-            username = connection.QueryFirstOrDefault<Dueños>(query, new { NombreUsuario });
+            bool sePudo;
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT * FROM Usuarios WHERE NombreUsuario = @NombreUsuario";
+                Usuario existente = connection.QueryFirstOrDefault<Usuario>(query, new { NombreUsuario = usuario.NombreUsuario });
+                sePudo = (existente == null);
+            }
+            return sePudo;
         }
-        return username;
-    }
-    }
-        public static string traerCliente(string Nombre)
-    {
-     {
-        string username = "";
-        using (SqlConnection connection = new SqlConnection(_connectionString))
+
+        public static bool registrar(Usuario usuario)
         {
-            string query = "SELECT Nombre FROM Clientes WHERE [Nombre] = @Nombre ";
-            username = connection.QueryFirstOrDefault<Clientes>(query, new { Nombre });
+            bool sePudo = sePuedeRegistrar(usuario);
+            if (sePudo)
+            {
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    string query = @"INSERT INTO Usuarios (NombreUsuario, Contraseña, FechaRegistro)
+                                     VALUES (@NombreUsuario, @Contraseña, @FechaRegistro)";
+                    connection.Execute(query, new
+                    {
+                        NombreUsuario = usuario.NombreUsuario,
+                        Contraseña = usuario.Contraseña,
+                        FechaRegistro = usuario.FechaRegistro
+                    });
+                }
+            }
+            return sePudo;
         }
-        return username;
+
+        public static string traerUsuario(string NombreUsuario)
+{
+    string username;
+    using (SqlConnection connection = new SqlConnection(_connectionString))
+    {
+        string query = "SELECT NombreUsuario FROM Usuarios WHERE [NombreUsuario] = @NombreUsuario";
+        username = connection.QueryFirstOrDefault<string>(query, new { NombreUsuario });
     }
+    return username;
+}
+
     }
 }

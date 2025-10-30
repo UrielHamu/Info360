@@ -12,19 +12,28 @@ public class AccountController : Controller
     }
     
     [HttpPost]
-    public IActionResult RecibirInicioDeSesion(string Username, string Password,){
-        if(Username!=null && Password!=null)
+    public IActionResult RecibirInicioDeSesion(string Username, string Password)
+{
+    if (!string.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(Password))
+    {
+        Usuario usuario = BD.traerUsuario(Username);
+
+        if (usuario != null)
         {
-            Clientes Cliente = BD.traerCliente(Username);
-            Dueños Dueño = BD.traerDueño(Username);
-            if(Cliente!=null){
-                HttpContext.Session.SetString("user", Objeto. ObjectToString (Cliente));
-                return RedirectToAction("HomeCliente", "Cliente");
-            } else{
-                return RedirectToAction("login", "Account");
-            }
-        } else{return RedirectToAction("IniciarSesion", "Account");}
+            HttpContext.Session.SetString("user", Objeto.ObjectToString(usuario));
+            return RedirectToAction("HomeCliente", "Cliente");
+        }
+        else
+        {
+            return RedirectToAction("Login", "Account");
+        }
     }
+    else
+    {
+        return RedirectToAction("IniciarSesion", "Account");
+    }
+}
+
 
     public IActionResult cerrarSesion(){
         HttpContext.Session.SetString("id", 0.ToString());
