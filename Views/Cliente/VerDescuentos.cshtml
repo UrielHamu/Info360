@@ -25,6 +25,8 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Vencimientos</a>
         </li>
+    </ul>
+        <a href="#"><img src="~/img/cart.png" alt="carrito" width="35"/></a>
     </div>
 </nav>
 </header>
@@ -42,10 +44,13 @@
                                 <img src="~/img/@p.Imagen" alt="@p.Nombre" />
                                 <div>
                                     <p>Producto:@p.Nombre</p>
-                                    <p class="precio-original">Precio original: $@p.PrecioOriginal</p>
+                                    <p class="precio-original">Precio original:$@p.PrecioOriginal</p>
                                     <p>Precio con descuento: $@p.PrecioDescuento</p>
                                     <p>Fecha de vencimiento: @p.FechaVencimiento.ToString("dd/MM/yyyy")</p>
                                 </div>
+                            </div>
+                            <div class="text-end mt-2">
+                                <span class="estrella">☆</span>
                             </div>
                         </div>
                     </div>
@@ -56,11 +61,50 @@
                 <p>No hay productos con descuento disponibles.</p>
             }
         </div>
-
 </main>
-<footer>
-        <a href="https://www.instagram.com/"><img src="~/img/instagram.png" alt="logoInstagram"></a>
+<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-logo">
+            <img src="~/img/Logo.png" alt="Logo FIFO">
+            <p>Dale una segunda oportunidad a los alimentos. Reducí el desperdicio, ayudá al planeta 🌍</p>
+        </div>
+
+        <div class="footer-links">
+            <div>
+                <h4>Nosotros</h4>
+                <ul>
+                    <li><a href="#">Quiénes somos</a></li>
+                    <li><a href="#">Misión y visión</a></li>
+                    <li><a href="#">Nuestro equipo</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Ayuda</h4>
+                <ul>
+                    <li><a href="#">Preguntas frecuentes</a></li>
+                    <li><a href="#">Soporte técnico</a></li>
+                    <li><a href="#">Términos y condiciones</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contacto</h4>
+                <ul>
+                    <li><a href="mailto:contacto@fifo.com">contacto@fifo.com</a></li>
+                    <li><a href="#">Formulario de contacto</a></li>
+                    <li><a href="#">Ubicación</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-socials">
+                    <a href="https://www.instagram.com/"><img src="~/img/instagram.png" alt="logoInstagram"></a>
         <a href="https://twitter.com"><img src="~/img/twitter.png" alt="logoTweeter"></a>
         <a href="https://www.youtube.com"><img src="~/img/youtube.png" alt="logoYoutube"></a>
-  </footer>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2025 FIFO | Desarrollado por el equipo FIFO</p>
+    </div>
+</footer>
 </body>

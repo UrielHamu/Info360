@@ -1,5 +1,5 @@
 @{
-    ViewData["Title"] = "RegistrarseD";
+    ViewData["Title"] = "RegistrarseU";
 }
 <head>
     <meta charset="utf-8" />
@@ -13,16 +13,16 @@
   <header> 
     <ul class="nav justify-content-end">
   <li class="nav-item">
-    <a class="nav-link" href='@Url.Action("IniciarSesion", "Home")'>Iniciar sesión</a>
+    <a class="nav-link" href='@Url.Action("IniciarSesion", "Account")'>Iniciar sesión</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href='@Url.Action("Registrarse", "Home")'>Registrarse</a>
+    <a class="nav-link" href='@Url.Action("Registrarse", "Account")'>Registrarse</a>
   </li>
 </ul>
 </header>
 
 <img src="~/img/Logo.png" alt="Foto1">
-<form action='@Url.Action("recibirRegistro", "Home")' method="POST" enctype="application/x-www-form-urlencoded">
+<form action='@Url.Action("recibirRegistro", "Account")' method="POST" enctype="application/x-www-form-urlencoded">
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Nombre de usuario</label>
     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -38,7 +38,7 @@
     <div id="emailHelp" class="form-text"></div>
   </div>
   <select class="form-select" aria-label="Default select example">
-  <option selected>Local</option>
+  <option selected>Provincia</option>
   <option value="1">One</option>
   <option value="2">Two</option>
   <option value="3">Three</option>
@@ -49,14 +49,54 @@
   </div>
   <div>
     <h3>Ya tenes cuenta?</h3>
-    <a href='@Url.Action("IniciarSesion", "Home")'>Iniciar sesión</a>
+    <a href='@Url.Action("IniciarSesion", "Account")'>Iniciar sesión</a>
   </div>
   <button type="submit" class="btn btn-primary">Registrarse</button>
 </form>
-<footer>
-        <a href="https://www.instagram.com/"><img src="~/img/instagram.png" alt="logoInstagram"></a>
+<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-logo">
+            <img src="~/img/Logo.png" alt="Logo FIFO">
+            <p>Dale una segunda oportunidad a los alimentos. Reducí el desperdicio, ayudá al planeta 🌍</p>
+        </div>
+
+        <div class="footer-links">
+            <div>
+                <h4>Nosotros</h4>
+                <ul>
+                    <li><a href="#">Quiénes somos</a></li>
+                    <li><a href="#">Misión y visión</a></li>
+                    <li><a href="#">Nuestro equipo</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Ayuda</h4>
+                <ul>
+                    <li><a href="#">Preguntas frecuentes</a></li>
+                    <li><a href="#">Soporte técnico</a></li>
+                    <li><a href="#">Términos y condiciones</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contacto</h4>
+                <ul>
+                    <li><a href="mailto:contacto@fifo.com">contacto@fifo.com</a></li>
+                    <li><a href="#">Formulario de contacto</a></li>
+                    <li><a href="#">Ubicación</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-socials">
+                    <a href="https://www.instagram.com/"><img src="~/img/instagram.png" alt="logoInstagram"></a>
         <a href="https://twitter.com"><img src="~/img/twitter.png" alt="logoTweeter"></a>
         <a href="https://www.youtube.com"><img src="~/img/youtube.png" alt="logoYoutube"></a>
-  </footer>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2025 FIFO | Desarrollado por el equipo FIFO</p>
+    </div>
+</footer>
 </body>
 </html>

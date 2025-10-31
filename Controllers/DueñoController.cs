@@ -9,6 +9,37 @@ public class DueñoController : Controller
     private readonly ILogger<DueñoController> _logger;
 
     public IActionResult HomeDueño(){
-        return View();
+        return View("AgregarProducto", "Dueño");
     }
+       public IActionResult AgregarProducto(Productos producto){
+        Productos productoSesion = Objeto.StringToObject<Productos>(HttpContext.Session.GetString("user"));
+         BD.CargarProductos(producto);
+        HttpContext.Session.SetString("user", Objeto.ObjectToString(productoSesion));
+        return View("AgregarProducto");
+         // aca tiene que ser un formulario que ingrese todo los detalles del producto a agregar
+
+    }  
+      public IActionResult EliminarProducto(int Id){
+        BD.EliminarProductos(Id);          
+
+        return View("EliminarProducto");
+        // este metodo recibe el id del producto y lo elimina.
+    }  
+    public IActionResult ModificarProducto(Productos producto)
+{
+    Productos productoSesion = Objeto.StringToObject<Productos>(HttpContext.Session.GetString("user"));
+    BD.ModificarProductos(producto);
+    HttpContext.Session.SetString("user", Objeto.ObjectToString(productoSesion));
+    return View("ModificarProducto");
+     // aca tiene que ser un formulario que ingrese todo los detalles del producto a modificar, auqneu no quiera cambiar algo de un producto, lo va a tener que hacer igual
+
+}
+     public IActionResult VerProductosMiLocal(){
+        Clientes cliente = Objeto.StringToObject<Clientes> (HttpContext.Session.GetString("user"));
+               
+        HttpContext.Session.SetString("user", Objeto.ObjectToString(cliente));
+        return View("VerProductosMiLocal");
+    }  
+
+
 }

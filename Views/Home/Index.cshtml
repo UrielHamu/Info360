@@ -13,10 +13,10 @@
   <header> 
     <ul class="nav justify-content-end">
   <li class="nav-item">
-    <a class="nav-link" href='@Url.Action("IniciarSesion", "Home")'>Iniciar sesión</a>
+    <a class="nav-link" href='@Url.Action("IniciarSesion", "Account")'>Iniciar sesión</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href='@Url.Action("Registrarse", "Home")'>Registrarse</a>
+    <a class="nav-link" href='@Url.Action("registrarseCliente", "Account")'>Registrarse</a>
   </li>
 </ul>
 </header>
@@ -33,10 +33,50 @@
   <div>Impulsamos un modelo más inteligente y sustentable.</div>
   <div>Ayudamos a vender antes de desechar.</div>
 </section>
-<footer>
-        <a href="https://www.instagram.com/"><img src="~/img/instagram.png" alt="logoInstagram"></a>
+<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-logo">
+            <img src="c:\Users\48794948\Pictures\Screenshots\Captura de pantalla 2025-10-31 142500.png" alt="Logo FIFO">
+            <p>Dale una segunda oportunidad a los alimentos. Reducí el desperdicio, ayudá al planeta 🌍</p>
+        </div>
+
+        <div class="footer-links">
+            <div>
+                <h4>Nosotros</h4>
+                <ul>
+                    <li><a href="#">Quiénes somos</a></li>
+                    <li><a href="#">Misión y visión</a></li>
+                    <li><a href="#">Nuestro equipo</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Ayuda</h4>
+                <ul>
+                    <li><a href="#">Preguntas frecuentes</a></li>
+                    <li><a href="#">Soporte técnico</a></li>
+                    <li><a href="#">Términos y condiciones</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contacto</h4>
+                <ul>
+                    <li><a href="mailto:contacto@fifo.com">contacto@fifo.com</a></li>
+                    <li><a href="#">Formulario de contacto</a></li>
+                    <li><a href="#">Ubicación</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-socials">
+                    <a href="https://www.instagram.com/"><img src="~/img/instagram.png" alt="logoInstagram"></a>
         <a href="https://twitter.com"><img src="~/img/twitter.png" alt="logoTweeter"></a>
         <a href="https://www.youtube.com"><img src="~/img/youtube.png" alt="logoYoutube"></a>
-  </footer>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2025 FIFO | Desarrollado por el equipo FIFO</p>
+    </div>
+</footer>
 </body>
 </html>

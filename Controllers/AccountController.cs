@@ -35,6 +35,7 @@ public class AccountController : Controller
         HttpContext.Session.SetString("id", 0.ToString());
         return View("IniciarSesion");
     }
+    
     public IActionResult registrarseCliente(){
         return View("RegistrarseCliente");
     }

@@ -141,6 +141,7 @@ public static string BuscarLocal(int id)
         return connection.Query<Productos>(query).ToList();
     }
 }
+// verProductosMiLocal esta mal. le tiene que llegar un id dueño, y q a travex de inner join llegiue al id local
     public static List<Productos> verProductosMiLocal(int Id)
 {
        using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -153,7 +154,6 @@ public static string BuscarLocal(int id)
 
         return connection.Query<Productos>(query).ToList();
     }
-
 }
    public static List<Locales> MostrarLocales()
     {

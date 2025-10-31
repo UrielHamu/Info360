@@ -1,39 +1,62 @@
 @{
-    ViewData["Title"] = "Empresario1";
+    ViewData["Title"] = "IniciarSesion";
 }
+
+<!DOCTYPE html>
+<html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - NombreProyecto</title>
-    <link rel="stylesheet" href="site.css" asp-append-version="true" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>@ViewData["Title"] - FIFO</title>
+    <link rel="stylesheet" href="estilo.css" />
 </head>
 
-  <body>
-
- <header> 
+<body>
+    <header>
     <ul class="nav justify-content-end">
   <li class="nav-item">
-    <a class="nav-link" href='@Url.Action("Modificar", "Home")'>Modificar</a>
+    <a class="nav-link" href='@Url.Action("IniciarSesion", "Account")'>Iniciar sesión</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href='@Url.Action("Stock", "Home")'>Stock</a>
-  </li>
-   <li class="nav-item">
-    <a class="nav-link" href='@Url.Action("Descuentos", "Home")'>Descuentos</a>
+    <a class="nav-link" href='@Url.Action("Registrarse", "Account")'>Registrarse</a>
   </li>
 </ul>
+        <h1 class="titulo-principal">Bienvenido a FIFO</h1>
+    </header>
 
-</header>
+    <main>
+        <img src="~/img/Logo.png" alt="Logo FIFO" class="logo-inicio" />
 
+        <h2 class="titulo-fifo">FIFO</h2>
+        <p class="subtitulo-fifo">first in, first out</p>
 
-<h1>Sumá nuevos productos a tu negocio:</h1>
-<div class="input-group mb-3">
-  <span class="input-group-text">$</span>
-  <span class="input-group-text">0.00</span>
-  <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
-</div>
-</main>
+        <div class="formulario-login">
+            <form action='@Url.Action("recibirInicioDeSesion", "Home")' method="POST" enctype="application/x-www-form-urlencoded">
+                <div class="mb-3">
+                    <label for="usuario" class="form-label">Usuario</label>
+                    <input type="text" class="form-control" id="usuario" name="usuario" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="contraseña" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="contraseña" name="contraseña" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+            </form>
+
+            <div class="extra-links">
+            <a class="nav-link active" href='@Url.Action("IniciarSesion", "Account")'>Iniciar sesión</a>
+            </div>
+
+            <p class="ingresar-con">O ingresá con</p>
+            <div class="iconos-login">
+                <a href="#"><img src="~/img/facebook.png" alt="Facebook"></a>
+                <a href="#"><img src="~/img/instagram.png" alt="Instagram"></a>
+                <a href="#"><img src="~/img/gmail.png" alt="Gmail"></a>
+            </div>
+        </div>
+    </main>
 <footer class="footer">
     <div class="footer-top">
         <div class="footer-logo">
@@ -79,4 +102,5 @@
         <p>© 2025 FIFO | Desarrollado por el equipo FIFO</p>
     </div>
 </footer>
-</body>
+  </body>
+</html>
