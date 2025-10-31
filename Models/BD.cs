@@ -31,42 +31,46 @@ namespace Info360.Models
             return sePudo;
         }
 
-        public static bool registrar(Usuarios usuario)
+        public static int registrar(Usuarios usuario)
         {
             bool sePudo = sePuedeRegistrar(usuario);
+            int idUsuario = -1;
             if (sePudo)
             {
                 using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
                     string query = @"INSERT INTO Usuarios (NombreUsuario, Contraseña, FechaRegistro)
-                    VALUES (@NombreUsuario, @Contraseña, @FechaRegistro)";
+                    VALUES (@NombreUsuario, @Contraseña, @FechaRegistro)
+                    SELECT Id FROM Usuarios WHERE Usuarios.NombreUsuario = @NombreUsuario";
                     connection.Execute(query, new
                     {
                         NombreUsuario = usuario.NombreUsuario,
                         Contraseña = usuario.Contraseña,
                         FechaRegistro = usuario.FechaRegistro
                     });
+                    idUsuario = connection.QueryFirstOrDefault<int>(query);
                 }
             }
-            return sePudo;
+            return idUsuario;
         }
 
-        public static Usuarios traerUsuario(string NombreUsuario)
-        {
-            Usuarios usuario = new Usuarios();
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            {
-                string query = "SELECT * FROM Usuarios WHERE [NombreUsuario] = @NombreUsuario";
-                usuario = connection.QueryFirstOrDefault<Usuarios>(query, new { NombreUsuario });
-            }
-            return usuario;
-        }
+       public static Usuarios traerUsuario(string NombreUsuario)
+ { 
+     Usuarios usuario = new Usuarios();
+    using (SqlConnection connection = new SqlConnection(_connectionString))
+    {
+        string query = "SELECT * FROM Usuarios WHERE NombreUsuario = @NombreUsuario";
+        usuario = connection.QueryFirstOrDefault<Usuarios>(query, new { NombreUsuario });
+        return usuario;
+    }
+}
+
       public static void CargarProductos(Productos producto)
       {
                 using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
-                    string query = @"INSERT INTO Productos (Nombre, Foto, Categoria)
-                                     VALUES (@NombreUsuario, @Contraseña, @IdCategoria)";
+                    string query = @"INSERT INTO Productos (Nombre, Foto, IdCategoria)
+                                     VALUES (@Nombre, @Foto, @IdCategoria)";
                     connection.Execute(query, new
                     {
                         Nombre = producto.Nombre,
@@ -151,4 +155,42 @@ public static string BuscarLocal(int id)
     }
 
 }
+   public static List<Locales> MostrarLocales()
+    {
+    using (SqlConnection connection = new SqlConnection(_connectionString))
+    {
+        string query = "SELECT * FROM Locales ";
+        List<Locales> list = connection.Query<Locales>(query).ToList();
+        return list;
+    }
+    }
+         public static void CrearDueño(Dueños dueño)
+      {
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    string query = @"INSERT INTO Dueños (IdLocal, IdUsuario)
+                                     VALUES (@IdLocal, @IdUsuario)";
+                    connection.Execute(query, new
+                    {
+                        IdLocal = dueño.IdLocal,
+                        IdUsuario= dueño.IdUsuario
+  
+                    });
+                }
+      }
+               public static void CrearCliente(Clientes cliente)
+      {
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    string query = @"INSERT INTO Clientes (IdUsuario, IdProvincia)
+                                     VALUES (@IdUsuario, @IdProvincia)";
+                    connection.Execute(query, new
+                    {
+                        IdProvincia = cliente.IdProvincia,
+                        IdUsuario= cliente.IdUsuario
+  
+                    });
+                }
+      }
+    
 }}

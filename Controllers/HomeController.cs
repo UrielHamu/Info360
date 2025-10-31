@@ -15,6 +15,6 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        return RedirectToAction("IniciarSesion","Account");
+        return View("Index");
     }
 }

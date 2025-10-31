@@ -5,6 +5,6 @@ public class Ventas
     public int IdClientes;
     public int IdLocalesProductosVto;
     public DateTime FechaCompra;
-    public string Provincia;
+    public int IdProvincia;
     public DateTime FechaRegistro;
 }

@@ -6,5 +6,5 @@ public class LocalesProductosVto
     public int IdProducto;
     public DateTime FechaVencimiento;
     public int Cantidad;
-    public int porcentajeDescuento;
+    public int PorcentajeDescuento;
 }

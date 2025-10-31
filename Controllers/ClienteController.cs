@@ -10,25 +10,29 @@ public class ClienteController : Controller
 
     public IActionResult HomeCliente(){
         return RedirectToAction("VerDescuentos","Cliente");
-    }             
-    public IActionResult VerDescuentos(){
-        Clientes cliente = Objeto.StringToObject<Clientes> (HttpContext.Session.GetString("user"));
-        ViewBag.Productos = BD.TraerProductos();
-        ViewBag.cliente=cliente;
-        HttpContext.Session.SetString("user", Objeto.ObjectToString(cliente));
-        return View("VerDescuentos");
-    }        
-    
+    }         
     public IActionResult VerEmpresas(){
         Clientes cliente = Objeto.StringToObject<Clientes> (HttpContext.Session.GetString("user"));
-        ViewBag.Locales=
+        ViewBag.Locales = BD.MostrarLocales();
         HttpContext.Session.SetString("user", Objeto.ObjectToString(cliente));
         return View("VerEmpresas");
     }        
     
-    public IActionResult VerVencimiento(){
+    public IActionResult VerDescuentos(int filtro){
         Clientes cliente = Objeto.StringToObject<Clientes> (HttpContext.Session.GetString("user"));
-        
+        if (filtro == 1 )
+        {
+            ViewBag.Productos = BD.VerProductosCategoria();
+        }
+         else if (filtro == 2 )
+        {
+            ViewBag.Productos = BD.VerProductosMenorAMayor();
+        }
+        else
+        {
+           ViewBag.Productos = BD.VerProductosMayorAMenor();
+        }
+        ViewBag.Cliente=cliente;
         HttpContext.Session.SetString("user", Objeto.ObjectToString(cliente));
         return View("VerVencimiento");
     }         

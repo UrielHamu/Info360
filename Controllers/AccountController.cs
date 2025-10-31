@@ -43,7 +43,7 @@ public class AccountController : Controller
             Usuarios usuario=new Usuarios(username, password, mail, rol, DateTime.Now);
             int idUsuario = BD.registrar(usuario);
             Clientes cliente=new Clientes(idProvincia, idUsuario);
-            BD.crearCliente(cliente);
+            BD.CrearCliente(cliente);
             HttpContext.Session.SetString("user", Objeto.ObjectToString(cliente));
             return RedirectToAction("HomeCliente", "Cliente");
         } else{
@@ -56,7 +56,7 @@ public class AccountController : Controller
             Usuarios usuario=new Usuarios(username, password, mail, rol, DateTime.Now);
             int idUsuario = BD.registrar(usuario);
             Dueños dueño=new Dueños(idLocal, idUsuario);
-            BD.crearDueño(dueño);
+            BD.CrearDueño(dueño);
             HttpContext.Session.SetString("user", Objeto.ObjectToString(dueño));
             return RedirectToAction("HomeDueño", "Dueño");
         } else{
