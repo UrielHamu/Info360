@@ -38,30 +38,19 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Provincia</label>
-                <select id="provincia" name="rol" class="form-select" required>
-                    <option value="">Seleccioná una provincia</option>
-                    <option value="Buenos Aires">Buenos Aires</option>
-                    <option value="Córdoba">Córdoba</option>
-                    <option value="Santa Fe">Santa Fe</option>
-                    <option value="Mendoza">Mendoza</option>
-                    <option value="Entre Ríos">Entre Ríos</option>
-                    <option value="Tucumán">Tucumán</option>
-                    <option value="Salta">Salta</option>
-                    <option value="Neuquén">Neuquén</option>
-                    <option value="Río Negro">Río Negro</option>
-                    <option value="Chubut">Chubut</option>
-                    <option value="Misiones">Misiones</option>
-                </select>
-            </div>
 
+            <select class="form-select" aria-label="Default select example">
+            @foreach(Provincias provincia in ViewBag.Provincias){
+                <option value=@provincia.Id>@provincia.Nombre</option>
+            }
+            </div>
+            </select>
             <div class="mb-3">
                 <label class="form-label">Local</label>
                 <select class="form-select" name="idLocal" required>
-                    <option value="">Seleccioná tu local</option>
-                    <option value="1">Restó Verde</option>
-                    <option value="2">Panadería El Trigal</option>
-                    <option value="3">Café Urbano</option>
+                    @foreach(Locales local in ViewBag.Locales){
+                        <option value=@local.Id>@local.Nombre</option>
+                    }
                 </select>
             </div>
 
