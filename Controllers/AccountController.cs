@@ -11,7 +11,6 @@ public class AccountController : Controller
         return View("IniciarSesion");
     }
     
-    [HttpPost]
     public IActionResult RecibirInicioDeSesion(string Username, string Password)
     {
         Usuarios usuario = BD.traerUsuario(Username);

@@ -18,7 +18,7 @@
     <a class="nav-link" href='@Url.Action("IniciarSesion", "Account")'>Iniciar sesión</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href='@Url.Action("Registrarse", "Account")'>Registrarse</a>
+    <a class="nav-link" href='@Url.Action("RegistrarseCliente", "Account")'>Registrarse</a>
   </li>
 </ul>
         <h1 class="titulo-principal">Bienvenido a FIFO</h1>
@@ -31,7 +31,7 @@
         <p class="subtitulo-fifo">first in, first out</p>
 
         <div class="formulario-login">
-            <form action='@Url.Action("recibirInicioDeSesion", "Home")' method="POST" enctype="application/x-www-form-urlencoded">
+            <form action='@Url.Action("RecibirInicioDeSesion", "Account")' method="POST" enctype="application/x-www-form-urlencoded">
                 <div class="mb-3">
                     <label for="usuario" class="form-label">Usuario</label>
                     <input type="text" class="form-control" id="usuario" name="usuario" required>

@@ -31,7 +31,7 @@ public class DueñoController : Controller
     BD.ModificarProductos(producto);
     HttpContext.Session.SetString("user", Objeto.ObjectToString(productoSesion));
     return View("ModificarProducto");
-     // aca tiene que ser un formulario que ingrese todo los detalles del producto a modificar, auqneu no quiera cambiar algo de un producto, lo va a tener que hacer igual
+     // aca tiene que ser un formulario que ingrese todo los detalles del producto a modificar, aunque no quiera cambiar algo de un producto, lo va a tener que hacer igual
 
 }
      public IActionResult VerProductosMiLocal(){
