@@ -2,64 +2,86 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Info360.Models;
 
-namespace Info360.Controllers;
-
-public class AccountController : Controller
+namespace Info360.Controllers
 {
-    private readonly ILogger<AccountController> _logger;
-    public IActionResult IniciarSesion(){
-        return View("IniciarSesion");
-    }
-    
-    public IActionResult RecibirInicioDeSesion(string Username, string Password)
+    public class AccountController : Controller
     {
-        Usuarios usuario = BD.traerUsuario(Username);
+        private readonly ILogger<AccountController> _logger;
 
-        if (usuario == null||usuario.Contraseña!=Password)
+        public IActionResult IniciarSesion()
         {
+            return View("IniciarSesion");
+        }
+
+        [HttpPost]
+        public IActionResult RecibirInicioDeSesion(string nombreUsuario, string contraseña)
+        {
+            Usuarios usuario = BD.Login(nombreUsuario, contraseña);
+
+            if (usuario == null)
+            {
+                // Usuario no encontrado o contraseña incorrecta
+                return RedirectToAction("IniciarSesion", "Account");
+            }
+
+            HttpContext.Session.SetString("user", Objeto.ObjectToString(usuario));
+
+            if (usuario.Rol == "Cliente")
+                return RedirectToAction("HomeCliente", "Cliente");
+            else if (usuario.Rol == "Dueño")
+                return RedirectToAction("HomeDueño", "Dueño");
+
             return RedirectToAction("IniciarSesion", "Account");
         }
-        else if(usuario.Rol=="Cliente")
-        {
-            HttpContext.Session.SetString("user", Objeto.ObjectToString(usuario));
-            return RedirectToAction("HomeCliente", "Cliente");
-        } else if(usuario.Rol == "Dueño") {
-            HttpContext.Session.SetString("user", Objeto.ObjectToString(usuario));
-            return RedirectToAction("HomeDueño", "Dueño");
-        }
-        return RedirectToAction("IniciarSesion", "Account");
-    } 
 
-    public IActionResult cerrarSesion(){
-        HttpContext.Session.SetString("id", 0.ToString());
-        return View("IniciarSesion");
-    }
-    
-    public IActionResult registrarseCliente(){
-        return View("RegistrarseCliente");
-    }
-    public IActionResult recibirRegistroCliente(string username, string password, string mail, string rol, int idProvincia){
-        if(username!=null && password!=null && mail!=null && rol!=null && idProvincia!=null){
-            Usuarios usuario=new Usuarios(username, password, mail, rol, DateTime.Now);
-            int idUsuario = BD.registrar(usuario);
-            Clientes cliente=new Clientes(idProvincia, idUsuario);
-            BD.CrearCliente(cliente);
-            HttpContext.Session.SetString("user", Objeto.ObjectToString(cliente));
-            return RedirectToAction("HomeCliente", "Cliente");
-        } else{
+        public IActionResult CerrarSesion()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("IniciarSesion", "Account");
+        }
+
+        public IActionResult RegistrarseCliente()
+        {
             return View("RegistrarseCliente");
         }
-    }    
-    
-    public IActionResult recibirRegistroDueño(string username, string password, string mail, string rol, int idLocal){
-        if(username!=null && password!=null && mail!=null && rol!=null && idLocal!=null){
-            Usuarios usuario=new Usuarios(username, password, mail, rol, DateTime.Now);
-            int idUsuario = BD.registrar(usuario);
-            Dueños dueño=new Dueños(idLocal, idUsuario);
-            BD.CrearDueño(dueño);
-            HttpContext.Session.SetString("user", Objeto.ObjectToString(dueño));
-            return RedirectToAction("HomeDueño", "Dueño");
-        } else{
+
+        [HttpPost]
+        public IActionResult RecibirRegistroCliente(string username, string password, string mail, string rol, int idProvincia)
+        {
+            if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password) && !string.IsNullOrEmpty(mail) && !string.IsNullOrEmpty(rol))
+            {
+                Usuarios usuario = new Usuarios(username, password, mail, rol, DateTime.Now);
+                int idUsuario = BD.registrar(usuario);
+
+                if (idUsuario > 0)
+                {
+                    Clientes cliente = new Clientes(idProvincia, idUsuario);
+                    BD.CrearCliente(cliente);
+                    HttpContext.Session.SetString("user", Objeto.ObjectToString(cliente));
+                    return RedirectToAction("HomeCliente", "Cliente");
+                }
+            }
+
+            return View("RegistrarseCliente");
+        }
+
+        [HttpPost]
+        public IActionResult RecibirRegistroDueño(string username, string password, string mail, string rol, int idLocal)
+        {
+            if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password) && !string.IsNullOrEmpty(mail) && !string.IsNullOrEmpty(rol))
+            {
+                Usuarios usuario = new Usuarios(username, password, mail, rol, DateTime.Now);
+                int idUsuario = BD.registrar(usuario);
+
+                if (idUsuario > 0)
+                {
+                    Dueños dueño = new Dueños(idLocal, idUsuario);
+                    BD.CrearDueño(dueño);
+                    HttpContext.Session.SetString("user", Objeto.ObjectToString(dueño));
+                    return RedirectToAction("HomeDueño", "Dueño");
+                }
+            }
+
             return View("RegistrarseDueño");
         }
     }
