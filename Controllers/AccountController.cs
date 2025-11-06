@@ -20,7 +20,6 @@ namespace Info360.Controllers
 
             if (usuario == null)
             {
-                // Usuario no encontrado o contraseña incorrecta
                 return RedirectToAction("IniciarSesion", "Account");
             }
 
