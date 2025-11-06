@@ -38,10 +38,11 @@
     <input type="text" name="mail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
     <div id="emailHelp" class="form-text"></div>
   </div>
-  <select class="form-select" aria-label="Default select example">
-   @foreach(Provincias provincia in @ViewBag.Provincias){
-    <option value=@provincia.Id>@provincia.Nombre</option>
-  }
+<select name="idProvincia" class="form-select" aria-label="Seleccionar provincia">
+    @foreach (Provincias provincia in ViewBag.Provincias)
+    {
+        <option value="@provincia.Id">@provincia.Nombre</option>
+    }
 </select>
   <div class="mb-3 form-check">
     <input type="checkbox" class="form-check-input" id="exampleCheck1">

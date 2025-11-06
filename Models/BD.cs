@@ -6,7 +6,7 @@ namespace Info360.Models
     public static class BD
     {
         private static string _connectionString =
-            "Server=A-PHZ2-CIDI-39;Database=FIFO;Integrated Security=True;TrustServerCertificate=True;";
+            "Server=localhost;Database=FIFO;;Integrated Security=True;TrustServerCertificate=True;";
 
         public static Usuarios Login(string NombreUsuario, string Contraseña)
         {
@@ -30,30 +30,28 @@ namespace Info360.Models
             }
             return sePudo;
         }
-
         public static int registrar(Usuarios usuario)
         {
-            bool sePudo = sePuedeRegistrar(usuario);
-            int idUsuario = -1;
-            if (sePudo)
+            if (!sePuedeRegistrar(usuario)) return -1;
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                using (SqlConnection connection = new SqlConnection(_connectionString))
+                string query = @"
+                    INSERT INTO Usuarios (Contraseña, NombreUsuario, Email, FechaRegistro, Rol)
+                    OUTPUT INSERTED.Id
+                    VALUES (@Contraseña, @NombreUsuario, @Email, @FechaRegistro, @Rol)";
+
+                int idUsuario = connection.QuerySingle<int>(query, new
                 {
-                    string query = @"INSERT INTO Usuarios (Contraseña, NombreUsuario, Email, FechaRegistro, Rol)
-                    VALUES (@Contraseña, @NombreUsuario, @Mail, @FechaRegistro, @Rol)
-                    SELECT Id FROM Usuarios WHERE Usuarios.NombreUsuario = @NombreUsuario";
-                    connection.Execute(query, new
-                    {
-                        NombreUsuario = usuario.NombreUsuario,
-                        Contraseña = usuario.Contraseña,
-                        Mail = usuario.Email,
-                        FechaRegistro = usuario.FechaRegistro,
-                        Rol = usuario.Rol
-                    });
-                    idUsuario = connection.QueryFirstOrDefault<int>(query);
-                }
+                    NombreUsuario = usuario.NombreUsuario,
+                    Contraseña = usuario.Contraseña,
+                    Email = usuario.Email,
+                    FechaRegistro = usuario.FechaRegistro,
+                    Rol = usuario.Rol
+                });
+
+                return idUsuario;
             }
-            return idUsuario;
         }
 
        public static Usuarios traerUsuario(string NombreUsuario)
@@ -194,13 +192,11 @@ public static string BuscarLocal(int id)
       }
       public static List<Provincias> TraerProvincias()
     {
-    using (SqlConnection connection = new SqlConnection(_connectionString))
-    {
-        string query = "SELECT * FROM Provincias ";
-        List<Provincias> list = connection.Query<Provincias>(query).ToList();
-        return list;
-    }
-    }
-
-    
+        using (SqlConnection connection = new SqlConnection(_connectionString))
+        {
+            string query = "SELECT * FROM Provincias";
+            List<Provincias> list = connection.Query<Provincias>(query).ToList();
+            return list;
+        }
+    }    
 }}

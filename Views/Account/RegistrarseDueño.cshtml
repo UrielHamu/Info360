@@ -22,6 +22,8 @@
         <img src="~/img/Logo.png" alt="Logo FIFO" class="logo">
 
         <form action='@Url.Action("recibirRegistroDueño", "Account")' method="POST" class="registro-form">
+              <input type="hidden" name="rol" value="Dueño">
+
             <div class="mb-3">
                 <label class="form-label">Nombre de usuario</label>
                 <input type="text" name="username" class="form-control" required>
@@ -39,15 +41,11 @@
 
             <div class="mb-3">
 
-            <select class="form-select" aria-label="Default select example">
-            @foreach(Provincias provincia in ViewBag.Provincias){
-                <option value=@provincia.Id>@provincia.Nombre</option>
-            }
+
             </div>
-            </select>
             <div class="mb-3">
                 <label class="form-label">Local</label>
-                <select class="form-select" name="idLocal" required>
+                <select name="idLocal" class="form-select" aria-label="Seleccionar local">
                     @foreach(Locales local in ViewBag.Locales){
                         <option value=@local.Id>@local.Nombre</option>
                     }
