@@ -42,18 +42,20 @@ namespace Info360.Controllers
 
         public IActionResult RegistrarseCliente()
         {
+            ViewBag.provincias=BD.TraerProvincias();
             return View("RegistrarseCliente");
         }
 
         [HttpPost]
         public IActionResult RecibirRegistroCliente(string username, string password, string mail, string rol, int idProvincia)
         {
+            Console.WriteLine(username + password + mail + rol + idProvincia);
             if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password) && !string.IsNullOrEmpty(mail) && !string.IsNullOrEmpty(rol))
             {
                 Usuarios usuario = new Usuarios(username, password, mail, rol, DateTime.Now);
                 int idUsuario = BD.registrar(usuario);
 
-                if (idUsuario > 0)
+                if (idUsuario != -1)
                 {
                     Clientes cliente = new Clientes(idProvincia, idUsuario);
                     BD.CrearCliente(cliente);
@@ -62,9 +64,14 @@ namespace Info360.Controllers
                 }
             }
 
-            return View("RegistrarseCliente");
+            return RedirectToAction("RegistrarseCliente", "Account");
         }
-
+        public IActionResult RegistrarseDueño()
+        {
+            ViewBag.provincias=BD.TraerProvincias();
+            ViewBag.locales=BD.MostrarLocales();
+            return View("RegistrarseDueño");
+        }
         [HttpPost]
         public IActionResult RecibirRegistroDueño(string username, string password, string mail, string rol, int idLocal)
         {

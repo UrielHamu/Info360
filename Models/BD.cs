@@ -6,7 +6,7 @@ namespace Info360.Models
     public static class BD
     {
         private static string _connectionString =
-            "Server=A-PHZ2-CIDI-33;Database=FIFO;Integrated Security=True;TrustServerCertificate=True;";
+            "Server=A-PHZ2-CIDI-39;Database=FIFO;Integrated Security=True;TrustServerCertificate=True;";
 
         public static Usuarios Login(string NombreUsuario, string Contraseña)
         {
@@ -39,14 +39,16 @@ namespace Info360.Models
             {
                 using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
-                    string query = @"INSERT INTO Usuarios (NombreUsuario, Contraseña, FechaRegistro)
-                    VALUES (@NombreUsuario, @Contraseña, @FechaRegistro)
+                    string query = @"INSERT INTO Usuarios (Contraseña, NombreUsuario, Email, FechaRegistro, Rol)
+                    VALUES (@Contraseña, @NombreUsuario, @Mail, @FechaRegistro, @Rol)
                     SELECT Id FROM Usuarios WHERE Usuarios.NombreUsuario = @NombreUsuario";
                     connection.Execute(query, new
                     {
                         NombreUsuario = usuario.NombreUsuario,
                         Contraseña = usuario.Contraseña,
-                        FechaRegistro = usuario.FechaRegistro
+                        Mail = usuario.Email,
+                        FechaRegistro = usuario.FechaRegistro,
+                        Rol = usuario.Rol
                     });
                     idUsuario = connection.QueryFirstOrDefault<int>(query);
                 }
@@ -141,7 +143,6 @@ public static string BuscarLocal(int id)
         return connection.Query<Productos>(query).ToList();
     }
 }
-// verProductosMiLocal esta mal. le tiene que llegar un id dueño, y q a travex de inner join llegiue al id local
     public static List<Productos> verProductosMiLocal(int Id)
 {
        using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -151,8 +152,7 @@ public static string BuscarLocal(int id)
             FROM Productos 
             INNER JOIN LocalesProductosVto  ON Producto.Id = LocalesProductoVto.IdProducto
             WHERE LocalesProductosVto.IdLocal = @Id";
-
-        return connection.Query<Productos>(query).ToList();
+            return connection.Query<Productos>(query).ToList();
     }
 }
    public static List<Locales> MostrarLocales()
@@ -192,5 +192,15 @@ public static string BuscarLocal(int id)
                     });
                 }
       }
+      public static List<Provincias> TraerProvincias()
+    {
+    using (SqlConnection connection = new SqlConnection(_connectionString))
+    {
+        string query = "SELECT * FROM Provincias ";
+        List<Provincias> list = connection.Query<Provincias>(query).ToList();
+        return list;
+    }
+    }
+
     
 }}

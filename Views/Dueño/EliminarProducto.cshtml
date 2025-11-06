@@ -1,6 +1,5 @@
 @{
-    ViewData["Title"] = "VerEmpresas";
-    var locales = ViewBag.Locales as List<dynamic>;
+    ViewData["Title"] = "EliminarProducto";
 }
 <head>
     <meta charset="utf-8" />
@@ -16,41 +15,17 @@
             <a href="#"><img src="~/img/gear.png" alt="configuración" class="icon" /></a>
             <nav>
                 <ul>
-                    <li><a href='@Url.Action("VerDescuentos","Cliente")'>Descuentos</a></li>
-                    <li><a href='@Url.Action("VerEmpresas","Cliente")' class="active">Empresas</a></li>
-                    <li><a href="#">Vencimiento</a></li>
+                    <li><a href='@Url.Action("ModificarProducto","Dueño")'>Modificar</a></li>
+                    <li><a href='@Url.Action("VerProductosMiLocal","Dueño")' class="active">Stock</a></li>
+                    <li><a href="#">Descuentos</a></li>
                 </ul>
             </nav>
             <a href="#"><img src="~/img/cart.png" alt="carrito" class="icon-cart" /></a>
         </div>
     </header>
-
-    <main>
-        <h4>Explorá marcas y negocios para vos:</h4>
-
-        <div class="search-container">
-            <span class="search-icon">🔍</span>
-            <input type="text" placeholder="Buscar empresa" id="buscador" onkeyup="filtrarEmpresas()" />
-        </div>
-
-        <section id="contenedorEmpresas">
-            @if (locales != null && locales.Count > 0)
-            {
-                foreach (var l in locales)
-                {
-                    <article class="empresa-item">
-                        <div class="empresa-card">
-                            <img src="~/img/@l.Logo" alt="@l.Nombre" />
-                            <p>@l.Nombre</p>
-                        </div>
-                    </article>
-                }
-            }
-            else
-            {
-                <p>No hay empresas disponibles.</p>
-            }
-        </section>
+ <main>
+    <h4>Elimina los productos de tu negocio:</h4>
+    
     </main>
 <footer class="footer">
     <div class="footer-top">

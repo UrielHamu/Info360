@@ -13,10 +13,10 @@ public class DueñoController : Controller
     }
        public IActionResult AgregarProducto(Productos producto){
         Productos productoSesion = Objeto.StringToObject<Productos>(HttpContext.Session.GetString("user"));
-         BD.CargarProductos(producto);
+        BD.CargarProductos(producto);
         HttpContext.Session.SetString("user", Objeto.ObjectToString(productoSesion));
         return View("AgregarProducto");
-         // aca tiene que ser un formulario que ingrese todo los detalles del producto a agregar
+        // aca tiene que ser un formulario que ingrese todo los detalles del producto a agregar
 
     }  
       public IActionResult EliminarProducto(int Id){
@@ -35,11 +35,9 @@ public class DueñoController : Controller
 
 }
      public IActionResult VerProductosMiLocal(){
-        Clientes cliente = Objeto.StringToObject<Clientes> (HttpContext.Session.GetString("user"));
-               
-        HttpContext.Session.SetString("user", Objeto.ObjectToString(cliente));
+        Dueños dueño = Objeto.StringToObject<Dueños> (HttpContext.Session.GetString("user"));
+        ViewBag.ProductosMiLocal = BD.verProductosMiLocal(dueño.IdLocal);   
+        HttpContext.Session.SetString("user", Objeto.ObjectToString(dueño));
         return View("VerProductosMiLocal");
     }  
-
-
 }
