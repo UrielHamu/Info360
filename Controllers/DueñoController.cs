@@ -50,13 +50,14 @@ public class DueñoController : Controller
         return View("FormularioModificar");
     }
 
-    public IActionResult RecibirModificarProducto(int Id, string Nombre, string Foto, DateTime FechaVto)
-{
-    Dueños dueño = Objeto.StringToObject<Dueños> (HttpContext.Session.GetString("user"));
-    ViewBag.productos = BD.verProductosMiLocal(dueño.IdLocal);
-    HttpContext.Session.SetString("user", Objeto.ObjectToString(dueño));
-    return View("ModificarProducto");
-}
+    [HttpPost]
+    public IActionResult RecibirModificarProducto(int Id, string Nombre, string Foto, DateTime FechaVto, int IdCategoria)
+    {
+        Dueños dueño = Objeto.StringToObject<Dueños> (HttpContext.Session.GetString("user"));
+        BD.ModificarProducto(Id, Nombre, Foto, FechaVto, IdCategoria, dueño.IdLocal);
+        HttpContext.Session.SetString("user", Objeto.ObjectToString(dueño));
+        return RedirectToAction("ModificarProducto", "Dueño");
+    }
      public IActionResult VerProductosMiLocal(){
         Dueños dueño = Objeto.StringToObject<Dueños> (HttpContext.Session.GetString("user"));
         ViewBag.ProductosMiLocal = BD.verProductosMiLocal(dueño.IdLocal);   

@@ -62,25 +62,36 @@ namespace Info360.Models
     }
 }
 
-      public static void CrearProductos(Productos producto)
-      {
-                using (SqlConnection connection = new SqlConnection(_connectionString))
-                {
-                    string query = "CargarProductos";
-                    connection.Execute(query, new
-                    {
-                        Nombre = producto.Nombre,
-                        Foto = producto.Foto,
-                        IdCategoria = producto.IdCategoria
-                    }, commandType:System.Data.CommandType.StoredProcedure);
-                }
-      }
+     public static void CrearProductos(int cantidad, int idCategoria, DateTime fecha, string foto, string nombre, int precio, int idLocal)
+{
+    using (SqlConnection connection = new SqlConnection(_connectionString))
+    {
+       int idProducto = connection.QuerySingle<int>(
+            "CargarProductos",
+            new { Nombre = nombre, Foto = foto, IdCategoria = idCategoria },
+            commandType: System.Data.CommandType.StoredProcedure
+        );
+
+        connection.Execute(
+            "CargarLocalesProductosVto",
+            new { IdProducto = idProducto, IdLocal = idLocal, Cantidad = cantidad, FechaVencimiento = fecha },
+            commandType: System.Data.CommandType.StoredProcedure
+        );
+
+          connection.Execute(
+            "CargarLocalesProductosInicial",
+            new { IdProducto = idProducto, IdLocal = idLocal, PrecioInicial = precio },
+            commandType: System.Data.CommandType.StoredProcedure
+        );
+    }
+}
    public static void EliminarProductos(int idProducto)
     {
     using (SqlConnection connection = new SqlConnection(_connectionString))
     {
         string query = "EliminarProductos";
         connection.Execute(query, new { IdProducto = idProducto }, commandType:System.Data.CommandType.StoredProcedure);
+        
     }
     }
 public static string BuscarLocal(int id)
