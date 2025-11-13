@@ -13,20 +13,64 @@
   <header>
         <ul class="nav justify-content-end">
     <li class="nav-item">
-      <a class="nav-link" href='@Url.Action("AgregarProducto", "Dueño")'>Modificar</a>
+      <a class="nav-link" href='@Url.Action("AgregarProducto", "Dueño")'>Cargar producto</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href='@Url.Action("RegistrarseCliente", "Dueño")'>Descuentos</a>
+      <a class="nav-link" href='@Url.Action("EliminarProducto", "Dueño")'>Eliminar producto</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href='@Url.Action("VerProductosMiLocal", "Dueño")'>Vencimientos</a>
+      <a class="nav-link" href='@Url.Action("ModificarProducto", "Dueño")'>Modificar producto</a>
+    </li>
+     <li class="nav-item">
+      <a class="nav-link" href='@Url.Action("VerProductosMiLocal", "Dueño")'> Ver productos con descuentos</a>
     </li>
   </ul>
+  </header>
 
   @if(ViewBag.ProductosMiLocal == null){
     <p>No tenes artículos.</p>
   }  else{
     <div> ARTICULO 1 </div>
   }
-    </header>
+    
 </body>
+<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-logo">
+            <img src="c:\Users\48794948\Pictures\Screenshots\Captura de pantalla 2025-10-31 142500.png" alt="Logo FIFO">
+            <p>Dale una segunda oportunidad a los alimentos. Reducí el desperdicio, ayudá al planeta 🌍</p>
+        </div>
+
+        <div class="footer-links">
+            <div>
+                <h4>Sobre FIFO</h4>
+                <ul>
+                    <li><a href="Index.cshtml">Que es FIFO?</a></li>
+                    <li><a href="Index.html">Nuestra propuesta</a></li>
+                    <li><a href="Index.html">Por qué lo hacemos?</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Dueño</h4>
+                <ul>
+                    <li><a href="AgregarProducto.cshtml">Agregar producto</a></li>
+                    <li><a href="EliminarProducto.cshtml">Eliminar producto</a></li>
+                    <li><a href="ModificarProducto.cshtml">Modificar producto</a></li>
+                    <li><a href="VerProductosMiLocal">Ver productos</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Cliente</h4>
+                <ul>
+                    <li><a href="VerEmpresas.cshtml">Ver empresas</a></li>
+                    <li><a href="VerProductos.chtml">Ver productos</a></li>
+                </ul>
+            </div>
+        </div>
+
+    <div class="footer-bottom">
+        <p>© 2025 FIFO | Desarrollado por el equipo FIFO</p>
+    </div>
+</footer>
+</body>
+</html>

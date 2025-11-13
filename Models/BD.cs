@@ -85,13 +85,27 @@ namespace Info360.Models
         );
     }
 }
-   public static void EliminarProductos(int idProducto)
-    {
+
+            public static void EliminarProductos(int idProducto)
+{
     using (SqlConnection connection = new SqlConnection(_connectionString))
     {
-        string query = "EliminarProductos";
-        connection.Execute(query, new { IdProducto = idProducto }, commandType:System.Data.CommandType.StoredProcedure);
-        
+        connection.Execute(
+            "EliminarProductosVto",
+            new { IdProducto = idProducto },
+            commandType: System.Data.CommandType.StoredProcedure
+        );
+
+        connection.Execute(
+            "EliminarProductosInicial",
+            new { IdProducto = idProducto },
+            commandType: System.Data.CommandType.StoredProcedure
+        );
+        connection.Execute( 
+        "EliminarProductos",
+        new { IdProducto = idProducto }, commandType:System.Data.CommandType.StoredProcedure);
+
+
     }
     }
 public static string BuscarLocal(int id)
@@ -110,6 +124,7 @@ public static string BuscarLocal(int id)
         string query = "ModificarProductos";
         connection.Execute(query, new { IdProducto = producto.Id, nombreProducto = producto.Nombre, fotoProducto = producto.Foto, categoriaProducto = producto.IdCategoria}, commandType:System.Data.CommandType.StoredProcedure);
     }
+
 
     }
    public static List<Productos> VerProductosCategoria()
@@ -145,7 +160,7 @@ public static string BuscarLocal(int id)
        using (SqlConnection connection = new SqlConnection(_connectionString))
     {
         string query = "VerProductosMiLocal";
-            return connection.Query<Productos>(query, commandType:System.Data.CommandType.StoredProcedure).ToList();
+        return connection.Query<Productos>(query, commandType:System.Data.CommandType.StoredProcedure).ToList();
     }
 }
    public static List<Locales> MostrarLocales()
@@ -201,4 +216,44 @@ public static string BuscarLocal(int id)
             return list;
         }
     }    
+  public static Productos VerProductoAModificar(int idProducto)
+{
+    using (SqlConnection connection = new SqlConnection(_connectionString))
+    {
+        string query = "VerProductoAModificar";
+
+        Productos producto = connection.QueryFirstOrDefault<Productos>(
+            query,
+            new { IdProducto = idProducto },
+            commandType: System.Data.CommandType.StoredProcedure
+        );
+
+        return producto;
+    }
+}
+
+     public static void ModificarProductos(int cantidad, int idCategoria, DateTime fecha, string foto, string nombre, int precio, int idLocal)
+{
+    using (SqlConnection connection = new SqlConnection(_connectionString))
+    {
+       connection.Execute(
+            "ModificarProductos",
+            new { Nombre = nombre, Foto = foto, IdCategoria = idCategoria },
+            commandType: System.Data.CommandType.StoredProcedure
+        );
+
+        connection.Execute(
+            "ModificarLocalesProductosVto",
+            new { Cantidad = cantidad, FechaVencimiento = fecha },
+            commandType: System.Data.CommandType.StoredProcedure
+        );
+
+          connection.Execute(
+            "ModificarLocalesProductosInicial",
+            new {  PrecioInicial = precio },
+            commandType: System.Data.CommandType.StoredProcedure
+        );
+    }
+}
+
 }}

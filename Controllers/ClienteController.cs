@@ -9,9 +9,7 @@ public class ClienteController : Controller
     private readonly ILogger<ClienteController> _logger;
 
     public IActionResult HomeCliente(){
-        Carrito carrito = new Carrito();
-        HttpContext.Session.SetString("user", Objeto.ObjectToString(carrito));
-        return RedirectToAction("VerDescuentos","Cliente", new { filtro = 1 });
+        return RedirectToAction("VerProductos","Cliente", new { filtro = 1 });
     }         
     public IActionResult VerEmpresas(){
         Clientes cliente = Objeto.StringToObject<Clientes> (HttpContext.Session.GetString("user"));
@@ -20,7 +18,7 @@ public class ClienteController : Controller
         return View("VerEmpresas");
     }        
     
-    public IActionResult VerDescuentos(int filtro){
+    public IActionResult VerProductos(int filtro){
         Clientes cliente = Objeto.StringToObject<Clientes> (HttpContext.Session.GetString("user"));
         if (filtro == 1 )
         {
@@ -36,13 +34,8 @@ public class ClienteController : Controller
         }
         ViewBag.Cliente=cliente;
         HttpContext.Session.SetString("user", Objeto.ObjectToString(cliente));
-        return View("VerDescuentos");
+        return View("VerProductos");
     }         
-    
-    public IActionResult AgregarAlCarrito(int IdLocalesProductosVto){
-        
-        return RedirectToAction("VerDescuentos", "Cliente");
-    }
     
     public IActionResult Configuracion(){
         Clientes cliente = Objeto.StringToObject<Clientes> (HttpContext.Session.GetString("user"));

@@ -1,6 +1,5 @@
 @{
-    ViewData["Title"] = "VerEmpresas";
-    var locales = ViewBag.Locales as List<dynamic>;
+    ViewData["Title"] = "FormularioModificar";
 }
 <head>
     <meta charset="utf-8" />
@@ -12,72 +11,24 @@
 
 <body>
   <header>
-        <ul class="nav justify-content-end">
+       <ul class="nav justify-content-end">
     <li class="nav-item">
-      <a class="nav-link" href='@Url.Action("VerDescuentos", "Cliente")'>Productos</a>
+      <a class="nav-link" href='@Url.Action("AgregarProducto", "Dueño")'>Cargar producto</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href='@Url.Action("VerEmpresas", "Cliente")'>Empresas</a>
+      <a class="nav-link" href='@Url.Action("EliminarProducto", "Dueño")'>Eliminar producto</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href='@Url.Action("ModificarProducto", "Dueño")'>Modificar producto</a>
+    </li>
+     <li class="nav-item">
+      <a class="nav-link" href='@Url.Action("VerProductosMiLocal", "Dueño")'>Ver productos con descuentos</a>
     </li>
   </ul>
     </header>
-
-    <main>
-        <h4>Explorá marcas y negocios para vos:</h4>
-
-    <nav class="navbar bg-body-tertiary">
-  <div class="container-fluid">
-    <form class="d-flex" role="search">
-      <input class="form-control me-2" type="search" placeholder="Ver empresas" aria-label="Search"/>
-      <button class="btn btn-outline-success" type="submit">Buscar</button>
-    </form>
-  </div>
-</nav>
-
-  <section>
-            @if (locales != null && locales.Count > 0)
-            {
-                foreach (var l in locales)
-                {
-                    <article class="empresa-item">
-                        <div class="empresa-card">
-                            <img src="~/img/@l.Logo" alt="@l.Nombre" />
-                            <p>@l.Nombre</p>
-                        </div>
-                    </article>
-                }
-            }
-            else
-            {
-                <p>No hay empresas disponibles.</p>
-            }
-        </section>
-
-
-
-        /*<div class="search-container">
-            <span class="search-icon">🔍</span>
-            <input type="text" placeholder="Buscar empresa" id="buscador" onkeyup="filtrarEmpresas()" />
-        </div>
-
-        <section id="contenedorEmpresas">
-            @if (locales != null && locales.Count > 0)
-            {
-                foreach (var l in locales)
-                {
-                    <article class="empresa-item">
-                        <div class="empresa-card">
-                            <img src="~/img/@l.Logo" alt="@l.Nombre" />
-                            <p>@l.Nombre</p>
-                        </div>
-                    </article>
-                }
-            }
-            else
-            {
-                <p>No hay empresas disponibles.</p>
-            }
-        </section>*/
+ <main>
+    <h4>Aqui puedes modificar tu producto:</h4>
+    
     </main>
 <footer class="footer">
     <div class="footer-top">

@@ -32,9 +32,7 @@ public class DueñoController : Controller
         }
 
       public IActionResult GuardarEliminarProducto(int Id){
-        Dueños dueño = Objeto.StringToObject<Dueños> (HttpContext.Session.GetString("user"));
-        BD.EliminarProductos(Id, dueño.IdLocal);          
-        HttpContext.Session.SetString("user", Objeto.ObjectToString(dueño));
+        BD.EliminarProductos(Id);          
         return RedirectToAction("EliminarProducto", "Dueño");
     }  
     public IActionResult ModificarProducto()
