@@ -9,25 +9,52 @@ public class DueñoController : Controller
     private readonly ILogger<DueñoController> _logger;
 
     public IActionResult HomeDueño(){
-        return View("AgregarProducto", "Dueño");
+        return RedirectToAction("VerProductosMiLocal", "Dueño");
     }
-       public IActionResult AgregarProducto(Productos producto){
-        Productos productoSesion = Objeto.StringToObject<Productos>(HttpContext.Session.GetString("user"));
-        BD.CargarProductos(producto);
+    public IActionResult AgregarProducto(){
         ViewBag.categorias=BD.TraerCategorias();
-        HttpContext.Session.SetString("user", Objeto.ObjectToString(productoSesion));
         return View("AgregarProducto");
     }  
-      public IActionResult EliminarProducto(int Id){
-        BD.EliminarProductos(Id);          
+    
+    [HttpPost]
+    public IActionResult RecibirAgregarProducto(int cantidad, int IdCategoria, DateTime Fecha, string Foto, string Nombre, int Precio){
+        Dueños dueño = Objeto.StringToObject<Dueños> (HttpContext.Session.GetString("user"));
+        BD.CrearProductos(cantidad, IdCategoria, Fecha, Foto, Nombre, Precio, dueño.IdLocal);
+        HttpContext.Session.SetString("user", Objeto.ObjectToString(dueño));
+        return RedirectToAction("AgregarProducto", "Dueño");
+    }
 
-        return View("EliminarProducto");
+        public IActionResult EliminarProducto(){
+            Dueños dueño = Objeto.StringToObject<Dueños> (HttpContext.Session.GetString("user"));
+            ViewBag.productos = BD.verProductosMiLocal(dueño.IdLocal);
+            HttpContext.Session.SetString("user", Objeto.ObjectToString(dueño));
+            return View("EliminarProducto");
+        }
+
+      public IActionResult GuardarEliminarProducto(int Id){
+        Dueños dueño = Objeto.StringToObject<Dueños> (HttpContext.Session.GetString("user"));
+        BD.EliminarProductos(Id, dueño.IdLocal);          
+        HttpContext.Session.SetString("user", Objeto.ObjectToString(dueño));
+        return RedirectToAction("EliminarProducto", "Dueño");
     }  
-    public IActionResult ModificarProducto(Productos producto)
+    public IActionResult ModificarProducto()
 {
-    Productos productoSesion = Objeto.StringToObject<Productos>(HttpContext.Session.GetString("user"));
-    BD.ModificarProductos(producto);
-    HttpContext.Session.SetString("user", Objeto.ObjectToString(productoSesion));
+    Dueños dueño = Objeto.StringToObject<Dueños> (HttpContext.Session.GetString("user"));
+    ViewBag.productos = BD.verProductosMiLocal(dueño.IdLocal);
+    HttpContext.Session.SetString("user", Objeto.ObjectToString(dueño));
+    return View("ModificarProducto");
+}
+
+    public IActionResult VerProductoAModificar(int Id){
+        ViewBag.producto = BD.VerProductoAModificar(Id);
+        return View("FormularioModificar");
+    }
+
+    public IActionResult RecibirModificarProducto(int Id, string Nombre, string Foto, DateTime FechaVto)
+{
+    Dueños dueño = Objeto.StringToObject<Dueños> (HttpContext.Session.GetString("user"));
+    ViewBag.productos = BD.verProductosMiLocal(dueño.IdLocal);
+    HttpContext.Session.SetString("user", Objeto.ObjectToString(dueño));
     return View("ModificarProducto");
 }
      public IActionResult VerProductosMiLocal(){

@@ -13,8 +13,8 @@ namespace Info360.Models
             Usuarios usuario = new Usuarios();
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                string query = "SELECT * FROM Usuarios WHERE [NombreUsuario] = @NombreUsuario AND [Contraseña] = @Contraseña";
-                usuario = connection.QueryFirstOrDefault<Usuarios>(query, new { NombreUsuario, Contraseña });
+                string query = "Login";
+                usuario = connection.QueryFirstOrDefault<Usuarios>(query, new { NombreUsuario, Contraseña }, commandType:System.Data.CommandType.StoredProcedure);
             }
             return usuario;
         }
@@ -24,8 +24,8 @@ namespace Info360.Models
             bool sePudo;
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                string query = "SELECT * FROM Usuarios WHERE NombreUsuario = @NombreUsuario";
-                Usuarios existente = connection.QueryFirstOrDefault<Usuarios>(query, new { NombreUsuario = usuario.NombreUsuario });
+                string query = "SePuedeRegistrar";
+                Usuarios existente = connection.QueryFirstOrDefault<Usuarios>(query, new { NombreUsuario = usuario.NombreUsuario }, commandType:System.Data.CommandType.StoredProcedure);
                 sePudo = (existente == null);
             }
             return sePudo;
@@ -36,10 +36,7 @@ namespace Info360.Models
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                string query = @"
-                    INSERT INTO Usuarios (Contraseña, NombreUsuario, Email, FechaRegistro, Rol)
-                    OUTPUT INSERTED.Id
-                    VALUES (@Contraseña, @NombreUsuario, @Email, @FechaRegistro, @Rol)";
+                string query = "RegistrarUsuario";
 
                 int idUsuario = connection.QuerySingle<int>(query, new
                 {
@@ -48,7 +45,7 @@ namespace Info360.Models
                     Email = usuario.Email,
                     FechaRegistro = usuario.FechaRegistro,
                     Rol = usuario.Rol
-                });
+                }, commandType:System.Data.CommandType.StoredProcedure);
 
                 return idUsuario;
             }
@@ -59,40 +56,39 @@ namespace Info360.Models
      Usuarios usuario = new Usuarios();
     using (SqlConnection connection = new SqlConnection(_connectionString))
     {
-        string query = "SELECT * FROM Usuarios WHERE NombreUsuario = @NombreUsuario";
-        usuario = connection.QueryFirstOrDefault<Usuarios>(query, new { NombreUsuario });
+        string query = "TraerUsuario";
+        usuario = connection.QueryFirstOrDefault<Usuarios>(query, new { NombreUsuario }, commandType:System.Data.CommandType.StoredProcedure);
         return usuario;
     }
 }
 
-      public static void CargarProductos(Productos producto)
+      public static void CrearProductos(Productos producto)
       {
                 using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
-                    string query = @"INSERT INTO Productos (Nombre, Foto, IdCategoria)
-                                     VALUES (@Nombre, @Foto, @IdCategoria)";
+                    string query = "CargarProductos";
                     connection.Execute(query, new
                     {
                         Nombre = producto.Nombre,
-                        Contraseña = producto.Foto,
+                        Foto = producto.Foto,
                         IdCategoria = producto.IdCategoria
-                    });
+                    }, commandType:System.Data.CommandType.StoredProcedure);
                 }
       }
    public static void EliminarProductos(int idProducto)
     {
     using (SqlConnection connection = new SqlConnection(_connectionString))
     {
-        string query = @"DELETE FROM Productos WHERE IdProducto = @IdProducto";
-        connection.Execute(query, new { IdProducto = idProducto });
+        string query = "EliminarProductos";
+        connection.Execute(query, new { IdProducto = idProducto }, commandType:System.Data.CommandType.StoredProcedure);
     }
     }
 public static string BuscarLocal(int id)
 {
     using (SqlConnection connection = new SqlConnection(_connectionString))
     {
-        string query = "SELECT Nombre FROM Locales WHERE Id = @Id";
-        string nombreLocal = connection.QueryFirstOrDefault<string>(query, new { Id = id });
+        string query = "BuscarLocal";
+        string nombreLocal = connection.QueryFirstOrDefault<string>(query, new { Id = id }, commandType:System.Data.CommandType.StoredProcedure);
         return nombreLocal;
     }
 }
@@ -100,8 +96,8 @@ public static string BuscarLocal(int id)
     {
           using (SqlConnection connection = new SqlConnection(_connectionString))
     {
-        string query = @"UPDATE Productos SET Nombre = @nombreProducto, Foto = @fotoProducto, Categoria = @IdCategoriaProducto WHERE IdProducto = @IdProducto";
-        connection.Execute(query, new { IdProducto = producto.Id, nombreProducto = producto.Nombre, fotoProducto = producto.Foto, categoriaProducto = producto.IdCategoria});
+        string query = "ModificarProductos";
+        connection.Execute(query, new { IdProducto = producto.Id, nombreProducto = producto.Nombre, fotoProducto = producto.Foto, categoriaProducto = producto.IdCategoria}, commandType:System.Data.CommandType.StoredProcedure);
     }
 
     }
@@ -109,8 +105,8 @@ public static string BuscarLocal(int id)
     {
     using (SqlConnection connection = new SqlConnection(_connectionString))
     {
-        string query = "SELECT * FROM Productos ORDER BY IdCategoria";
-        List<Productos> list = connection.Query<Productos>(query).ToList();
+        string query = "VerProductosCategoria";
+        List<Productos> list = connection.Query<Productos>(query, commandType:System.Data.CommandType.StoredProcedure).ToList();
         return list;
     }
     }
@@ -118,13 +114,9 @@ public static string BuscarLocal(int id)
 {
     using (SqlConnection connection = new SqlConnection(_connectionString))
     {
-        string query = @"
-            SELECT *
-            FROM Productos 
-            INNER JOIN LocalesProductosVto  ON Producto.Id = LocalesProductoVto.IdProducto
-            ORDER BY porcentajeDescuento DESC";
+        string query = "VerProductosMayorAMenor";
 
-        return connection.Query<Productos>(query).ToList();
+        return connection.Query<Productos>(query, commandType:System.Data.CommandType.StoredProcedure).ToList();
     }
 }
 
@@ -132,33 +124,25 @@ public static string BuscarLocal(int id)
 {
     using (SqlConnection connection = new SqlConnection(_connectionString))
     {
-        string query = @"
-            SELECT *
-            FROM Productos 
-            INNER JOIN LocalesProductosVto  ON Producto.Id = LocalesProductoVto.IdProducto
-            ORDER BY porcentajeDescuento ASC";
+        string query = "VerProductosMenorAMayor";
 
-        return connection.Query<Productos>(query).ToList();
+        return connection.Query<Productos>(query, commandType:System.Data.CommandType.StoredProcedure).ToList();
     }
 }
     public static List<Productos> verProductosMiLocal(int Id)
 {
        using (SqlConnection connection = new SqlConnection(_connectionString))
     {
-        string query = @"
-            SELECT *
-            FROM Productos 
-            INNER JOIN LocalesProductosVto  ON Producto.Id = LocalesProductoVto.IdProducto
-            WHERE LocalesProductosVto.IdLocal = @Id";
-            return connection.Query<Productos>(query).ToList();
+        string query = "VerProductosMiLocal";
+            return connection.Query<Productos>(query, commandType:System.Data.CommandType.StoredProcedure).ToList();
     }
 }
    public static List<Locales> MostrarLocales()
     {
     using (SqlConnection connection = new SqlConnection(_connectionString))
     {
-        string query = "SELECT * FROM Locales ";
-        List<Locales> list = connection.Query<Locales>(query).ToList();
+        string query = "MostrarLocales ";
+        List<Locales> list = connection.Query<Locales>(query, commandType:System.Data.CommandType.StoredProcedure).ToList();
         return list;
     }
     }
@@ -166,36 +150,34 @@ public static string BuscarLocal(int id)
       {
                 using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
-                    string query = @"INSERT INTO Dueños (IdLocal, IdUsuario)
-                                     VALUES (@IdLocal, @IdUsuario)";
+                    string query = "CrearDueño";
                     connection.Execute(query, new
                     {
                         IdLocal = dueño.IdLocal,
                         IdUsuario= dueño.IdUsuario
   
-                    });
+                    }, commandType:System.Data.CommandType.StoredProcedure);
                 }
       }
                public static void CrearCliente(Clientes cliente)
       {
                 using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
-                    string query = @"INSERT INTO Clientes (IdUsuario, IdProvincia)
-                                     VALUES (@IdUsuario, @IdProvincia)";
+                    string query = "CrearCliente";
                     connection.Execute(query, new
                     {
                         IdProvincia = cliente.IdProvincia,
                         IdUsuario= cliente.IdUsuario
   
-                    });
+                    }, commandType:System.Data.CommandType.StoredProcedure);
                 }
       }
       public static List<Provincias> TraerProvincias()
     {
         using (SqlConnection connection = new SqlConnection(_connectionString))
         {
-            string query = "SELECT * FROM Provincias";
-            List<Provincias> list = connection.Query<Provincias>(query).ToList();
+            string query = "TraerProvincias";
+            List<Provincias> list = connection.Query<Provincias>(query, commandType:System.Data.CommandType.StoredProcedure).ToList();
             return list;
         }
     }        
@@ -203,8 +185,8 @@ public static string BuscarLocal(int id)
     {
         using (SqlConnection connection = new SqlConnection(_connectionString))
         {
-            string query = "SELECT * FROM Categorias";
-            List<Categorias> list = connection.Query<Categorias>(query).ToList();
+            string query = "TraerCategorias";
+            List<Categorias> list = connection.Query<Categorias>(query, commandType:System.Data.CommandType.StoredProcedure).ToList();
             return list;
         }
     }    

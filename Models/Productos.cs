@@ -5,4 +5,5 @@ public class Productos
     public string Nombre;
     public string Foto;
     public int IdCategoria;
+    
 }
