@@ -14,16 +14,14 @@ public class DueñoController : Controller
        public IActionResult AgregarProducto(Productos producto){
         Productos productoSesion = Objeto.StringToObject<Productos>(HttpContext.Session.GetString("user"));
         BD.CargarProductos(producto);
+        ViewBag.categorias=BD.TraerCategorias();
         HttpContext.Session.SetString("user", Objeto.ObjectToString(productoSesion));
         return View("AgregarProducto");
-        // aca tiene que ser un formulario que ingrese todo los detalles del producto a agregar
-
     }  
       public IActionResult EliminarProducto(int Id){
         BD.EliminarProductos(Id);          
 
         return View("EliminarProducto");
-        // este metodo recibe el id del producto y lo elimina.
     }  
     public IActionResult ModificarProducto(Productos producto)
 {
@@ -31,8 +29,6 @@ public class DueñoController : Controller
     BD.ModificarProductos(producto);
     HttpContext.Session.SetString("user", Objeto.ObjectToString(productoSesion));
     return View("ModificarProducto");
-     // aca tiene que ser un formulario que ingrese todo los detalles del producto a modificar, aunque no quiera cambiar algo de un producto, lo va a tener que hacer igual
-
 }
      public IActionResult VerProductosMiLocal(){
         Dueños dueño = Objeto.StringToObject<Dueños> (HttpContext.Session.GetString("user"));

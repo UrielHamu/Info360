@@ -11,16 +11,22 @@
 
 <body>
   <header>
-        <div class="top-bar">
-            <a href="#"><img src="~/img/gear.png" alt="configuración" class="icon" /></a>
-            <nav>
-                <ul>
-                    <li><a href='@Url.Action("ModificarProducto","Dueño")'>Modificar</a></li>
-                    <li><a href='@Url.Action("VerProductosMiLocal","Dueño")' class="active">Stock</a></li>
-                    <li><a href="#">Descuentos</a></li>
-                </ul>
-            </nav>
-            <a href="#"><img src="~/img/cart.png" alt="carrito" class="icon-cart" /></a>
-        </div>
+        <ul class="nav justify-content-end">
+    <li class="nav-item">
+      <a class="nav-link" href='@Url.Action("AgregarProducto", "Dueño")'>Modificar</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href='@Url.Action("RegistrarseCliente", "Dueño")'>Descuentos</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href='@Url.Action("VerProductosMiLocal", "Dueño")'>Vencimientos</a>
+    </li>
+  </ul>
+
+  @if(ViewBag.ProductosMiLocal == null){
+    <p>No tenes artículos.</p>
+  }  else{
+    <div> ARTICULO 1 </div>
+  }
     </header>
 </body>

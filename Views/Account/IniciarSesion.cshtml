@@ -13,169 +13,80 @@
 
 <body>
     <header>
-            <ul class="nav justify-content-end">
-        <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href='@Url.Action("IniciarSesion", "Account")'>Iniciar Sesion</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href='@Url.Action("RegistrarseCliente", "Account")'>Registrarse</a>
-        </li>
-        </ul>
+      <ul class="nav justify-content-end">
+    <li class="nav-item">
+      <a class="nav-link" href='@Url.Action("IniciarSesion", "Account")'>Iniciar sesión</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href='@Url.Action("RegistrarseCliente", "Account")'>Registrarse</a>
+    </li>
+  </ul>
     </header>
 
     <main>
-        <img src = "" alt ="Logo">
-        <h1>Cada día se desperdician toneladas de alimentos que todavía están en buen estado, solo porque no se venden antes de su fecha de vencimiento.</h1>
-        <img src = "" alt ="Foto1">
-        <h2>FIFO nace para darle una segunda oportunidad  a los alimentos próximos a vencerse y evita que termine en la basura.</h2>
-        <img src = "" alt ="Flujo">
-        
+      <main class="registro">
+  <img class="logo" src="~/img/Logo.png" alt="Logo FIFO">
+
+  <form action='@Url.Action("RecibirInicioDeSesion", "Account")' method="POST" class="form">
+
+    <div class="mb-3">
+      <label class="form-label">Nombre de usuario</label>
+      <input type="text" name="nombreUsuario" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Contraseña</label>
+      <input type="password" name="contraseña" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Iniciar sesion</button>
+</form>
+
+
+  <div class="extra">
+    <div>
+      <h3>¿No tenés cuenta?</h3>
+      <a href='@Url.Action("RegistrarseCliente", "Account")'>Registrate</a>
+    </div>
+  </div>
     </main>
 
     <footer class="footer">
-        <div class="footer-top">
-            <div class="footer-logo">
-                <img src="~/img/Logo.png" alt="Logo FIFO">
-                <p>Dale una segunda oportunidad a los alimentos. Reducí el desperdicio, ayudá al planeta 🌍</p>
-            </div>
+  <div class="footer-top">
+      <div class="footer-logo">
+          <img src="~/img/Logo.png" alt="Logo FIFO">
+          <p>Dale una segunda oportunidad a los alimentos. Reducí el desperdicio, ayudá al planeta 🌍</p>
+      </div>
 
-            <div class="footer-links">
-                <div>
-                    <h4>Acerca de...</h4>
-                    <ul>
-                        <li><a href="Index.html">Problematica</a></li>
-                        <li><a href="#">Flujo</a></li>
-                        <li><a href="#">¿Por qué lo hacemos?</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Ayuda</h4>
-                    <ul>
-                        <li><a href="#">Preguntas frecuentes</a></li>
-                        <li><a href="#">Soporte técnico</a></li>
-                        <li><a href="#">Términos y condiciones</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Contacto</h4>
-                    <ul>
-                        <li><a href="#">contacto@fifo.com</a></li>
-                        <li><a href="#">1112345678</a></li>
-                        <li><a href="#">FIFO.Ig</a></li>
-                    </ul>
-                </div>
-            </div>
+      <div class="footer-links">
+          <div>
+              <h4>Nosotros</h4>
+              <ul>
+                  <li><a href="#">Quiénes somos</a></li>
+                  <li><a href="#">Misión y visión</a></li>
+                  <li><a href="#">Nuestro equipo</a></li>
+              </ul>
+          </div>
+          <div>
+              <h4>Ayuda</h4>
+              <ul>
+                  <li><a href="#">Preguntas frecuentes</a></li>
+                  <li><a href="#">Soporte técnico</a></li>
+                  <li><a href="#">Términos y condiciones</a></li>
+              </ul>
+          </div>
+          <div>
+              <h4>Contacto</h4>
+              <ul>
+                  <li><a href="mailto:contacto@fifo.com">contacto@fifo.com</a></li>
+                  <li><a href="#">Formulario de contacto</a></li>
+                  <li><a href="#">Ubicación</a></li>
+              </ul>
+          </div>
+      </div>
 
-            <div class="footer-socials">
-                <a href="https://www.instagram.com/"><img src="~/img/instagram.png" alt="logoInstagram"></a>
-                <a href="https://twitter.com"><img src="~/img/twitter.png" alt="logoTweeter"></a>
-                <a href="https://www.youtube.com"><img src="~/img/youtube.png" alt="logoYoutube"></a>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <p>© 2025 FIFO | Desarrollado por el equipo FIFO</p>
-        </div>
-    </footer>
-</body>
-</html>
-
-
-
-
-@{
-    ViewData["Title"] = "IniciarSesion";
-}
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - FIFO</title>
-    <link rel="stylesheet" href="~/css/estilo.css" />
-</head>
-
-<body>
-    <header>
-        <ul class="nav justify-content-end">
-            <li class="nav-item">
-                <a class="nav-link" href='@Url.Action("IniciarSesion", "Account")'>Iniciar sesión</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href='@Url.Action("RegistrarseCliente", "Account")'>Registrarse</a>
-            </li>
-        </ul>
-        <h1 class="titulo-principal">Bienvenido a FIFO</h1>
-    </header>
-
-    <main>
-        <img src="~/img/Logo.png" alt="Logo FIFO" class="logo-inicio" />
-
-        <h2 class="titulo-fifo">FIFO</h2>
-        <p class="subtitulo-fifo">first in, first out</p>
-
-        <div class="formulario-login">
-            <form action='@Url.Action("RecibirInicioDeSesion", "Account")' method="post">
-                <div class="mb-3">
-                    <label for="nombreUsuario" class="form-label">Usuario</label>
-                    <input type="text" class="form-control" name="nombreUsuario" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="contraseña" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" name="contraseña" required>
-                </div>
-
-                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-            </form>
-        </div>
-    </main>
-
-    <footer class="footer">
-        <div class="footer-top">
-            <div class="footer-logo">
-                <img src="~/img/Logo.png" alt="Logo FIFO">
-                <p>Dale una segunda oportunidad a los alimentos. Reducí el desperdicio, ayudá al planeta 🌍</p>
-            </div>
-
-            <div class="footer-links">
-                <div>
-                    <h4>Nosotros</h4>
-                    <ul>
-                        <li><a href="#">Quiénes somos</a></li>
-                        <li><a href="#">Misión y visión</a></li>
-                        <li><a href="#">Nuestro equipo</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Ayuda</h4>
-                    <ul>
-                        <li><a href="#">Preguntas frecuentes</a></li>
-                        <li><a href="#">Soporte técnico</a></li>
-                        <li><a href="#">Términos y condiciones</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Contacto</h4>
-                    <ul>
-                        <li><a href="mailto:contacto@fifo.com">contacto@fifo.com</a></li>
-                        <li><a href="#">Formulario de contacto</a></li>
-                        <li><a href="#">Ubicación</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-socials">
-                <a href="https://www.instagram.com/"><img src="~/img/instagram.png" alt="logoInstagram"></a>
-                <a href="https://twitter.com"><img src="~/img/twitter.png" alt="logoTweeter"></a>
-                <a href="https://www.youtube.com"><img src="~/img/youtube.png" alt="logoYoutube"></a>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <p>© 2025 FIFO | Desarrollado por el equipo FIFO</p>
-        </div>
-    </footer>
+  <div class="footer-bottom">
+      <p>© 2025 FIFO | Desarrollado por el equipo FIFO</p>
+  </div>
+</footer>
 </body>
 </html>

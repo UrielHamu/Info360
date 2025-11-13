@@ -198,5 +198,14 @@ public static string BuscarLocal(int id)
             List<Provincias> list = connection.Query<Provincias>(query).ToList();
             return list;
         }
+    }        
+    public static List<Categorias> TraerCategorias()
+    {
+        using (SqlConnection connection = new SqlConnection(_connectionString))
+        {
+            string query = "SELECT * FROM Categorias";
+            List<Categorias> list = connection.Query<Categorias>(query).ToList();
+            return list;
+        }
     }    
 }}

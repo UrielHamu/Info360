@@ -1,111 +1,111 @@
 @{
-    ViewData["Title"] = "RegistrarseDueño";
+  ViewData["Title"] = "RegistrarseDueño";
 }
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - FIFO</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="~/css/registrarseDueño.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>@ViewData["Title"] - FIFO</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="estilo.css" />
 </head>
 
 <body>
-    <header>
-        <ul class="nav justify-content-end">
-            <li class="nav-item"><a class="nav-link" href='@Url.Action("IniciarSesion", "Account")'>Iniciar sesión</a></li>
-            <li class="nav-item"><a class="nav-link" href='@Url.Action("Registrarse", "Account")'>Registrarse</a></li>
-        </ul>
-    </header>
+  <header>
+      <ul class="nav justify-content-end">
+  <li class="nav-item">
+    <a class="nav-link" href='@Url.Action("IniciarSesion", "Account")'>Iniciar sesión</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href='@Url.Action("RegistrarseCliente", "Account")'>Registrarse</a>
+  </li>
+</ul>
+  </header>
 
-    <main class="registro-container">
-        <img src="~/img/Logo.png" alt="Logo FIFO" class="logo">
+  <main class="registro">
+      <img src="~/img/Logo.png" alt="Logo FIFO" class="logo">
 
-        <form action='@Url.Action("recibirRegistroDueño", "Account")' method="POST" class="registro-form">
-              <input type="hidden" name="rol" value="Dueño">
+      <form action='@Url.Action("recibirRegistroDueño", "Account")' method="POST" class="form">
+            <input type="hidden" name="rol" value="Dueño">
 
-            <div class="mb-3">
-                <label class="form-label">Nombre de usuario</label>
-                <input type="text" name="username" class="form-control" required>
-            </div>
+          <div class="mb-3">
+              <label class="form-label">Nombre de usuario</label>
+              <input type="text" name="username" class="form-control" required>
+          </div>
 
-            <div class="mb-3">
-                <label class="form-label">Contraseña</label>
-                <input type="password" name="password" class="form-control" required>
-            </div>
+          <div class="mb-3">
+              <label class="form-label">Contraseña</label>
+              <input type="password" name="password" class="form-control" required>
+          </div>
 
-            <div class="mb-3">
-                <label class="form-label">Email</label>
-                <input type="email" name="mail" class="form-control" required>
-            </div>
+          <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input type="email" name="mail" class="form-control" required>
+          </div>
 
-            <div class="mb-3">
+          <div class="mb-3">
 
 
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Local</label>
-                <select name="idLocal" class="form-select" aria-label="Seleccionar local">
-                    @foreach(Locales local in ViewBag.Locales){
-                        <option value=@local.Id>@local.Nombre</option>
-                    }
-                </select>
-            </div>
+          </div>
+          <div class="mb-3">
+              <label class="form-label">Local</label>
+              <select name="idLocal" class="form-select" aria-label="Seleccionar local">
+                  @foreach(Locales local in ViewBag.Locales){
+                      <option value=@local.Id>@local.Nombre</option>
+                  }
+              </select>
+          </div>
 
-            <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="checkRobot" required>
-                <label class="form-check-label" for="checkRobot">No soy un robot</label>
-            </div>
+          <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="checkRobot" required>
+              <label class="form-check-label" for="checkRobot">No soy un robot</label>
+          </div>
 
-            <div class="mb-3 text-center">
-                <h5>¿Ya tenés cuenta?</h5>
-                <a href='@Url.Action("IniciarSesion", "Account")'>Iniciar sesión</a>
-            </div>
+          <div class="mb-3 text-center">
+              <h5>¿Ya tenés cuenta?</h5>
+              <a href='@Url.Action("IniciarSesion", "Account")'>Iniciar sesión</a>
+          </div>
 
-            <button type="submit" class="btn btn-primary w-100">Registrarse</button>
-        </form>
-    </main>
+          <button type="submit" class="btn btn-primary w-100">Registrarse</button>
+      </form>
+  </main>
 
-    <footer class="footer">
-        <div class="footer-top">
-            <div class="footer-logo">
-                <img src="~/img/Logo.png" alt="Logo FIFO">
-                <p>Dale una segunda oportunidad a los alimentos. Reducí el desperdicio, ayudá al planeta 🌍</p>
-            </div>
-            <div class="footer-links">
-                <div>
-                    <h4>Nosotros</h4>
-                    <ul>
-                        <li><a href="#">Quiénes somos</a></li>
-                        <li><a href="#">Misión y visión</a></li>
-                        <li><a href="#">Nuestro equipo</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Ayuda</h4>
-                    <ul>
-                        <li><a href="#">Preguntas frecuentes</a></li>
-                        <li><a href="#">Soporte técnico</a></li>
-                        <li><a href="#">Términos y condiciones</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Contacto</h4>
-                    <ul>
-                        <li><a href="mailto:contacto@fifo.com">contacto@fifo.com</a></li>
-                        <li><a href="#">Formulario de contacto</a></li>
-                        <li><a href="#">Ubicación</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-socials">
-                <a href="https://www.instagram.com/"><img src="~/img/instagram.png" alt="Instagram"></a>
-                <a href="https://twitter.com"><img src="~/img/twitter.png" alt="Twitter"></a>
-                <a href="https://www.youtube.com"><img src="~/img/youtube.png" alt="YouTube"></a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2025 FIFO | Desarrollado por el equipo FIFO</p>
-        </div>
-    </footer>
+  <footer class="footer">
+      <div class="footer-top">
+          <div class="footer-logo">
+              <img src="~/img/Logo.png" alt="Logo FIFO">
+              <p>Dale una segunda oportunidad a los alimentos. Reducí el desperdicio, ayudá al planeta 🌍</p>
+          </div>
+          <div class="footer-links">
+              <div>
+                  <h4>Nosotros</h4>
+                  <ul>
+                      <li><a href="#">Quiénes somos</a></li>
+                      <li><a href="#">Misión y visión</a></li>
+                      <li><a href="#">Nuestro equipo</a></li>
+                  </ul>
+              </div>
+              <div>
+                  <h4>Ayuda</h4>
+                  <ul>
+                      <li><a href="#">Preguntas frecuentes</a></li>
+                      <li><a href="#">Soporte técnico</a></li>
+                      <li><a href="#">Términos y condiciones</a></li>
+                  </ul>
+              </div>
+              <div>
+                  <h4>Contacto</h4>
+                  <ul>
+                      <li><a href="mailto:contacto@fifo.com">contacto@fifo.com</a></li>
+                      <li><a href="#">Formulario de contacto</a></li>
+                      <li><a href="#">Ubicación</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+      <div class="footer-bottom">
+          <p>© 2025 FIFO | Desarrollado por el equipo FIFO</p>
+      </div>
+  </footer>
 </body>
+

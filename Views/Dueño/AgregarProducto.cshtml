@@ -11,40 +11,40 @@
 
 <body>
   <header>
-        <div class="top-bar">
-            <a href="#"><img src="~/img/gear.png" alt="configuración" class="icon" /></a>
-            <nav>
-                <ul>
-                    <li><a href='@Url.Action("ModificarProducto","Dueño")'>Modificar</a></li>
-                    <li><a href='@Url.Action("VerProductosMiLocal","Dueño")' class="active">Stock</a></li>
-                    <li><a href="#">Descuentos</a></li>
-                </ul>
-            </nav>
-            <a href="#"><img src="~/img/cart.png" alt="carrito" class="icon-cart" /></a>
-        </div>
+       <ul class="nav justify-content-end">
+    <li class="nav-item">
+      <a class="nav-link" href='@Url.Action("AgregarProducto", "Dueño")'>Modificar</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href='@Url.Action("RegistrarseCliente", "Dueño")'>Descuentos</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href='@Url.Action("VerProductosMiLocal", "Dueño")'>Vencimientos</a>
+    </li>
+  </ul>
     </header>
  <main>
     <h4>Sumá nuevos productos a tu negocio:</h4>
-    <form>
+    <form action='@Url.Action("AgregarProducto", "Dueño")' method="POST" class="form">
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Cantidad de stock:</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <input type="text" class="form-control" aria-describedby="emailHelp">
   </div>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Categoria:</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <input type="text" class="form-control" name="IdCategoria" aria-describedby="emailHelp">
   </div>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Fecha de vencimiento:</label>
-    <input type="datetime-local" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <input type="datetime-local" class="form-control" aria-describedby="emailHelp">
   </div>
   <div class="mb-3">
   <label for="formFile" class="form-label">Foto:</label>
-  <input class="form-control" type="file" id="formFile">
+  <input class="form-control" name="Foto" type="file" id="formFile">
 </div>
 <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Nombre del producto:</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <input type="text" class="form-control" name="Nombre" aria-describedby="emailHelp">
   </div>
   <div class="input-group mb-3">
   <label>Precio:</label>
@@ -52,6 +52,8 @@
   <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
   <span class="input-group-text">.00</span>
 </div>
+    <button type="submit" class="btn btn-primary">Agregar producto</button>
+
 </form>
     </main>
 <footer class="footer">
