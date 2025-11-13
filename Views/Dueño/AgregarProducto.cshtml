@@ -30,10 +30,15 @@
     <label for="exampleInputEmail1" class="form-label">Cantidad de stock:</label>
     <input type="text" class="form-control" aria-describedby="emailHelp">
   </div>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Categoria:</label>
-    <input type="text" class="form-control" name="IdCategoria" aria-describedby="emailHelp">
-  </div>
+    <div class="mb-3">
+      <label class="form-label">Categoria</label>
+      <select name="IdCategoria" class="form-select">
+        @foreach (Categorias categoria in ViewBag.ListCats)
+        {
+          <option value="@categoria.Id">@categoria.Nombre</option>
+        }
+      </select>
+    </div>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Fecha de vencimiento:</label>
     <input type="datetime-local" class="form-control" aria-describedby="emailHelp">
