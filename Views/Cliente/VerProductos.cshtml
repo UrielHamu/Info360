@@ -37,52 +37,20 @@
 </div>
 
 <div>
-            @if (productos != null && productos.Count > 0)
+            @if (ViewBag.Productos != null && ViewBag.Productos.Count > 0)
             {
-                foreach (var p in productos)
+                foreach (ProductosTemporales producto in ViewBag.Productos)
                 {
                     <section>
-                        <img src="~/img/@p.Imagen" alt="@p.Nombre" />
+                        <img src="~/img/@producto.Foto"/>
                             <div>
-                                <p>Producto:@p.Nombre</p>
-                                <p>Precio original:$@p.PrecioOriginal</p>
-                                <p>Precio con descuento: $@p.PrecioDescuento</p>
-                                <p>Catergoria: @p.Categoria</p>
-                                <p>Fecha de vencimiento: @p.FechaVencimiento.ToString("dd/MM/yyyy")</p>
+                                <p>Producto:@producto.Nombre</p>
+                                <p>Precio original:$@producto.PrecioInicial</p>
+                                <p>Precio con descuento: $@producto.PrecioDescuento</p>
+                                <p>Catergoria: @producto.Categoria</p>
+                                <p>Fecha de vencimiento: @producto.FechaVencimiento.ToString("dd/MM/yyyy")</p>
                             </div>
                     </section>
-                }
-            }
-            else
-            {
-                <p>No hay productos con descuento disponibles.</p>
-            }
-        </div>
-
-
-
-        <h4>Encontrá las mejores ofertas para vos:</h4>
-        <div class="row g-4">
-            @if (productos != null && productos.Count > 0)
-            {
-                foreach (var p in productos)
-                {
-                    <div class="col-md-6 col-lg-4">
-                        <div class="card-producto">
-                            <div class="d-flex align-items-start gap-3">
-                                <img src="~/img/@p.Imagen" alt="@p.Nombre" />
-                                <div>
-                                    <p>Producto:@p.Nombre</p>
-                                    <p class="precio-original">Precio original:$@p.PrecioOriginal</p>
-                                    <p>Precio con descuento: $@p.PrecioDescuento</p>
-                                    <p>Fecha de vencimiento: @p.FechaVencimiento.ToString("dd/MM/yyyy")</p>
-                                </div>
-                            </div>
-                            <div class="text-end mt-2">
-                                <span class="estrella">☆</span>
-                            </div>
-                        </div>
-                    </div>
                 }
             }
             else

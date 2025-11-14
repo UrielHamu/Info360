@@ -30,7 +30,17 @@
   @if(ViewBag.ProductosMiLocal == null){
     <p>No tenes artículos.</p>
   }  else{
-    <div> ARTICULO 1 </div>
+   @foreach(ProductosTemporales producto in ViewBag.productos){
+        <div>
+            <img src="@producto.Foto">  
+            <h2>Producto: @producto.Nombre</h2>
+            <h3>Categoria: @producto.Categoria</h3>
+            <h3>Fecha de vencimiento: @producto.FechaVencimiento</h3>
+            <h3>Cantidad: @producto.Cantidad</h3> 
+            <h3>Precio: $@producto.PrecioInicial</h3> 
+            <button type="submit" class="btn btn-danger btn-sm" href='@Url.Action("RecibirAgregarProducto", "Dueño")'>+</button>
+        </div> 
+    }
   }
     
 </body>

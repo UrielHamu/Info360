@@ -28,14 +28,14 @@
     </header>
  <main>
     <h4>Elimina los productos de tu negocio:</h4>
-    @foreach(LocalesProductosVto producto in ViewBag.productos){
+    @foreach(ProductosTemporales producto in ViewBag.productos){
         <div>
             <h2>@producto.Nombre</h2>
             <h3>@producto.Categoria</h3>
             <h3>@producto.FechaVencimiento</h3>
             <h3>@producto.Cantidad</h3>
-            <img src=@producto.foto>
-            <form asp-action="GuardarEliminarProducto" asp-controller="Dueño" method="post">
+            <img src="@producto.Foto">
+            <form action='@Url.Action("GuardarEliminarProducto", "Dueño")' method="POST" class="form">
                 <input type="hidden" name="Id" value="@producto.Id" />
                 <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
             </form>   

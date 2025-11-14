@@ -105,7 +105,6 @@ namespace Info360.Models
         "EliminarProductos",
         new { IdProducto = idProducto }, commandType:System.Data.CommandType.StoredProcedure);
 
-
     }
     }
 public static string BuscarLocal(int id)
@@ -155,12 +154,12 @@ public static string BuscarLocal(int id)
         return connection.Query<Productos>(query, commandType:System.Data.CommandType.StoredProcedure).ToList();
     }
 }
-    public static List<Productos> verProductosMiLocal(int Id)
+    public static List<ProductosTemporales> verProductosMiLocal(int Id)
 {
        using (SqlConnection connection = new SqlConnection(_connectionString))
     {
         string query = "VerProductosMiLocal";
-        return connection.Query<Productos>(query, commandType:System.Data.CommandType.StoredProcedure).ToList();
+        return connection.Query<ProductosTemporales>(query, commandType:System.Data.CommandType.StoredProcedure).ToList();
     }
 }
    public static List<Locales> MostrarLocales()
@@ -216,7 +215,7 @@ public static string BuscarLocal(int id)
             return list;
         }
     }    
-  public static Productos VerProductoAModificar(int idProducto)
+  public static Productos VerProductoAModificar(int IdProducto, int IdLocal)
 {
     using (SqlConnection connection = new SqlConnection(_connectionString))
     {

@@ -35,16 +35,14 @@
 </nav>
 
   <section>
-            @if (locales != null && locales.Count > 0)
+            @if (ViewBag.Locales != null && ViewBag.Locales.Count > 0)
             {
-                foreach (var l in locales)
+                foreach (Locales local in ViewBag.Locales)
                 {
-                    <article class="empresa-item">
                         <div class="empresa-card">
-                            <img src="~/img/@l.Logo" alt="@l.Nombre" />
-                            <p>@l.Nombre</p>
+                            <img src="~/img/@local.Logo"/>
+                            <p>@local.Nombre</p>
                         </div>
-                    </article>
                 }
             }
             else
@@ -55,7 +53,7 @@
 
 
 
-        /*<div class="search-container">
+        <div class="search-container">
             <span class="search-icon">🔍</span>
             <input type="text" placeholder="Buscar empresa" id="buscador" onkeyup="filtrarEmpresas()" />
         </div>
