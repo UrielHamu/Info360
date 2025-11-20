@@ -19,7 +19,7 @@ public class DueñoController : Controller
     }  
     public IActionResult AgregarProductoForm (int Id){
         ViewBag.Id=Id;
-        ViewBag.producto=BD.TraerProducto(Id); //debe traer este ProductosLocalesProductosInicial
+        ViewBag.producto=BD.TraerProductosLocalesProductosInicial(Id); //debe traer este ProductosLocalesProductosInicial
         return View("FormAgregarProducto");
     }
     

@@ -5,37 +5,54 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - NombreProyecto</title>
-    <link rel="stylesheet" href="site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="estilos.css" asp-append-version="true" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 
 <body>
   <header>
-       <ul class="nav justify-content-end">
-    <li class="nav-item">
-      <a class="nav-link" href='@Url.Action("AgregarProducto", "Dueño")'>Cargar producto</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href='@Url.Action("EliminarProducto", "Dueño")'>Eliminar producto</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href='@Url.Action("ModificarProducto", "Dueño")'>Modificar producto</a>
-    </li>
-     <li class="nav-item">
-      <a class="nav-link" href='@Url.Action("VerProductosMiLocal", "Dueño")'> Ver productos con descuentos</a>
-    </li>
-  </ul>
+      <nav class="navbar">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
+            <div class="offcanvas-header">
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-start">
+                    <li class="nav-item">
+                        <a class="nav-link1" href='@Url.Action("AgregarProducto", "Dueño")'>Cargar producto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link1" href='@Url.Action("EliminarProducto", "Dueño")'>Eliminar producto</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link1" href='@Url.Action("ModificarProducto", "Dueño")'>Modificar producto</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link1" href='@Url.Action("VerProductosMiLocal", "Dueño")' >Ver productos con descuentos</a>
+                  </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</nav>
     </header>
   <main>
       <div>
-        <h2>@ViewBag.producto.Nombre</h2>
-        <h3>@ViewBag.producto.Categoria</h3>
-        <h3>@ViewBag.producto.PrecioInicial</h3>
+        <h3>Nombre: @ViewBag.producto.Nombre</h3>
+        <h3>Categoria:@ViewBag.producto.Categoria</h3>
+        <h3>Precio inicial: @ViewBag.producto.PrecioInicial</h3>
         <img src="@ViewBag.producto.Foto">
-        <form action='@Url.Action("RecibirAgregarProducto", "Dueño")' method="POST" class="form">
+        <form action='@Url.Action("RecibirAgregarProducto", "Dueño")' method="POST" class="form formProducto">
         <input type="hidden" name="IdProducto" value="@ViewBag.producto.IdLocalesProductosInicial" />
-        <input type="number" name="Cantidad"/>
-        <input type="date" name="Fecha">
+        <p>Cantidad:</p><input type="number" name="Cantidad"/>
+        <p>Fecha</p><input type="date" name="Fecha">
         <button type="submit" class="btn btn-danger btn-sm">Agregar</button>
         </form>   
       </div> 
