@@ -289,8 +289,17 @@ public static ProductosLocalesProductosInicial TraerProductosLocalesProductosIni
         LocalesProductosInicial ProductoInicial= connection.QueryFirstOrDefault<LocalesProductosInicial>(query, new { Id = id }, commandType:System.Data.CommandType.StoredProcedure);
         return new ProductosLocalesProductosInicial(TraerProducto(id), ProductoInicial);
     }
-}
+} 
+        //desde aca no estan hechos los stored procedures
+public static List<ProductosTemporales> verProductosMiLocal(int IdLocal){
+        using (SqlConnection connection = new SqlConnection(_connectionString))
+        {
+            string query="VerProductosMiLocal";
+            List<ProductosTemporales> ListaFinal;
 
+            
+        }
+}
 
     }
 }
