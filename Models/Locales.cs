@@ -6,4 +6,5 @@ public class Locales
     public string Domicilio;
     public string Provincia;
     public int CodigoPostal;
+    public string Foto;
 }

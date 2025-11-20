@@ -30,13 +30,15 @@
     <h4>Aqui puedes elegir que producto queres modificar de tu negocio:</h4>
     @foreach(ProductosTemporales producto in ViewBag.productos){
         <div>
-            <h2>@producto.Nombre</h2>
-            <h3>@producto.Categoria</h3>
-            <h3>@producto.FechaVencimiento</h3>
-            <h3>@producto.Cantidad</h3>
-            <img src=@producto.Foto>
-            <form action='@Url.Action("GuardarEliminarProducto", "Dueño")' method="POST" class="form">
-                <input type="hidden" name="Id" value="@producto.Id" />
+            <img src="~/img/@producto.Foto"/>   
+            <p>Producto:@producto.Nombre</p>
+            <p>Supermercado: @producto.Local.Nombre</p>
+            <p>Precio original:$@producto.PrecioInicial</p>
+            <p>Precio con descuento: $@producto.PrecioConDescuento</p>
+            <p>Catergoria: @producto.Categoria</p>
+            <p>Fecha de vencimiento: @producto.FechaVencimiento.ToString("dd/MM/yyyy")</p>   
+            <form action='@Url.Action("VerProductoAModificar", "Dueño")' method="POST" class="form">
+                <input type="hidden" name="Id" value="@producto.IdLocalesProductos" />
                 <button type="submit" class="btn btn-danger btn-sm">Modificar</button>
             </form>   
         </div> 

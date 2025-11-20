@@ -49,7 +49,6 @@ h2 {
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-
 .Info {
   display: flex;
   justify-content: center;
@@ -157,7 +156,6 @@ h2 {
   text-decoration: underline;
 }
 
-
 .footer {
   background-color: #613dc1;
   color: white;
@@ -169,13 +167,20 @@ h2 {
 
 .footer-top {
   display: flex;
-  justify-content: space-around;
-  gap: 25px;
-  margin-bottom: 2%;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+}
+
+.footer-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .footer-logo img {
-  width: 7%;
+  width: 20%;
   height: auto;
 }
 
@@ -215,19 +220,43 @@ h2 {
   font-size: 13px;
 }
 
+/* 📌 NUEVO: Tarjetas de locales */
+.empresa-card {
+  width: 40%;
+  margin-left: 30%;
+  margin-bottom: 3%;
+  border: 2px solid #613dc1;
+  padding: 2%;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.empresa-card img {
+  width: 60%;
+  margin: 2% 0%;
+}
+
+.nombre-empresa {
+  font-weight: bold;
+}
+
+.no-locales {
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 3%;
+  color: #555;
+}
+
+
 @media (width<=600px) {
 
   html {
-    font-size: 12px; /* achica TODAS las letras */
+    font-size: 12px; 
   }
 
-  h1 {
-    font-size: 15px;
-  }
-
-  h2 {
-    font-size: 16px;
-  }
+  h1 { font-size: 15px; }
+  h2 { font-size: 16px; }
 
   img {
     width: 50%;
@@ -236,105 +265,65 @@ h2 {
     margin-bottom: 2%;
   }
 
-  .Foto {
-    width: 70%;
-    margin-left: 15%;
+  .empresa-card {
+    width: 80%;
+    margin-left: 10%;
   }
 
-  /* TEXTO INTRO */
-  .Intro {
-    font-size: 15px;
-    padding: 4%;
-  }
-
-  /* INFO en columna y más chica */
-  .Info {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .Info div {
-    width: 75%;
-    padding: 3%;
-    font-size: 13px;
-  }
-
-  /* FORMULARIO más chico */
-  .form {
-    width: 85%;
-    padding: 5%;
+  .nombre-empresa {
     font-size: 14px;
   }
 
-  .form .btn-primary {
-    font-size: 14px;
-    padding: 2%;
-  }
-
-  .form h5 {
-    font-size: 16px;
-  }
-
-  .logo {
-    width: 22%;
-    margin: auto;
-  }
-
-  /* EXTRA */
-  .extra h3 {
-    font-size: 15px;
+  .no-locales {
+    font-size: 12px;
   }
 
   .footer {
-    padding: 15px 0;
+    padding: 1.5%;
     font-size: 12px;
-}
+  }
 
-.footer-top {
+  .footer-links div:nth-child(2),
+  .footer-links div:nth-child(3) {
+    display: none;
+  }
+
+  .footer-top {
     flex-direction: column;
     align-items: center;
     text-align: center;
     gap: 15px;
-}
+  }
 
-/* Logo chiquito y centrado */
-.footer-logo img {
-    width: 80px;
-    margin: 0 auto 5px auto;
+  .footer-logo img {
+    width: 20%;
+    margin: 0.5%;
     display: block;
-}
+  }
 
-.footer-logo p {
+  .footer-logo p {
     font-size: 12px;
-    padding: 0 20px;
-    line-height: 1.2;
-}
+    padding: 0.2%;
+  }
 
-/* Links en columna */
-.footer-links {
+  .footer-links {
     flex-direction: column;
     gap: 10px;
     text-align: center;
-}
+  }
 
-.footer-links h4 {
+  .footer-links h4 {
     font-size: 14px;
-    margin-bottom: 3px;
-}
+    margin-bottom: 0.3%;
+  }
 
-.footer-links ul li a {
+  .footer-links ul li a {
     font-size: 12px;
-}
+  }
 
-/* Parte final */
-.footer-bottom {
-    margin-top: 10px;
+  .footer-bottom {
+    margin-top: 1%;
     font-size: 11px;
-    padding: 5px 0 0 0;
+    padding: 0.5%;
+  }
 }
-}
-
-
-
-

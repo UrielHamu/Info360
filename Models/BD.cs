@@ -223,7 +223,7 @@ public static string BuscarLocal(int id)
 
         Productos producto = connection.QueryFirstOrDefault<Productos>(
             query,
-            new { IdProducto = idProducto },
+            new { IdProducto = IdProducto, IdLocal = IdLocal },
             commandType: System.Data.CommandType.StoredProcedure
         );
 
@@ -231,28 +231,17 @@ public static string BuscarLocal(int id)
     }
 }
 
-     public static void ModificarProductos(int cantidad, int idCategoria, DateTime fecha, string foto, string nombre, int precio, int idLocal)
+     public static void ModificarProductos(int Id, int precio)
 {
-    using (SqlConnection connection = new SqlConnection(_connectionString))
+      using (SqlConnection connection = new SqlConnection(_connectionString))
     {
-       connection.Execute(
-            "ModificarProductos",
-            new { Nombre = nombre, Foto = foto, IdCategoria = idCategoria },
-            commandType: System.Data.CommandType.StoredProcedure
-        );
-
         connection.Execute(
-            "ModificarLocalesProductosVto",
-            new { Cantidad = cantidad, FechaVencimiento = fecha },
-            commandType: System.Data.CommandType.StoredProcedure
-        );
-
-          connection.Execute(
             "ModificarLocalesProductosInicial",
-            new {  PrecioInicial = precio },
+            new { Id = Id, PrecioInicial = precio },
             commandType: System.Data.CommandType.StoredProcedure
         );
     }
+
 }
 
 }}

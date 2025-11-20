@@ -31,7 +31,7 @@ public class DueñoController : Controller
             return View("EliminarProducto");
         }
 
-      public IActionResult GuardarEliminarProducto(int Id){
+      public IActionResult GuardarEliminarLocalesProductosInicial(int Id){
         BD.EliminarProductos(Id);          
         return RedirectToAction("EliminarProducto", "Dueño");
     }  

@@ -27,8 +27,17 @@
   </ul>
     </header>
  <main>
-    <h4>Aqui puedes modificar tu producto:</h4>
-    
+    <h1>Aqui puedes modificar tu producto:</h1>
+    <h2>Nombre: @ViewBag.Producto.Nombre</h2>
+    <h2>Categoria: @ViewBag.Producto.Categoria</h2>
+    <h2>Fecha de vencimiento: @ViewBag.Producto.FechaVencimiento</h2>
+    <h2>Cantidad en stock: @ViewBag.Producto.Cantidad</h2>
+    <img src="~/img/@ViewBag.Producto.Foto"/>
+    <h2>Precio con descuento: @ViewBag.Producto.PrecioConDescuento</h2>
+    <form action='@Url.Action("RecibirModificarProducto", "Dueño")' method="POST" class="form">
+    <h2>Precio establecido: </h2><input type="number" name="Precio" placeholder=@ViewBag.Producto.PrecioInicial>
+    <input type="submit" value="Guardar precio">
+    </form>
     </main>
 <footer class="footer">
     <div class="footer-top">
