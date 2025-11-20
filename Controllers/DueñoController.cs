@@ -12,7 +12,7 @@ public class DueñoController : Controller
         return RedirectToAction("VerProductosMiLocal", "Dueño");
     }
     public IActionResult AgregarProducto(){
-        ViewBag.categorias=BD.TraerCategorias();
+        ViewBag.categorias=BD.TraerCategorias();//Debe traer los LocalesProductosInicial
         return View("AgregarProducto");
     }  
     
@@ -26,7 +26,7 @@ public class DueñoController : Controller
 
         public IActionResult EliminarProducto(){
             Dueños dueño = Objeto.StringToObject<Dueños> (HttpContext.Session.GetString("user"));
-            ViewBag.productos = BD.verProductosMiLocal(dueño.IdLocal);
+            ViewBag.productos = BD.verProductosMiLocal(dueño.IdLocal);//Debe usar el model ProductosTemporales
             HttpContext.Session.SetString("user", Objeto.ObjectToString(dueño));
             return View("EliminarProducto");
         }
@@ -38,27 +38,29 @@ public class DueñoController : Controller
     public IActionResult ModificarProducto()
 {
     Dueños dueño = Objeto.StringToObject<Dueños> (HttpContext.Session.GetString("user"));
-    ViewBag.productos = BD.verProductosMiLocal(dueño.IdLocal);
+    ViewBag.productos = BD.verProductosMiLocal(dueño.IdLocal);//Debe usar el model ProductosTemporalesVto
     HttpContext.Session.SetString("user", Objeto.ObjectToString(dueño));
     return View("ModificarProducto");
 }
 
     public IActionResult VerProductoAModificar(int Id){
-        ViewBag.producto = BD.VerProductoAModificar(Id);
+        Dueños dueño = Objeto.StringToObject<Dueños> (HttpContext.Session.GetString("user"));
+        ViewBag.producto = BD.VerProductoAModificar(Id, dueño.IdLocal);//Recibe el id del LocalesProductosVto y debe usar el model ProductosTemporales
+        HttpContext.Session.SetString("user", Objeto.ObjectToString(dueño));
         return View("FormularioModificar");
     }
 
     [HttpPost]
-    public IActionResult RecibirModificarProducto(int Id, string Nombre, string Foto, DateTime FechaVto, int IdCategoria)
+    public IActionResult RecibirModificarProducto(int Id, int NuevoPrecio)
     {
         Dueños dueño = Objeto.StringToObject<Dueños> (HttpContext.Session.GetString("user"));
-        BD.ModificarProducto(Id, Nombre, Foto, FechaVto, IdCategoria, dueño.IdLocal);
+        BD.ModificarProducto(Id, NuevoPrecio, dueño.IdLocal);//Recibe el id de LocalesProductosInicial, el nuevo PrecioInicial
         HttpContext.Session.SetString("user", Objeto.ObjectToString(dueño));
         return RedirectToAction("ModificarProducto", "Dueño");
     }
      public IActionResult VerProductosMiLocal(){
         Dueños dueño = Objeto.StringToObject<Dueños> (HttpContext.Session.GetString("user"));
-        ViewBag.ProductosMiLocal = BD.verProductosMiLocal(dueño.IdLocal);   
+        ViewBag.ProductosMiLocal = BD.verProductosMiLocal(dueño.IdLocal);//debe usar el model ProductosTemporalesVto
         HttpContext.Session.SetString("user", Objeto.ObjectToString(dueño));
         return View("VerProductosMiLocal");
     }  

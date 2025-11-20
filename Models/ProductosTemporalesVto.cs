@@ -1,5 +1,5 @@
 namespace Info360.Models;
-public class ProductosTemporales
+public class ProductosTemporalesVto
 {
     public string Nombre;
     public string Categoria;
@@ -9,5 +9,5 @@ public class ProductosTemporales
     public int PrecioInicial;
     public int IdLocal;
     public int PrecioConDescuento;
-    public int IdLocalesProductosInicial;
+    public int IdLocalesProductosVto;
 }

@@ -1,147 +1,148 @@
 @{
-    ViewData["Title"] = "VerEmpresas";
-    var locales = ViewBag.Locales as List<dynamic>;
+  ViewData["Title"] = "VerEmpresas";
+  var locales = ViewBag.Locales as List<dynamic>;
 }
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - NombreProyecto</title>
-    <link rel="stylesheet" href="site.css" asp-append-version="true" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>@ViewData["Title"] - NombreProyecto</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="estilos.css" asp-append-version="true" />
+  
 </head>
 
 <body>
-<header>
-    <ul class="nav justify-content-end">
-        <li class="nav-item">
-            <a class="nav-link" href='@Url.Action("VerDescuentos", "Cliente")'>Productos</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href='@Url.Action("VerEmpresas", "Cliente")'>Empresas</a>
-        </li>
-    </ul>
+  <header>
+    <nav class="navbar">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
+                <div class="offcanvas-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+                </div>
 
-    <nav class="navbar bg-body-tertiary fixed-top">
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasNavbarLabel" href="Index.html">FIFO</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-          <li class="nav-item">
-            <a class="nav-link" href='@Url.Action("VerDescuentos", "Cliente")'>Productos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href='@Url.Action("VerEmpresas", "Cliente")'>Empresas</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-</nav>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-start">
+                        <li class="nav-item">
+                            <a class="nav-link1" href='@Url.Action("VerDescuentos", "Cliente")'>Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link1" href='@Url.Action("VerEmpresas", "Cliente")'>Empresas</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </nav>
 </header>
 
 
 <main>
-    <h4>Explorá marcas y negocios para vos:</h4>
+  <h4 class="Tit">Explorá marcas y negocios para vos:</h4>
 
-    <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid">
-            <form class="d-flex" role="search" onsubmit="event.preventDefault();">
-                <input id="buscadorEmpresas" class="form-control me-2" type="search" placeholder="Buscar empresa" aria-label="Search"/>
-                <button class="btn btn-outline-success" type="submit">Buscar</button>
-            </form>
-        </div>
-    </nav>
+  <nav class="navbar bg-body-tertiary">
+      <div class="container-fluid">
+          <form class="d-flex" role="search" onsubmit="event.preventDefault();">
+              <input id="buscadorEmpresas" class="form-control me-2" type="search" placeholder="Buscar empresa" aria-label="Search"/>
+              <button class="btn btn-outline-success" type="submit">Buscar</button>
+          </form>
+      </div>
+  </nav>
 
-    <section id="lista-empresas">
-        @if (ViewBag.Locales != null && ViewBag.Locales.Count > 0)
-        {
-            foreach (Locales local in ViewBag.Locales)
-            {
-                <div class="empresa-card">
-                    <img src="~/img/@local.Foto" alt="Logo @local.Nombre" />
-                    <p class="nombre-empresa">@local.Nombre</p>
-                </div>
-            }
-        }
-        else
-        {
-            <p id="mensaje-no">No hay empresas disponibles.</p>
-        }
-    </section>
+  <section id="lista-empresas">
+      @if (ViewBag.Locales != null && ViewBag.Locales.Count > 0)
+      {
+          foreach (Locales local in ViewBag.Locales)
+          {
+              <div class="empresa-card">
+                  <img src="~/img/@local.Foto" alt="Logo @local.Nombre" />
+                  <p class="nombre-empresa">@local.Nombre</p>
+              </div>
+          }
+      }
+      else
+      {
+          <p id="mensaje-no">No hay empresas disponibles.</p>
+      }
+  </section>
 
-    <p id="no-coincidencias" style="display:none; text-align:center; margin-top:15px;">
-        No hay empresas que coincidan con tu búsqueda ❌
-    </p>
+  <p id="no-coincidencias" style="display:none; text-align:center; margin-top:15px;">
+      No hay empresas que coincidan con tu búsqueda ❌
+  </p>
 
 </main>
 
 <footer class="footer">
-    <div class="footer-top">
-        <div class="footer-logo">
-            <img src="c:\Users\48794948\Pictures\Screenshots\Captura de pantalla 2025-10-31 142500.png" alt="Logo FIFO">
-            <p>Dale una segunda oportunidad a los alimentos. Reducí el desperdicio, ayudá al planeta 🌍</p>
-        </div>
+  <div class="footer-top">
+      <div class="footer-logo">
+          <img src="c:\Users\48794948\Pictures\Screenshots\Captura de pantalla 2025-10-31 142500.png" alt="Logo FIFO">
+          <p>Dale una segunda oportunidad a los alimentos. Reducí el desperdicio, ayudá al planeta 🌍</p>
+      </div>
 
-        <div class="footer-links">
-            <div>
-                <h4>Sobre FIFO</h4>
-                <ul>
-                    <li><a href="Index.cshtml">Que es FIFO?</a></li>
-                    <li><a href="Index.html">Nuestra propuesta</a></li>
-                    <li><a href="Index.html">Por qué lo hacemos?</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>Dueño</h4>
-                <ul>
-                    <li><a href="AgregarProducto.cshtml">Agregar producto</a></li>
-                    <li><a href="EliminarProducto.cshtml">Eliminar producto</a></li>
-                    <li><a href="ModificarProducto.cshtml">Modificar producto</a></li>
-                    <li><a href="VerProductosMiLocal">Ver productos</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>Cliente</h4>
-                <ul>
-                    <li><a href="VerEmpresas.cshtml">Ver empresas</a></li>
-                    <li><a href="VerProductos.chtml">Ver productos</a></li>
-                </ul>
-            </div>
-        </div>
+      <div class="footer-links">
+          <div>
+              <h4>Sobre FIFO</h4>
+              <ul>
+                  <li><a href="Index.cshtml">Que es FIFO?</a></li>
+                  <li><a href="Index.html">Nuestra propuesta</a></li>
+                  <li><a href="Index.html">Por qué lo hacemos?</a></li>
+              </ul>
+          </div>
+          <div>
+              <h4>Dueño</h4>
+              <ul>
+                  <li><a href="AgregarProducto.cshtml">Agregar producto</a></li>
+                  <li><a href="EliminarProducto.cshtml">Eliminar producto</a></li>
+                  <li><a href="ModificarProducto.cshtml">Modificar producto</a></li>
+                  <li><a href="VerProductosMiLocal">Ver productos</a></li>
+              </ul>
+          </div>
+          <div>
+              <h4>Cliente</h4>
+              <ul>
+                  <li><a href="VerEmpresas.cshtml">Ver empresas</a></li>
+                  <li><a href="VerProductos.chtml">Ver productos</a></li>
+              </ul>
+          </div>
+      </div>
 
-        <div class="footer-bottom">
-            <p>© 2025 FIFO | Desarrollado por el equipo FIFO</p>
-        </div>
-    </div>
+      <div class="footer-bottom">
+          <p>© 2025 FIFO | Desarrollado por el equipo FIFO</p>
+      </div>
+  </div>
 </footer>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    const inputBuscador = document.getElementById("buscadorEmpresas");
-    const tarjetasEmpresas = document.querySelectorAll(".empresa-card");
-    const mensajeNoResultados = document.getElementById("no-coincidencias");
+  const inputBuscador = document.getElementById("buscadorEmpresas");
+  const tarjetasEmpresas = document.querySelectorAll(".empresa-card");
+  const mensajeNoResultados = document.getElementById("no-coincidencias");
 
-    inputBuscador.addEventListener("input", function () {
-        const texto = inputBuscador.value.toLowerCase();
-        let hayCoincidencias = false;
+  inputBuscador.addEventListener("input", function () {
+      const texto = inputBuscador.value.toLowerCase();
+      let hayCoincidencias = false;
 
-        tarjetasEmpresas.forEach(card => {
-            const nombre = card.querySelector(".nombre-empresa").innerText.toLowerCase();
-            if (nombre.includes(texto)) {
-                card.style.display = "block";
-                hayCoincidencias = true;
-            } else {
-                card.style.display = "none";
-            }
-        });
+      tarjetasEmpresas.forEach(card => {
+          const nombre = card.querySelector(".nombre-empresa").innerText.toLowerCase();
+          if (nombre.includes(texto)) {
+              card.style.display = "block";
+              hayCoincidencias = true;
+          } else {
+              card.style.display = "none";
+          }
+      });
 
-        mensajeNoResultados.style.display = hayCoincidencias ? "none" : "block";
-    });
+      mensajeNoResultados.style.display = hayCoincidencias ? "none" : "block";
+  });
 });
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+

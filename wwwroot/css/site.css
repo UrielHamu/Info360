@@ -16,6 +16,36 @@ header {
   text-decoration: underline;
 }
 
+.navbar 
+{
+  background-color: #613dc1;
+}
+
+.nav-link1 {
+  color: black;
+  text-decoration: none;
+  margin: 5%;
+  padding: 3%;
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.nav-link1:hover {
+  background-color: #f0f0f0;
+}
+
+.btn-outline-success {
+  border-color: #613dc1 !important;
+  color: #613dc1 !important;
+}
+
+.btn-outline-success:hover {
+  background-color: #613dc1 !important;
+  color: white !important;
+}
+
 img {
   width: 20%;
   height: auto;
@@ -34,6 +64,20 @@ h2 {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-weight: bold;
   text-align: center;
+}
+
+.Tit {
+  text-align: center;
+  font-size: 25px;
+  margin-top: 3%;
+  font-weight: bold;
+  color: #333;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.bg-body-tertiary {
+  background-color: transparent !important;
+  box-shadow: none !important;
 }
 
 .Foto {
@@ -220,7 +264,6 @@ h2 {
   font-size: 13px;
 }
 
-/* 📌 NUEVO: Tarjetas de locales */
 .empresa-card {
   width: 40%;
   margin-left: 30%;
@@ -233,7 +276,7 @@ h2 {
 
 .empresa-card img {
   width: 60%;
-  margin: 2% 0%;
+  margin: 2%;
 }
 
 .nombre-empresa {
@@ -327,3 +370,5 @@ h2 {
     padding: 0.5%;
   }
 }
+
+
