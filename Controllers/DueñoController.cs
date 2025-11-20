@@ -12,14 +12,22 @@ public class DueñoController : Controller
         return RedirectToAction("VerProductosMiLocal", "Dueño");
     }
     public IActionResult AgregarProducto(){
-        ViewBag.categorias=BD.TraerCategorias();//Debe traer los LocalesProductosInicial
+        Dueños dueño = Objeto.StringToObject<Dueños> (HttpContext.Session.GetString("user"));
+        ViewBag.Productos=BD.TraerProductosMiLocal(dueño.IdLocal);//Debe usar ProductosLocalesProductosInicial
+        HttpContext.Session.SetString("user", Objeto.ObjectToString(dueño));
         return View("AgregarProducto");
     }  
+    public IActionResult AgregarProductoForm (int Id){
+        ViewBag.Id=Id;
+        ViewBag.producto=BD.TraerProducto(Id); //debe traer este ProductosLocalesProductosInicial
+        return View("FormAgregarProducto");
+    }
     
     [HttpPost]
-    public IActionResult RecibirAgregarProducto(int cantidad, int IdCategoria, DateTime Fecha, string Foto, string Nombre, int Precio){
+    public IActionResult RecibirAgregarProducto(int cantidad, DateTime Fecha, int IdProducto){
         Dueños dueño = Objeto.StringToObject<Dueños> (HttpContext.Session.GetString("user"));
-        BD.CrearProductos(cantidad, IdCategoria, Fecha, Foto, Nombre, Precio, dueño.IdLocal);
+        LocalesProductosInicial producto=BD.TraerProducto(IdProducto);
+        BD.CrearProductos(cantidad, Fecha, dueño.IdLocal, producto.IdProducto);
         HttpContext.Session.SetString("user", Objeto.ObjectToString(dueño));
         return RedirectToAction("AgregarProducto", "Dueño");
     }

@@ -243,5 +243,13 @@ public static string BuscarLocal(int id)
     }
 
 }
+public static void TraerProducto(int Id)
+    {
+          using (SqlConnection connection = new SqlConnection(_connectionString))
+    {
+        string query = "TraerProducto";
+        connection.Execute(query, new { Id = producto.Id}, commandType:System.Data.CommandType.StoredProcedure);
+    }
 
-}}
+
+}}}

@@ -8,6 +8,14 @@ header {
   padding: 1%;
 }
 
+header img {
+  width: 20%;
+  height: auto;
+  margin-left: 39%;
+  margin-bottom: 1%;
+  margin-top: 1%;
+}
+
 .nav-link {
   color: white !important;
 }
@@ -44,14 +52,6 @@ header {
 .btn-outline-success:hover {
   background-color: #613dc1 !important;
   color: white !important;
-}
-
-img {
-  width: 20%;
-  height: auto;
-  margin-left: 39%;
-  margin-bottom: 1%;
-  margin-top: 1%;
 }
 
 h1 {
@@ -173,6 +173,45 @@ h2 {
   text-decoration: underline;
 }
 
+.producto-card {
+  border: 1px solid #613dc1;
+  border-radius: 8px;
+  width: 20%; 
+  margin: 1.5%;
+  padding: 1%;
+  text-align: center;
+  background-color: #ffffff;
+}
+
+.producto-card img {
+  width: 40%;
+  height: auto;
+  margin-bottom: 0.5%;
+  display: inline-block;
+}
+
+.producto-card p {
+  font-size: 14px;
+  margin: 0.4%;
+  font-weight: bold;
+  margin-top:1%;
+}
+
+.producto-card .btn {
+  width: 60%;
+  margin-top: 2%;
+  font-size: 14px;
+  border-radius: 8px;
+  background-color: #613dc1;
+  border: none;
+  color: white;
+}
+
+.producto-card .btn:hover {
+  background-color: #4a2f9a;
+}
+
+
 .logo {
   width: 14%;
   height: auto;
@@ -293,33 +332,76 @@ h2 {
 
 
 @media (width<=600px) {
-
   html {
-    font-size: 12px; 
+    font-size: 11px; 
   }
 
-  h1 { font-size: 15px; }
-  h2 { font-size: 16px; }
+  .Tit {
+    font-size: 16px;  
+    margin-top: 4%;
+  }
 
-  img {
-    width: 50%;
-    margin-left: 25%;
-    margin-top: 2%;
-    margin-bottom: 2%;
+
+  nav .form-control {
+    font-size: 12px;
+    padding: 0.5%;
+  }
+
+  nav .btn {
+    font-size: 12px;
+    padding: 0.3%;
   }
 
   .empresa-card {
-    width: 80%;
-    margin-left: 10%;
+    width: 75%;
+    padding: 3%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    margin-left: 12.5%;       
+  }
+  
+
+  .empresa-card img {
+    width: 55%;              
   }
 
   .nombre-empresa {
-    font-size: 14px;
+    font-size: 13px;        
   }
 
-  .no-locales {
+  .no-coincidencias {
     font-size: 12px;
   }
+
+  
+  .producto-card {
+    width: 70%;       
+    padding: 2%;
+    margin-left: 15% ;  
+  }
+
+.producto-card img {
+    width: 40%;
+}
+
+.producto-card p {
+    font-size: 10px;
+}
+
+.producto-card .btn {
+    font-size: 11px;
+    padding: 0.3%;
+}
+
+  .navbar-toggler {
+    padding: 0.5%;
+  }
+
+  .nav-link1 {
+    font-size: 14px;
+    padding: 0.6%;
+  }
+
 
   .footer {
     padding: 1.5%;
@@ -370,5 +452,3 @@ h2 {
     padding: 0.5%;
   }
 }
-
-

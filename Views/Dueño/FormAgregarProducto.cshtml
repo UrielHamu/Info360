@@ -1,5 +1,5 @@
 @{
-    ViewData["Title"] = "AgregarProducto";
+    ViewData["Title"] = "FormAgregarProducto";
 }
 <head>
     <meta charset="utf-8" />
@@ -27,19 +27,18 @@
   </ul>
     </header>
   <main>
-    <h4>Sumá nuevos productos a tu negocio:</h4>
-    @foreach(ProductosLocalesProductosInicial producto in ViewBag.Producto){
       <div>
-        <h2>@producto.Nombre</h2>
-        <h3>@producto.Categoria</h3>
-        <h3>@producto.PrecioInicial</h3>
-        <img src="@producto.Foto">
-        <form action='@Url.Action("AgregarProductoForm", "Dueño")' method="POST" class="form">
-        <input type="hidden" name="Id" value="@producto.IdLocalesProductosInicial" />
-        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+        <h2>@ViewBag.producto.Nombre</h2>
+        <h3>@ViewBag.producto.Categoria</h3>
+        <h3>@ViewBag.producto.PrecioInicial</h3>
+        <img src="@ViewBag.producto.Foto">
+        <form action='@Url.Action("RecibirAgregarProducto", "Dueño")' method="POST" class="form">
+        <input type="hidden" name="IdProducto" value="@ViewBag.producto.IdLocalesProductosInicial" />
+        <input type="number" name="Cantidad"/>
+        <input type="date" name="Fecha">
+        <button type="submit" class="btn btn-danger btn-sm">Agregar</button>
         </form>   
       </div> 
-    }
   </main>
 <footer class="footer">
     <div class="footer-top">
