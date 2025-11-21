@@ -7,7 +7,7 @@ public class ProductosTemporales
     public int Cantidad;
     public string Foto;
     public int PrecioInicial;
-    public int IdLocal;
+    public string Local;
     public int PrecioConDescuento;
     public int IdLocalesProductosInicial;
 
@@ -15,11 +15,11 @@ public class ProductosTemporales
         Nombre=producto.Nombre;
         Categoria= BD.TraerCategoria(producto.IdCategoria);
         FechaVencimiento=localesProductosVto.FechaVencimiento;
-        Cantidad=LocalesProductosVto.Cantidad;
+        Cantidad=localesProductosVto.Cantidad;
         Foto=producto.Foto;
         PrecioInicial=localesProductosInicial.PrecioInicial;
-        IdLocal=localesProductosInicial.IdLocal;
-        PrecioConDescuento=localesProductosVto.PrecioConDescuento;
+        Local=BD.TraerLocal(localesProductosInicial.IdLocal);
+        PrecioConDescuento=localesProductosInicial.PrecioInicial * 10 / 20;//ACA HAY QUE HACER EL SISTEMA DE DESCUENTOS
         IdLocalesProductosInicial=localesProductosInicial.Id;
     }
 }
