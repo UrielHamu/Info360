@@ -101,32 +101,53 @@ public static string TraerCategoria(int id)
 
 
     
-   public static List<Productos> VerProductosCategoria()
+   public static List<ProductosTemporales> VerProductosCategoria()
     {
     using (SqlConnection connection = new SqlConnection(_connectionString))
     {
         string query = "VerProductosCategoria";
-        List<Productos> list = connection.Query<Productos>(query, commandType:System.Data.CommandType.StoredProcedure).ToList();
-        return list;
+        List<ProductosTemporales> ListaFinal=new List<ProductosTemporales>();
+            List<LocalesProductosVto> ListaLocalesProductoVto =  connection.Query<LocalesProductosVto>(query, commandType: System.Data.CommandType.StoredProcedure).ToList();
+            foreach(LocalesProductosVto localesProductosVto in ListaLocalesProductoVto)
+                {
+                    Productos producto=TraerProducto(localesProductosVto.IdProducto);
+                    LocalesProductosInicial localesProductosInicial=TraerLocalesProductosInicial(producto.Id, localesProductosVto.IdLocal);
+                    ListaFinal.Add( new ProductosTemporales(producto, localesProductosInicial, localesProductosVto));
+                }
+        return ListaFinal;
     }
     }
-    public static List<Productos> VerProductosMayorAMenor()
+    public static List<ProductosTemporales> VerProductosMayorAMenor()
 {
-    using (SqlConnection connection = new SqlConnection(_connectionString))
+        using (SqlConnection connection = new SqlConnection(_connectionString))
     {
-        string query = "VerProductosMayorAMenor";
-
-        return connection.Query<Productos>(query, commandType:System.Data.CommandType.StoredProcedure).ToList();
+        string query = "TraerLocalesProductosVtoConFiltro";
+        List<ProductosTemporales> ListaFinal=new List<ProductosTemporales>();
+            List<LocalesProductosVto> ListaLocalesProductoVto =  connection.Query<LocalesProductosVto>(query, new{Filtro="MayorAMenor"}, commandType: System.Data.CommandType.StoredProcedure).ToList();
+            foreach(LocalesProductosVto localesProductosVto in ListaLocalesProductoVto)
+                {
+                    Productos producto=TraerProducto(localesProductosVto.IdProducto);
+                    LocalesProductosInicial localesProductosInicial=TraerLocalesProductosInicial(producto.Id, localesProductosVto.IdLocal);
+                    ListaFinal.Add( new ProductosTemporales(producto, localesProductosInicial, localesProductosVto));
+                }
+        return ListaFinal;
     }
 }
 
-    public static List<Productos> VerProductosMenorAMayor()
+    public static List<ProductosTemporales> VerProductosMenorAMayor()
 {
-    using (SqlConnection connection = new SqlConnection(_connectionString))
+        using (SqlConnection connection = new SqlConnection(_connectionString))
     {
-        string query = "VerProductosMenorAMayor";
-
-        return connection.Query<Productos>(query, commandType:System.Data.CommandType.StoredProcedure).ToList();
+        string query = "TraerLocalesProductosVtoConFiltro";
+        List<ProductosTemporales> ListaFinal=new List<ProductosTemporales>();
+            List<LocalesProductosVto> ListaLocalesProductoVto =  connection.Query<LocalesProductosVto>(query, new{Filtro="MenorAMayor"}, commandType: System.Data.CommandType.StoredProcedure).ToList();
+            foreach(LocalesProductosVto localesProductosVto in ListaLocalesProductoVto)
+                {
+                    Productos producto=TraerProducto(localesProductosVto.IdProducto);
+                    LocalesProductosInicial localesProductosInicial=TraerLocalesProductosInicial(producto.Id, localesProductosVto.IdLocal);
+                    ListaFinal.Add( new ProductosTemporales(producto, localesProductosInicial, localesProductosVto));
+                }
+        return ListaFinal;
     }
 }
  
