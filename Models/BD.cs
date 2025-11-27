@@ -234,7 +234,6 @@ public static ProductosLocalesProductosInicial TraerProductosLocalesProductosIni
         return new ProductosLocalesProductosInicial(TraerProducto(id), ProductoInicial);
     }
 } 
-        //desde aca no estan hechos los stored procedures
 public static List<ProductosTemporalesVto> verProductosMiLocalVto(int idLocal){
         using (SqlConnection connection = new SqlConnection(_connectionString))
         {
@@ -300,8 +299,8 @@ public static LocalesProductosInicial TraerLocalesProductosInicial(int idProduct
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
         {
-            string query = "ModificarProducto";
-            connection.Execute(query, new {Id = IdLocalesProductosInicial, NuevoPrecio=nuevoPrecio}, commandType:System.Data.CommandType.StoredProcedure);
+            string query = "ModificarLocalesProductosInicial";
+            connection.Execute(query, new {Id = IdLocalesProductosInicial, PrecioInicial=nuevoPrecio}, commandType:System.Data.CommandType.StoredProcedure);
         }        
         }
         public static string TraerLocal(int idLocal)
@@ -311,7 +310,6 @@ public static LocalesProductosInicial TraerLocalesProductosInicial(int idProduct
                 string query = "TraerLocal";
                 return connection.QueryFirstOrDefault<string>(query, new { Id = idLocal}, commandType:System.Data.CommandType.StoredProcedure);
             }
-
         }    
     }
 }

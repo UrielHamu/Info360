@@ -17,4 +17,7 @@ public class HomeController : Controller
     {
         return View("Index");
     }
+    public IActionResult Preguntas(){
+        return View("Preguntas");
+    }
 }
