@@ -30,7 +30,7 @@
       <h1>Cada día se desperdician toneladas de alimentos que todavía están en buen estado, solo porque no se venden antes de su fecha de vencimiento.</h1>
     </div>
     <div>
-      <img src="Captura_de_pantalla_2025-03-28_080042-removebg-preview.png" alt="">
+      <img src="img/Captura_de_pantalla_2025-03-28_080042-removebg-preview.png" alt="">
     </div>
     <div>
       <h2>FIFO nace para darle una segunda oportunidad  a los alimentos próximos a vencerse y evita que termine en la basura.</h2>
@@ -73,7 +73,7 @@
 
 
     <div class="interesa-img">
-      <img src="7.png" alt="">
+      <img src="img/7.png" alt="">
     </div>
  
     <div class="interesa-texto">
@@ -83,7 +83,7 @@
  
       <div class="text-center botones-interesa">
         <a class="btn btn-fifo" href="RegistrarseCliente.cshtml">Quiero probar FIFO!</a>
-        <a class="btn btn-fifo" href="preguntas.cshtml">Tengo preguntas</a>
+        <a class="btn btn-fifo" href='@Url.Action("Preguntas", "Home")'>Preguntas</a>
       </div>
     </div>
  
@@ -99,7 +99,7 @@
 
   <div id="toast1" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
     <div class="toast-header">
-      <img src="5.png" class="rounded me-2" alt="...">
+      <img src="img/5.png" class="rounded me-2" alt="...">
       <strong class="me-auto">Mariana Suárez</strong>
       <small>11 mins ago</small>
       <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -110,7 +110,7 @@
   </div>
   <div id="toast2" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
     <div class="toast-header">
-      <img src="6.png" class="rounded me-2" alt="...">
+      <img src="img/6.png" class="rounded me-2" alt="...">
       <strong class="me-auto">Diego Fernández</strong>
       <small>2 months ago</small>
       <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -124,22 +124,22 @@
 
   <section class="beneficios">
     <div>
-      <img src="1.png" alt="">
+      <img src="img/1.png" alt="">
       <h2>Usamos los recursos de forma responsable.</h2>
       <p>Reducimos el desperdicio y transformamos productos en oportunidades.</p>
     </div>
     <div>
-      <img src="2.png" alt="">
+      <img src="img/2.png" alt="">
       <h2>Mejoramos tu gestión del stock.</h2>
       <p>Más claridad y control para gestionar tu stock mejor.</p>
     </div>
     <div>
-      <img src="3.png" alt="">
+      <img src="img/3.png" alt="">
       <h2>Impulsamos un modelo inteligente y sustentable.</h2>
       <p>Tecnología que convierte pérdidas en eficiencia.</p>
     </div>
     <div>
-      <img src="4.png" alt="">
+      <img src="img/4.png" alt="">
       <h2>Ayudamos a vender antes de desechar.</h2>
       <p>Vendé a tiempo, desperdiciá menos y recuperá valor.</p>
     </div>
@@ -157,6 +157,8 @@
           <div>
               <h4>Sobre FIFO</h4>
               <ul>
+                  <a class="nav-link" href='@Url.Action("Index", "Home")'>Iniciar sesión</a>
+
                   <li><a href="Index.cshtml">Que es FIFO?</a></li>
                   <li><a href="Index.html">Nuestra propuesta</a></li>
                   <li><a href="Index.html">Por qué lo hacemos?</a></li>

@@ -10,8 +10,8 @@
 </head>
 
 <body>
-<header>
-  <ul class="nav justify-content-end">
+  <header>
+        <ul class="nav justify-content-end">
     <li class="nav-item">
       <a class="nav-link" href='@Url.Action("AgregarProducto", "Dueño")'>Cargar producto</a>
     </li>
@@ -19,13 +19,12 @@
       <a class="nav-link" href='@Url.Action("EliminarProducto", "Dueño")'>Eliminar producto</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href='@Url.Action("ModificarProducto", "Dueño")'>Modificar producto</a>
+      <a class="nav-link" href='@Url.Action("VerProductoAModificar", "Dueño")'>Modificar producto</a>
     </li>
      <li class="nav-item">
-      <a class="nav-link" href='@Url.Action("VerProductosMiLocal", "Dueño")'>Ver productos con descuentos</a>
+      <a class="nav-link" href='@Url.Action("VerProductosMiLocal", "Dueño")'> Ver productos con descuentos</a>
     </li>
   </ul>
-  
   </header>
 <main class="owner-main">
   <h4 class="owner-title">Aqui puedes elegir que producto queres modificar de tu negocio:</h4>
@@ -48,6 +47,7 @@
         <div class="producto-imagen">
           <img src="~/img/@producto.Foto"/>
         </div>
+          </article>
 
     }
 

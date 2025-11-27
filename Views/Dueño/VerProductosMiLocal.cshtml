@@ -19,7 +19,7 @@
       <a class="nav-link" href='@Url.Action("EliminarProducto", "Dueño")'>Eliminar producto</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href='@Url.Action("ModificarProducto", "Dueño")'>Modificar producto</a>
+      <a class="nav-link" href='@Url.Action("VerProductoAModificar", "Dueño")'>Modificar producto</a>
     </li>
      <li class="nav-item">
       <a class="nav-link" href='@Url.Action("VerProductosMiLocal", "Dueño")'> Ver productos con descuentos</a>
@@ -27,25 +27,27 @@
   </ul>
   </header>
 <main>
-  @if(ViewBag.ProductosMiLocal == null){
-    <p>No tenes artículos.</p>
-  }  else{
-                foreach (ProductosTemporales producto in ViewBag.ProductosMiLocal)
-                {
-                    <section>
-                        
-                            <div>
-                                <img src="~/img/@producto.Foto"/>
-                                <p>Producto:@producto.Nombre</p>
-                                <p>Supermercado: @producto.Local</p>
-                                <p>Precio original:$@producto.PrecioInicial</p>
-                                <p>Precio con descuento: $@producto.PrecioConDescuento</p>
-                                <p>Catergoria: @producto.Categoria</p>
-                                <p>Fecha de vencimiento: @producto.FechaVencimiento.ToString("dd/MM/yyyy")</p>
-                            </div>
-                    </section>
-                }
-  }
+  <h4 class="owner-title">Estos son los productos de tu negocio:</h4>
+  @if (ViewBag.ProductosMiLocal == null)
+{
+    <p style="color:red">La lista es NULL</p>
+}
+else
+{
+    <p style="color:green">Cantidad de productos: @ViewBag.ProductosMiLocal.Count</p>
+}
+        @foreach (ProductosTemporales producto in ViewBag.ProductosMiLocal)
+        {
+            <div>
+                <img src="~/img/@producto.Foto"/>
+                <h3>Producto:@producto.Nombre</h3>
+                <h3>Supermercado: @producto.Local</h3>
+                <h3>Precio original:$@producto.PrecioInicial</h3>
+                <h3>Precio con descuento: $@producto.PrecioConDescuento</h3>
+                <h3>Catergoria: @producto.Categoria</h3>
+                <h3>Fecha de vencimiento: @producto.FechaVencimiento.ToString("dd/MM/yyyy")</h3>
+            </div>
+        }
 </main>
 <footer class="footer">
     <div class="footer-top">
