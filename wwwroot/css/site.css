@@ -138,6 +138,16 @@ header {
   padding: 0 24px;
 }
 
+.tip-box {
+  position: fixed;
+  bottom: 110px; /* lo ubica arriba del footer */
+  right: 20px;
+  z-index: 2000;
+  max-width: 260px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  animation: fadeIn 0.6s ease-out;
+}
 
 
 
@@ -281,8 +291,6 @@ header {
 .form a:hover {
   text-decoration: underline;
 }
-
-
 
 
 .extra {

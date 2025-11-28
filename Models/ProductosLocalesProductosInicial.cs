@@ -16,4 +16,5 @@ public class ProductosLocalesProductosInicial
         PrecioInicial=ProductoInicial.PrecioInicial;
         IdLocalesProductosInicial=ProductoInicial.Id;
     }
+    public ProductosLocalesProductosInicial(){}
 }

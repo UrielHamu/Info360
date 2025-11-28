@@ -30,22 +30,26 @@
         {
           <article class="producto-card">
             <div class="producto-info">
-              <h2>@producto.Nombre</h2>
-              <h3>@producto.Categoria</h3>
-              <h3>$@producto.PrecioInicial</h3>
+              <h2>Producto: @producto.Nombre</h2>
+              <h3>Categoria: @producto.Categoria</h3>
+              <h3>Precio Inicial: $@producto.PrecioInicial</h3>
 
             </div>
    
             <div class="producto-imagen">
               <img src="@producto.Foto" alt="Foto del producto">
             </div>
-
-            <a href='@Url.Action("AgregarProductoForm", "Dueño")' class="btn-eliminar">Agregar</a>
-            /*Acatiene que haber un form que mande input hyden el id del producto*/
-            <a href='@Url.Action("VerProductoAModificar", "Dueño")' class="btn-eliminar">Modificar</a>
+            
+            <form action= '@Url.Action("AgregarProductoForm", "Dueño")' method="GET" >
+              <input type="hidden" name="Id" value="@producto.IdProducto">            
+              <button type= "submit" class="btn-eliminar">Agregar</button>
+            </form>
+            <form action= '@Url.Action("VerProductoAModificar", "Dueño")' method="GET">
+            <input type="hidden" name="Id" value="@producto.IdProducto">            
+            <button type= "submit" class="btn-eliminar">Modificar</button>
+            </form>
           </article>
 
-          /*boton de agregar (que leve a form agregar producto) y modificar (que llebve a foirm modificar) TODO PASA POR CONTROLLER*/
         }
       </div>
     </main>

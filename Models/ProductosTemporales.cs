@@ -10,6 +10,7 @@ public class ProductosTemporales
     public string Local;
     public int PrecioConDescuento;
     public int IdLocalesProductosInicial;
+    public int IdProducto;
 
     public ProductosTemporales(Productos producto, LocalesProductosInicial localesProductosInicial, LocalesProductosVto localesProductosVto){
         Nombre=producto.Nombre;
@@ -21,5 +22,6 @@ public class ProductosTemporales
         Local=BD.TraerLocal(localesProductosInicial.IdLocal);
         PrecioConDescuento=localesProductosInicial.PrecioInicial * 10 / 20;//ACA HAY QUE HACER EL SISTEMA DE DESCUENTOS
         IdLocalesProductosInicial=localesProductosInicial.Id;
+        IdProducto=producto.Id;
     }
 }

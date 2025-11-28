@@ -2,6 +2,7 @@
     ViewData["Title"] = "VerProductos";
     var productos = ViewBag.Productos as List<dynamic>;
     var cliente = ViewBag.cliente;
+     var filtroActual = Context.Request.Query["filtro"];
 }
 <head>
     <meta charset="utf-8" />
@@ -26,15 +27,19 @@
 </header>
  <main>
 <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Ver productos
+  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+      @(filtroActual == "1" ? "Categoria" :
+        filtroActual == "2" ? "Menor a mayor descuento" :
+        filtroActual == "3" ? "Mayor a menor descuento" :
+        "Ver productos")
   </button>
   <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href='@Url.Action("VerProductos", "Cliente", new { filtro = 1 })'>Categoria</a></li>
-    <li><a class="dropdown-item" href='@Url.Action("VerProductos", "Cliente", new { filtro = 2 })'>Menor a mayor descuento</a></li>
-    <li><a class="dropdown-item" href='@Url.Action("VerProductos", "Cliente", new { filtro = 3 })'>Mayor a menor descuento</a></li>
+    <li><a class="dropdown-item" href="#" onclick="aplicarFiltro(1)">Categoria</a></li>
+    <li><a class="dropdown-item" href="#" onclick="aplicarFiltro(2)">Menor a mayor precio</a></li>
+    <li><a class="dropdown-item" href="#" onclick="aplicarFiltro(3)">Mayor a menor precio</a></li>
   </ul>
 </div>
+
 
 <div>
             @if (ViewBag.Productos != null && ViewBag.Productos.Count > 0)
@@ -98,5 +103,10 @@
         <p>© 2025 FIFO | Desarrollado por el equipo FIFO</p>
     </div>
 </footer>
+<script>
+    function aplicarFiltro(filtro) {
+        window.location.href = '@Url.Action("VerProductos", "Cliente")?filtro=' + filtro;
+    }
+</script>
 </body>
 </html>

@@ -23,17 +23,15 @@
   </header>
   <main class="registro">
     <div class="producto-detalle">
-      <img src="@ViewBag.producto.Foto" alt="Producto">
-      <h3>@ViewBag.producto.Nombre</h3>
-      <h4>@ViewBag.producto.Categoria</h4>
-      <h4>Precio inicial: @ViewBag.producto.PrecioInicial</h4>
+      @if(ViewBag.producto.Foto!=null){<img src="@ViewBag.producto.Foto" alt="Producto">}
+      <h2>@ViewBag.producto.Nombre</h2>
+      <h3>Categoria: @ViewBag.Categoria</h3>
     </div>
  
     <form action='@Url.Action("RecibirAgregarProducto", "Dueño")'
           method="POST" class="formProducto">
  
-      <input type="hidden" name="IdProducto"
-             value="@ViewBag.producto.IdLocalesProductosInicial" />
+      <input type="hidden" name="IdProducto" value="@ViewBag.producto.Id" />
  
       <label>Cantidad:</label>
       <input type="number" name="Cantidad" required>

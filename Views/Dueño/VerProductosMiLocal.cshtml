@@ -21,10 +21,10 @@
   </ul>
   </header>
 <main>
-  <h4 class="owner-title">Estos son los productos de tu negocio:</h4>
+  <h4 class="owner-title">Estos son los productos de tu negocio: </h4>
   @if (ViewBag.ProductosMiLocal == null)
 {
-    <p style="color:red">La lista es NULL</p>
+    <p style="color:red">No tenes ningun producto.</p>
 }
 else
 {
@@ -34,14 +34,17 @@ else
         {
             <div>
                 <img src="~/img/@producto.Foto"/>
-                <h3>Producto:@producto.Nombre</h3>
+                <h2>Producto: @producto.Nombre</h2>
                 <h3>Supermercado: @producto.Local</h3>
-                <h3>Precio original:$@producto.PrecioInicial</h3>
+                <h3>Precio original: $@producto.PrecioInicial</h3>
                 <h3>Precio con descuento: $@producto.PrecioConDescuento</h3>
                 <h3>Catergoria: @producto.Categoria</h3>
                 <h3>Fecha de vencimiento: @producto.FechaVencimiento.ToString("dd/MM/yyyy")</h3>
-
-                <button type="submit" href='@Url.Action("EliminarProducto", "Dueño")' class="btn-eliminar">Eliminar</button>
+            
+                <form action= '@Url.Action("EliminarProducto", "Dueño")' method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="Id" value="@ViewBag.producto.IdLocalesProductosVto">            
+                <button type= "submit" class="btn-eliminar">Eliminar</button>
+                </form>
             </div>
         }
 </main>
@@ -49,7 +52,7 @@ else
     <div class="footer-top">
         <div class="footer-logo">
             <img src="img/Captura_de_pantalla_2025-03-28_122750-removebg-preview.png" alt="Logo FIFO">
-            <p>Dale una segunda oportunidad a los alimentos. Reducí el desperdicio, ayudá al planeta 🌍</p>
+            <p>Dale una segunda oportunidad a los alimentos. Reducí el desperdicio, ayudá al planeta </p>
         </div>
 
         <div class="footer-links">

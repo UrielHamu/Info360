@@ -74,18 +74,9 @@ public static int TraerIdDueño(int IdUsuario){
     using (SqlConnection connection = new SqlConnection(_connectionString))
     {
         connection.Execute("EliminarProductosVto",new { IdProducto = idProducto },commandType: System.Data.CommandType.StoredProcedure);
-
-        connection.Execute(
-            "EliminarProductosInicial",
-            new { IdProducto = idProducto },
-            commandType: System.Data.CommandType.StoredProcedure
-        );
-        connection.Execute( 
-        "EliminarProductos",
-        new { IdProducto = idProducto }, commandType:System.Data.CommandType.StoredProcedure);
-
     }
     }
+    
 public static string BuscarLocal(int id)
 {
     using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -303,7 +294,7 @@ public static LocalesProductosInicial TraerLocalesProductosInicial(int idProduct
         }
 
  
-        public static void CrearProductos(int cantidad, DateTime fecha, int idProducto, int idLocal)
+        public static void CrearProductos(int cantidad, DateTime fecha, int idLocal, int idProducto)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -338,5 +329,6 @@ public static LocalesProductosInicial TraerLocalesProductosInicial(int idProduct
                 return connection.QueryFirstOrDefault<string>(query, new { Id = idLocal}, commandType:System.Data.CommandType.StoredProcedure);
             }
         }    
+    
     }
 }

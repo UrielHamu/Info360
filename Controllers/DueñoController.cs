@@ -14,7 +14,8 @@ public class DueñoController : Controller
 
     public IActionResult AgregarProductoForm (int Id){
         ViewBag.Id=Id;
-        ViewBag.producto=BD.TraerProductosLocalesProductosInicial(Id); //debe traer este ProductosLocalesProductosInicial
+        ViewBag.producto=BD.TraerProducto(Id); //debe traer este ProductosLocalesProductosInicial
+        ViewBag.Categoria=BD.TraerCategoria(BD.TraerProducto(Id).IdCategoria);
         return View("FormAgregarProducto");
     }
     
@@ -28,10 +29,10 @@ public class DueñoController : Controller
         return RedirectToAction("NuevaView", "Dueño");
     }
 
-    public IActionResult EliminarProducto(){
+    public IActionResult EliminarProducto(int Id){
         Dueños dueño = Objeto.StringToObject<Dueños> (HttpContext.Session.GetString("user"));
         int IdLocal= int.Parse(HttpContext.Session.GetString("IdLocal"));
-        ViewBag.productos = BD.verProductosMiLocalVto(IdLocal);//Debe usar el model ProductosTemporalesVto
+        BD.EliminarProductos(Id);
         HttpContext.Session.SetString("user", Objeto.ObjectToString(dueño));
         return RedirectToAction("VerProductosMiLocal", "Dueño");
     }
@@ -45,9 +46,9 @@ public class DueñoController : Controller
     }
 
     [HttpPost]
-    public IActionResult RecibirModificarProducto(int Id, int NuevoPrecio)
+    public IActionResult RecibirModificarProducto(int Id, int Precio)
     {
-        BD.ModificarProducto(Id, NuevoPrecio);//Recibe el id de LocalesProductosInicial, el nuevo PrecioInicial
+        BD.ModificarProductos(Id, Precio);//Recibe el id de LocalesProductosInicial, el nuevo PrecioInicial
         return RedirectToAction("NuevaView", "Dueño");
     }
      public IActionResult VerProductosMiLocal(){

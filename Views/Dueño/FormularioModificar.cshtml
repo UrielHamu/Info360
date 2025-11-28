@@ -24,21 +24,21 @@
   <main class="registro">
     <div class="producto-detalle">
         <img src="~/img/@ViewBag.Producto.Foto" alt="Producto">
-        <h3>@ViewBag.Producto.Nombre</h3>
-        <h4>@ViewBag.Producto.Categoria</h4>
-        <h4>Vence: @ViewBag.Producto.FechaVencimiento</h4>
-        <h4>Stock: @ViewBag.Producto.Cantidad</h4>
-        <h4>Precio con descuento: $@ViewBag.Producto.PrecioConDescuento</h4>
+        <h2>@ViewBag.Producto.Nombre</h2>
+        <h3>Categoria: @ViewBag.Producto.Categoria</h3>
+        <h3>Vence: @ViewBag.Producto.FechaVencimiento</h3>
+        <h3>Stock: @ViewBag.Producto.Cantidad</h3>
+        <h3>Precio con descuento: $@ViewBag.Producto.PrecioConDescuento</h3>
     </div>
 
 
     <form action='@Url.Action("RecibirModificarProducto", "Dueño")'
           method="POST" class="formProducto">
 
-
+        <input type="hidden" name="Id" value="@ViewBag.Producto.IdProducto
+        ">
         <label>Nuevo precio:</label>
-        <input type="number" name="Precio"
-               placeholder="@ViewBag.Producto.PrecioInicial" required>
+        <input type="number" name="Precio" placeholder="@ViewBag.Producto.PrecioInicial" required>
 
 
         <button type="submit" class="btn-eliminar">
