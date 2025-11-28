@@ -1,5 +1,5 @@
 @{
-    ViewData["Title"] = "AgregarProducto";
+    ViewData["Title"] = "NuevaView";
   }
   <head>
     <meta charset="utf-8" />
@@ -14,13 +14,7 @@
   <header>
         <ul class="nav justify-content-end">
     <li class="nav-item">
-      <a class="nav-link" href='@Url.Action("AgregarProducto", "Dueño")'>Cargar producto</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href='@Url.Action("EliminarProducto", "Dueño")'>Eliminar producto</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href='@Url.Action("VerProductoAModificar", "Dueño")'>Modificar producto</a>
+      <a class="nav-link" href='@Url.Action("NuevaView", "Dueño")'>Ver productos generales de mi local</a>
     </li>
      <li class="nav-item">
       <a class="nav-link" href='@Url.Action("VerProductosMiLocal", "Dueño")'> Ver productos con descuentos</a>
@@ -32,24 +26,26 @@
       <h4 class="owner-title">Sumá nuevos productos a tu negocio:</h4>
    
       <div class="productos-lista">
-        @foreach (ProductosLocalesProductosInicial producto in ViewBag.Producto)
+        @foreach (ProductosLocalesProductosInicial producto in ViewBag.Productos)
         {
           <article class="producto-card">
             <div class="producto-info">
               <h2>@producto.Nombre</h2>
               <h3>@producto.Categoria</h3>
-              <h3>$ @producto.PrecioInicial</h3>
-   
-              <form action='@Url.Action("AgregarProductoForm", "Dueño")' method="POST">
-                <input type="hidden" name="Id" value="@producto.IdLocalesProductosInicial" />
-                <button type="submit" class="btn-eliminar">Eliminar</button>
-              </form>
+              <h3>$@producto.PrecioInicial</h3>
+
             </div>
    
             <div class="producto-imagen">
               <img src="@producto.Foto" alt="Foto del producto">
             </div>
+
+            <a href='@Url.Action("AgregarProductoForm", "Dueño")' class="btn-eliminar">Agregar</a>
+            /*Acatiene que haber un form que mande input hyden el id del producto*/
+            <a href='@Url.Action("VerProductoAModificar", "Dueño")' class="btn-eliminar">Modificar</a>
           </article>
+
+          /*boton de agregar (que leve a form agregar producto) y modificar (que llebve a foirm modificar) TODO PASA POR CONTROLLER*/
         }
       </div>
     </main>
