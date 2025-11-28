@@ -27,9 +27,11 @@ namespace Info360.Controllers
 
             if (usuario.Rol == "Cliente")
                 return RedirectToAction("HomeCliente", "Cliente");
-            else if (usuario.Rol == "Dueño")
+            else if (usuario.Rol == "Dueño") {
+                int Id = BD.TraerIdDueño(usuario.Id);
+                HttpContext.Session.SetString("IdLocal", Id.ToString());
                 return RedirectToAction("HomeDueño", "Dueño");
-
+            }
             return RedirectToAction("IniciarSesion", "Account");
         }
 

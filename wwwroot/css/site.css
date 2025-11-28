@@ -1,7 +1,21 @@
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+
+
+
+
+
 html {
   font-size: 14px;
   min-height: 100%;
 }
+
+
 
 
 main {
@@ -10,13 +24,67 @@ main {
 }
 
 
+/* HEADER MÁS CHICO */
+.fifo-header .navbar {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+
+
+/* LOGO */
+.navbar-brand img {
+  width: 48px;
+  height: auto;
+}
+
+
+/* LINKS DEL MEDIO */
+.middle-links .nav-link {
+  color: white !important;
+  padding: 6px 14px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.10);
+  margin-left: 6px;
+}
+.middle-links .nav-link:hover {
+  background: rgba(255,255,255,0.20);
+}
+
+
+/* BOTONES DERECHA */
+.header-actions .header-btn {
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+
+.header-btn-cta {
+  background-color: #E7DE3B !important;
+  color: black !important;
+  border: none !important;
+}
+
+
+
+
+
+
+
+
 header {
   background-color: #613dc1;
-  padding: 3%;
+  padding: 12px 24px;  /* MÁS FINO */
   position: sticky;
   top: 0;
   z-index: 1000;
 }
+
+
+
+
+
+
 
 
 .header {
@@ -27,11 +95,54 @@ header {
   z-index: 1000;
 }
 
+
+.nav-main {
+  position: relative;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 0 10px;
+  font-weight: 500;
+}
+
+
+/* rayita de abajo (invisible por defecto) */
+.nav-main::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 2px;
+  background-color: #ffffff;
+  transition: width 0.25s ease;
+}
+
+
+/* hover: rayita suave */
+.nav-main:hover::after {
+  width: 100%;
+}
+
+
+/* estado ACTIVO mientras la sección está en pantalla */
+.nav-main.nav-main--active::after {
+  width: 100%;
+}
+
+
+
+
 .owner-main {
   max-width: 1100px;
   margin: 32px auto;
   padding: 0 24px;
 }
+
+
+
+
+
+
 
 
 .owner-title {
@@ -40,7 +151,11 @@ header {
   font-weight: 600;
   margin-bottom: 20px;
   text-align:center;
+  margin-top:2%;
 }
+
+
+
 
 .registro {
   display: flex;
@@ -49,6 +164,12 @@ header {
   justify-content: center;
   padding: 2%;
 }
+
+
+
+
+
+
 
 
 .form {
@@ -62,10 +183,22 @@ header {
 }
 
 
+
+
+
+
+
+
 .form .form-label {
   font-weight: bold;
   color: #333;
 }
+
+
+
+
+
+
 
 
 .form .form-control,
@@ -75,9 +208,21 @@ header {
 }
 
 
+
+
+
+
+
+
 .form .form-check {
   text-align: left;
 }
+
+
+
+
+
+
 
 
 .form .btn-primary {
@@ -91,15 +236,33 @@ header {
 }
 
 
+
+
+
+
+
+
 .form .btn-primary:hover {
   background-color: #4a2f9a;
 }
+
+
+
+
+
+
 
 
 .form h5 {
   font-size: 18px;
   margin-bottom: 0.5%;
 }
+
+
+
+
+
+
 
 
 .form a {
@@ -109,9 +272,18 @@ header {
 }
 
 
+
+
+
+
+
+
 .form a:hover {
   text-decoration: underline;
 }
+
+
+
 
 .extra {
   text-align: center;
@@ -119,10 +291,22 @@ header {
 }
 
 
+
+
+
+
+
+
 .extra h3 {
   font-size: 18px;
   margin-bottom: 5px;
 }
+
+
+
+
+
+
 
 
 .extra a {
@@ -132,9 +316,21 @@ header {
 }
 
 
+
+
+
+
+
+
 .extra a:hover {
   text-decoration: underline;
 }
+
+
+
+
+
+
 
 
 .navbar {
@@ -144,6 +340,12 @@ header {
 }
 
 
+
+
+
+
+
+
 /* Ajusta el tamaño del logo para que no agrande el header */
 .navbar-brand img {
   width: 60px;
@@ -151,6 +353,12 @@ header {
 }
 
 
+
+
+
+
+
+
 .navbar-brand img {
   width: 60px;
   height: auto;
@@ -159,9 +367,27 @@ header {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 .nav-item {
   margin-left: 0.8%;
 }
+
+
+
+
+
+
 
 
 .nav-link {
@@ -172,29 +398,49 @@ header {
   white-space: nowrap;                        
   display: inline-block;
   font-weight: 500;
+  text-decoration: none !important;
 }
+
+
+
+
+
+
 
 
 .nav-link:hover {
   background-color: rgba(255, 255, 255, 0.22);
   text-decoration: underline;
+  color: #ffffff;
 }
+
+
+
+
+
+
 
 
 .landing {
   width: 100%;
   display: grid;
-  grid-template-columns: 1.2fr 1fr;  /* texto más ancho que la imagen */
+  grid-template-columns: 1.2fr 1fr;  
   grid-template-rows: auto auto;
   gap: 24px;
   padding: 40px 60px;
   align-items: center;
 }
 
+
+
+
 .landing div {
   margin: 0%;
   padding: 0%;
 }
+
+
+
 
 .landing h1 {
   font-size: 32px;
@@ -204,6 +450,9 @@ header {
   font-family: "Poppins", sans-serif;
 }
 
+
+
+
 .landing h2 {
   font-size: 18px;
   font-weight: 400;
@@ -212,11 +461,17 @@ header {
   font-family: "Poppins", sans-serif;
 }
 
+
+
+
 .landing img {
   width: 80%;
   float: right;
   margin-left: 0.25;
 }
+
+
+
 
 .interesa {
   display: grid;
@@ -225,11 +480,52 @@ header {
   gap: 20px;
 }
 
+
+.nav-link {
+  color: #ffffff;
+  font-weight: 500;
+  padding: 8px 14px;
+  background: transparent !important;
+  border: none !important;
+  position: relative;
+  transition: 0.25s ease;
+}
+
+
+/* Línea animada debajo */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+  width: 0%;
+  height: 2px;
+  background: #ffffff;
+  transition: width 0.25s ease;
+  border-radius: 2px;
+}
+
+
+/* Hover */
+.nav-link:hover {
+  color: #ffffff !important;
+  transform: translateY(-2px);
+}
+
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+
 .interesa-img img {
   width: 90%;
   display: block;
   margin: 0 auto;
 }
+
+
+
 
 .interesa-texto h2 {
   font-size: 28px;
@@ -237,9 +533,15 @@ header {
   color: #222;
 }
 
+
+
+
 .botones-interesa {
   margin-top: 20px;
 }
+
+
+
 
 .producto-card {
   background: #ffffff;
@@ -248,11 +550,17 @@ header {
   padding: 20px;
   margin-bottom: 24px;
 
+
+
+
   display: grid;
   grid-template-columns: 1fr auto; /* texto a la izquierda + imagen a la derecha */
   gap: 20px;
   align-items: center;
 }
+
+
+
 
 /* Texto del producto */
 .producto-info {
@@ -261,10 +569,16 @@ header {
   gap: 6px;
 }
 
+
+
+
 /* Contenedor de la imagen */
 .producto-card .imagen {
   text-align: right; /* por si querés asegurarla más */
 }
+
+
+
 
 /* Tamaño de la imagen */
 .producto-card img {
@@ -275,11 +589,20 @@ header {
   display: block;
 }
 
+
+
+
 .producto-imagen img {
   max-width: 100%;
   border-radius: 10px;
   display: block;
 }
+
+
+
+
+
+
 
 
 .btn-fifo {
@@ -291,6 +614,9 @@ header {
   margin: 5px;
   display: inline-block;
 }
+
+
+
 
 .btn-eliminar {
   background-color: #E7DE3B !important;  /* amarillo FIFO */
@@ -305,10 +631,29 @@ header {
 }
 
 
+
+
+
+
+
+
 .btn-eliminar:hover {
   background-color: #d6cd34 !important;   /* amarillo más oscuro */
   color: #000 !important;
 }
+
+
+
+
+.hola {
+
+
+
+
+}
+
+
+
 
 .formProducto {
   max-width: 380px;
@@ -319,10 +664,16 @@ header {
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
+
+
+
 .formProducto p {
   margin: 8px 0 4px;
   font-weight: 500;
 }
+
+
+
 
 .formProducto input {
   width: 100%;
@@ -332,15 +683,24 @@ header {
   border: 1px solid #ccc;
 }
 
+
+
+
 .formProducto button {
   width: 100%;
   margin-top: 10px;
 }
 
+
+
+
 .producto-detalle {
   text-align: center;
   margin-bottom: 10px;
 }
+
+
+
 
 .producto-detalle img {
   max-width: 180px;
@@ -348,9 +708,15 @@ header {
   margin-bottom: 12px;
 }
 
+
+
+
 .numero {
   color:#1E75B8 ;
 }
+
+
+
 
 .beneficios {
   width: 100%;
@@ -362,15 +728,24 @@ header {
   text-align: center;
 }
 
+
+
+
 .beneficios div {
   max-width: 250px;    
 }
+
+
+
 
 .beneficios img {
   width: 40%;
   display: block;
   margin: 0 auto 10px auto;  
 }
+
+
+
 
 .beneficios h2 {
   font-family: "Poppins", sans-serif !important;
@@ -381,6 +756,9 @@ header {
   margin-bottom: 8px;
 }
 
+
+
+
 .beneficios p {
   font-family: "Poppins", sans-serif !important;
   font-size: 0.9rem !important;    /* igual al <p> del recorrido */
@@ -388,6 +766,9 @@ header {
   text-align: center;
   margin: 0 auto;
 }
+
+
+
 
 .comentarios {
   display: flex;
@@ -399,15 +780,75 @@ header {
 }
 
 
+
+
+
+
+
+
 .comentarios .toast {
   width: 300px;
 }
+
+
+
+
+
+
 
 
 .toast-header img {
   border-radius: 99px;
   width:5%;
 }
+
+
+.empresas-carrusel {
+    text-align: center;
+    padding: 60px 0;
+}
+
+
+.logos {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+
+.logos img {
+    width: 100px;
+    opacity: 0.8;
+    transition: 0.3s ease;
+}
+
+
+.logos img:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+
+.btn-mobile-login {
+  border: 2px solid white !important;
+  color: white !important;
+  background: transparent !important;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+
+.btn-mobile-register {
+  background: #E7DE3B !important;
+  color: #000 !important;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+
 
 
 .accordion-button {
@@ -418,11 +859,23 @@ header {
 }
 
 
+
+
+
+
+
+
 .accordion-button:not(.collapsed) {
   color: #613dc1;
   background: #ede4ff;
   box-shadow: none;
 }
+
+
+
+
+
+
 
 
 .accordion-body {
@@ -432,11 +885,23 @@ header {
 }
 
 
+
+
+
+
+
+
 .accordion-button:not(.collapsed) {
   background-color: #E7DE3B !important;   /* fondo cuando está abierto */
   color: #000 !important;                 /* texto */
   font-weight: 600 !important;
 }
+
+
+
+
+
+
 
 
 /* Flechita (icono del botón) */
@@ -445,15 +910,33 @@ header {
 }
 
 
+
+
+
+
+
+
 .accordion-button:not(.collapsed)::after {
   filter: brightness(0) saturate(100%);
 }
+
+
+
+
+
+
 
 
 /* Hover */
 .accordion-button:hover {
   background-color: #f0e96f !important;
 }
+
+
+
+
+
+
 
 
 /* Bordes */
@@ -463,12 +946,24 @@ header {
 }
 
 
+
+
+
+
+
+
 /* Ajustes del body */
 .accordion-body {
   background: #fffef0;
   color: #444;
   font-family: "Poppins", sans-serif;
 }
+
+
+
+
+
+
 
 
 .producto-card {
@@ -484,6 +979,12 @@ header {
 }
 
 
+
+
+
+
+
+
 /* ------------------ INFO DEL PRODUCTO ------------------ */
 .producto-info h2 {
   font-size: 20px;
@@ -492,12 +993,24 @@ header {
 }
 
 
+
+
+
+
+
+
 .producto-info h3 {
   font-size: 16px;
   font-weight: 500;
   color: #555;
   margin: 4px 0;
 }
+
+
+
+
+
+
 
 
 /* ------------------ FOTO ------------------ */
@@ -510,6 +1023,12 @@ header {
 }
 
 
+
+
+
+
+
+
 /* ------------------ BOTÓN ------------------ */
 .producto-card .btn-danger {
   margin-top: 12px;
@@ -519,12 +1038,106 @@ header {
 }
 
 
+
+
+
+
+
+
 .titulo-fifo {
   font-family: "Poppins", sans-serif;
   font-size: 24px;
   color: #222;
   margin-top:2%;
 }
+
+
+
+
+
+
+#lista-empresas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+  padding: 20px;
+}
+
+
+
+
+/* TARJETAS */
+.empresa-card {
+  width: 220px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  padding: 18px;
+  text-align: center;
+  box-shadow: 0px 3px 10px rgba(0,0,0,0.07);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+}
+
+
+
+
+.empresa-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 6px 16px rgba(0,0,0,0.12);
+}
+
+
+
+
+/* LOGO EMPRESA */
+.empresa-card img {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+
+
+
+/* NOMBRE EMPRESA */
+.nombre-empresa {
+  font-weight: bold;
+  font-size: 17px;
+  color: #222;
+  margin: 0;
+}
+
+
+
+
+/* BUSCADOR */
+.navbar.bg-body-tertiary {
+  margin: 10px auto;
+  width: 90%;
+  border-radius: 12px;
+}
+
+
+
+
+form .form-control {
+  border-radius: 10px;
+}
+
+
+
+
+form button {
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+
+
 
 .footer {
   background-color: #613dc1;
@@ -536,12 +1149,24 @@ header {
 }
 
 
+
+
+
+
+
+
 .footer-top {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 100px;
 }
+
+
+
+
+
+
 
 
 .footer-logo {
@@ -552,10 +1177,22 @@ header {
 }
 
 
+
+
+
+
+
+
 .footer-logo img {
   width: 20%;
   height: auto;
 }
+
+
+
+
+
+
 
 
 .footer-links {
@@ -565,11 +1202,23 @@ header {
 }
 
 
+
+
+
+
+
+
 .footer-links h4 {
   color: #ffeb3b;
   font-size: 16px;
   margin-bottom: 1%;
 }
+
+
+
+
+
+
 
 
 .footer-links ul {
@@ -578,9 +1227,21 @@ header {
 }
 
 
+
+
+
+
+
+
 .footer-links li {
   margin: 0.5%;
 }
+
+
+
+
+
+
 
 
 .footer-links a {
@@ -589,9 +1250,21 @@ header {
 }
 
 
+
+
+
+
+
+
 .footer-links a:hover {
   text-decoration: underline;
 }
+
+
+
+
+
+
 
 
 .footer-bottom {
@@ -600,10 +1273,22 @@ header {
 }
 
 
+
+
+
+
+
+
 @media (width<=600px) {
   html {
     font-size: 11px;
   }
+
+
+
+
+
+
 
 
   header {
@@ -611,10 +1296,22 @@ header {
   }
 
 
+
+
+
+
+
+
   .nav {
     justify-content: center;
     gap: 8px;
   }
+
+
+
+
+
+
 
 
   .nav-link {
@@ -631,13 +1328,22 @@ header {
     scrollbar-width: none; /* Firefox oculta scrollbar */
   }
 
+
+
+
   .nav-owner::-webkit-scrollbar {
     display: none; /* Chrome oculta scrollbar */
   }
 
+
+
+
   .nav-owner .nav-item {
     flex: 0 0 auto; /* tamaño justo */
   }
+
+
+
 
   .nav-owner .nav-link {
     white-space: nowrap;
@@ -645,16 +1351,28 @@ header {
     padding: 6px 10px;
   }
 
+
+
+
   .header .navbar-brand img {
     width: 50px;              /* mismo tamaño visual que en Index */
     height: auto;
   }
+
+
+
 
   /* --- CONTENEDOR GENERAL --- */
   .container.py-5 {
     padding-top: 24px !important;
     padding-bottom: 24px !important;
   }
+
+
+
+
+
+
 
 
   /* --- TÍTULO "Preguntas Frecuentes" --- */
@@ -664,11 +1382,31 @@ header {
   }
 
 
+
+
+  .middle-links {
+    margin-top: 12px;
+}
+
+
+.header-actions {
+    margin-top: 10px;
+}
+
+
+
+
   /* --- ACCORDION (preguntas) --- */
   .accordion-button {
     font-size: 14px !important;
     padding: 12px !important;
   }
+
+
+
+
+
+
 
 
   .accordion-body {
@@ -678,9 +1416,21 @@ header {
   }
 
 
+
+
+
+
+
+
   .accordion-item {
     margin-bottom: 10px;
   }
+
+
+
+
+
+
 
 
   /* ------------------ HERO / LANDING ------------------ */
@@ -691,6 +1441,12 @@ header {
   }
 
 
+
+
+
+
+
+
   .landing h1 {
     font-size: 20px;
     line-height: 1.3;
@@ -698,10 +1454,22 @@ header {
   }
 
 
+
+
+
+
+
+
   .landing h2 {
     font-size: 14px;
     margin-top: 8px;
   }
+
+
+
+
+
+
 
 
   .landing img {
@@ -712,6 +1480,12 @@ header {
   }
 
 
+
+
+
+
+
+
   /* ------------------ ¿CÓMO FUNCIONA FIFO? ------------------ */
   .recorrido {
     flex-direction: column;     /* pasos uno debajo del otro */
@@ -720,14 +1494,32 @@ header {
   }
 
 
+
+
+
+
+
+
   .flecha {
     display: none;              /* sacamos las flechas en mobile */
   }
 
 
+
+
+
+
+
+
   .step {
     max-width: 260px;
   }
+
+
+
+
+
+
 
 
   /* ------------------ SECCIÓN INTERESA ------------------ */
@@ -738,6 +1530,12 @@ header {
   }
 
 
+
+
+
+
+
+
   .interesa-img img {
     width: 70%;
     max-width: 260px;
@@ -745,14 +1543,32 @@ header {
   }
 
 
+
+
+
+
+
+
   .interesa-texto h2 {
     font-size: 20px;
   }
 
 
+
+
+
+
+
+
   .botones-interesa {
     margin-top: 12px;
   }
+
+
+
+
+
+
 
 
   .botones-interesa .btn-fifo {
@@ -761,6 +1577,12 @@ header {
     margin: 6px auto;
     display: block;
   }
+
+
+
+
+
+
 
 
   /* ------------------ TESTIMONIOS (TOASTS) ------------------ */
@@ -772,10 +1594,22 @@ header {
   }
 
 
+
+
+
+
+
+
   .comentarios .toast {
     width: 90%;
     max-width: 320px;
   }
+
+
+
+
+
+
 
 
   /* ------------------ BENEFICIOS ------------------ */
@@ -787,9 +1621,21 @@ header {
   }
 
 
+
+
+
+
+
+
   .beneficios div {
     max-width: 280px;
   }
+
+
+
+
+
+
 
 
   .beneficios img {
@@ -797,11 +1643,45 @@ header {
     margin-bottom: 6px;
   }
 
+
+
+
 .productos-lista {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
+
+
+
+
+.empresas-carrusel {
+    text-align: center;
+    padding: 60px 0;
+}
+
+
+.logos {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+
+.logos img {
+    width: 100px;
+    opacity: 0.8;
+    transition: 0.3s ease;
+}
+
+
+.logos img:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+
 
 
 /* Card */
@@ -817,6 +1697,12 @@ header {
 }
 
 
+
+
+
+
+
+
 .producto-info h2 {
   font-size: 18px;
   font-weight: 600;
@@ -824,11 +1710,23 @@ header {
 }
 
 
+
+
+
+
+
+
 .producto-info h3 {
   font-size: 14px;
   font-weight: 500;
   margin: 2px 0;
 }
+
+
+
+
+
+
 
 
 .btn-fifo-eliminar {
@@ -843,9 +1741,21 @@ header {
 }
 
 
+
+
+
+
+
+
 .btn-fifo-eliminar:hover {
   background-color: #d6cd34 !important;
 }
+
+
+
+
+
+
 
 
 .btn-eliminar {
@@ -859,9 +1769,21 @@ header {
 }
 
 
+
+
+
+
+
+
 .btn-eliminar:hover {
   background-color: #d6cd34 !important;
 }
+
+
+
+
+
+
 
 
 /* Imagen en desktop */
@@ -874,16 +1796,40 @@ header {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
   .footer {
     padding: 1.5%;
     font-size: 12px;
   }
 
 
+
+
+
+
+
+
   .footer-links div:nth-child(2),
   .footer-links div:nth-child(3) {
     display: none;
   }
+
+
+
+
+
+
 
 
   .footer-top {
@@ -894,6 +1840,12 @@ header {
   }
 
 
+
+
+
+
+
+
   .footer-logo img {
     width: 20%;
     margin: 0.5%;
@@ -901,10 +1853,22 @@ header {
   }
 
 
+
+
+
+
+
+
   .footer-logo p {
     font-size: 12px;
     padding: 0.2%;
   }
+
+
+
+
+
+
 
 
   .footer-links {
@@ -914,15 +1878,33 @@ header {
   }
 
 
+
+
+
+
+
+
   .footer-links h4 {
     font-size: 14px;
     margin-bottom: 0.3%;
   }
 
 
+
+
+
+
+
+
   .footer-links ul li a {
     font-size: 12px;
   }
+
+
+
+
+
+
 
 
   .footer-bottom {
@@ -931,6 +1913,12 @@ header {
     padding: 0.5%;
   }
 }
+
+
+
+
+
+
 
 
 

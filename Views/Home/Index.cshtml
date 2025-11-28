@@ -6,22 +6,83 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>@ViewData["Title"] - NombreProyecto</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <link rel="stylesheet" href="site.css" asp-append-version="true" />
+  <link rel="stylesheet" href="estilo.css" asp-append-version="true" />
  
 </head>
 
 
+
+
 <body>
-<header>
-  <ul class="nav justify-content-end">
-<li class="nav-item">
-  <a class="nav-link" href='@Url.Action("IniciarSesion", "Account")'>Iniciar sesión</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href='@Url.Action("RegistrarseCliente", "Account")'>Registrarse</a>
-</li>
-</ul>
+  <header class="fifo-header">
+    <nav class="navbar navbar-expand-lg navbar-dark fifo-navbar">
+      <div class="container">
+
+
+  
+        <a class="navbar-brand d-flex align-items-center" href='@Url.Action("Index","Home")'>
+          <img src="img/Logo-removebg-preview.png" alt="FIFO" class="me-2">
+        </a>
+
+
+       
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mainNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+  
+        <div class="collapse navbar-collapse" id="mainNavbar">
+
+
+      
+          <ul class="navbar-nav ms-3 middle-links">
+            <li class="nav-item">
+              <a class="nav-link nav-main" href="#como-funciona" data-scroll="#como-funciona">Cómo funciona</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-main" href="#beneficios" data-scroll="#beneficios">Beneficios</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-main" href="#casos-reales" data-scroll="#casos-reales">Casos reales</a>
+            </li>
+          </ul>
+          </ul>
+
+
+        
+          <div class="ms-auto d-flex gap-2 header-actions">
+            <a class="btn btn-outline-light btn-sm header-btn"
+               href='@Url.Action("IniciarSesion","Account")'>
+              Iniciar sesión
+            </a>
+            <a class="btn btn-warning btn-sm header-btn header-btn-cta"
+               href='@Url.Action("RegistrarseCliente","Account")'>
+              Registrarse
+            </a>
+          </div>
+
+
+          <div class="mobile-actions d-lg-none w-100 mt-3">
+            <a class="btn btn-outline-light w-100 mb-2"
+               href='@Url.Action("IniciarSesion","Account")'>
+              Iniciar sesión
+            </a>
+            <a class="btn btn-warning w-100"
+               href='@Url.Action("RegistrarseCliente","Account")'>
+              Registrarse
+            </a>
+          </div>
+
+
+        </div>
+      </div>
+    </nav>
 </header>
+
+
 
 
 <main>
@@ -38,7 +99,9 @@
   </section>
 
 
-  <section class="container py-5">
+
+
+  <section id="como-funciona" class="container py-5">
     <h2 class="text-center mb-5">¿Cómo funciona FIFO?</h2>
  
     <div class="d-flex justify-content-center align-items-center flex-wrap gap-4 recorrido">
@@ -69,7 +132,11 @@
   </section>
 
 
+
+
   <section class="interesa container py-5">
+
+
 
 
     <div class="interesa-img">
@@ -91,10 +158,16 @@
  
 
 
+
+
  
 
 
-  <section class="comentarios">
+
+
+  <section id="casos-reales" class="comentarios">
+
+
 
 
   <div id="toast1" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
@@ -102,7 +175,6 @@
       <img src="img/5.png" class="rounded me-2" alt="...">
       <strong class="me-auto">Mariana Suárez</strong>
       <small>11 mins ago</small>
-      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
     <div class="toast-body">
       Desde que uso FIFO reduje muchísimo las pérdidas. Ahora sé exactamente qué productos priorizar y vendo más sin estresarme
@@ -113,7 +185,6 @@
       <img src="img/6.png" class="rounded me-2" alt="...">
       <strong class="me-auto">Diego Fernández</strong>
       <small>2 months ago</small>
-      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
     <div class="toast-body">
       FIFO me ordenó el negocio. Antes tiraba un montón de mercadería; ahora recupero valor y tengo el stock bajo control.
@@ -122,7 +193,9 @@
 </section>
 
 
-  <section class="beneficios">
+
+
+  <section id="beneficios" class="beneficios">
     <div>
       <img src="img/1.png" alt="">
       <h2>Usamos los recursos de forma responsable.</h2>
@@ -148,39 +221,41 @@
 <footer class="footer">
   <div class="footer-top">
       <div class="footer-logo">
-          <img src="c:\Users\48794948\Pictures\Screenshots\Captura de pantalla 2025-10-31 142500.png" alt="Logo FIFO">
+          <img src="img/Captura_de_pantalla_2025-03-28_122750-removebg-preview.png" alt="Logo FIFO">
           <p>Dale una segunda oportunidad a los alimentos. Reducí el desperdicio, ayudá al planeta 🌍</p>
       </div>
+
+
 
 
       <div class="footer-links">
           <div>
               <h4>Sobre FIFO</h4>
               <ul>
-                  <a class="nav-link" href='@Url.Action("Index", "Home")'>Iniciar sesión</a>
-
-                  <li><a href="Index.cshtml">Que es FIFO?</a></li>
-                  <li><a href="Index.html">Nuestra propuesta</a></li>
-                  <li><a href="Index.html">Por qué lo hacemos?</a></li>
+                  <li><a href='@Url.Action("Index", "Account")'>Que es FIFO?</a></li>
+                  <li><a href='@Url.Action("Index", "Account")'>Nuestra propuesta</a></li>
+                  <li><a href='@Url.Action("Index", "Account")'>Por qué lo hacemos?</a></li>
               </ul>
           </div>
           <div>
               <h4>Dueño</h4>
               <ul>
-                  <li><a href="AgregarProducto.cshtml">Agregar producto</a></li>
-                  <li><a href="EliminarProducto.cshtml">Eliminar producto</a></li>
-                  <li><a href="ModificarProducto.cshtml">Modificar producto</a></li>
-                  <li><a href="VerProductosMiLocal">Ver productos</a></li>
+                  <li><a href='@Url.Action("AgregarProducto", "Dueño")'>Agregar producto</a></li>
+                  <li><a href='@Url.Action("EliminarProducto", "Dueño")'>Eliminar producto</a></li>
+                  <li><a href='@Url.Action("AgregarProducto", "Dueño")'>Modificar producto</a></li>
+                  <li><a href='@Url.Action("VerProductosMiLocal", "Dueño")'>Ver productos</a></li>
               </ul>
           </div>
           <div>
               <h4>Cliente</h4>
               <ul>
-                  <li><a href="VerEmpresas.cshtml">Ver empresas</a></li>
-                  <li><a href="VerProductos.chtml">Ver productos</a></li>
+                  <li><a href='@Url.Action("VerEmpresas", "Dueño")'>Ver empresas</a></li>
+                  <li><a href='@Url.Action("VerProductos", "Dueño")'>Ver productos</a></li>
               </ul>
           </div>
       </div>
+
+
 
 
   <div class="footer-bottom">
@@ -193,10 +268,73 @@
   const toast2 = new bootstrap.Toast(document.getElementById('toast2'));
 
 
+
+
   toast1.show();
   toast2.show();
 </script>
+<script>
+  
+  document.querySelectorAll('[data-scroll]').forEach(link => {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetSelector = this.getAttribute('data-scroll');
+      const target = document.querySelector(targetSelector);
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+
+
+      
+      const navbarCollapse = document.getElementById('mainNavbar');
+      if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+        const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+        bsCollapse.hide();
+      }
+    });
+  });
+
+
+ 
+  const sectionMap = {
+    'como-funciona':  document.querySelector('.nav-main[data-scroll="#como-funciona"]'),
+    'beneficios':     document.querySelector('.nav-main[data-scroll="#beneficios"]'),
+    'casos-reales':   document.querySelector('.nav-main[data-scroll="#casos-reales"]')
+  };
+
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        const id = entry.target.id;
+        const link = sectionMap[id];
+        if (!link) return;
+
+
+        if (entry.isIntersecting) {
+       
+          Object.values(sectionMap).forEach(l => l && l.classList.remove('nav-main--active'));
+      
+          link.classList.add('nav-main--active');
+        }
+      });
+    },
+    {
+      threshold: 0.4
+    }
+  );
+
+
+  ['como-funciona', 'beneficios', 'casos-reales'].forEach(id => {
+    const section = document.getElementById(id);
+    if (section) observer.observe(section);
+  });
+</script>
 </body>
 </html>
+
 
 

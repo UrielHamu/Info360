@@ -57,12 +57,18 @@ namespace Info360.Models
     using (SqlConnection connection = new SqlConnection(_connectionString))
     {
         string query = "TraerUsuario";
-        usuario = connection.QueryFirstOrDefault<Usuarios>(query, new { NombreUsuario }, commandType:System.Data.CommandType.StoredProcedure);
+        usuario = connection.QueryFirstOrDefault<Usuarios>(query, new { NombreUsuario = NombreUsuario }, commandType:System.Data.CommandType.StoredProcedure);
         return usuario;
     }
 }
 
-
+public static int TraerIdDueño(int IdUsuario){
+    using(SqlConnection connection = new SqlConnection(_connectionString))
+    {
+        string query="TraerIdDueño";
+        return connection.QueryFirstOrDefault<int>(query, new{IdUsuario=IdUsuario}, commandType:System.Data.CommandType.StoredProcedure);
+    }
+}
    public static void EliminarProductos(int idProducto)
 {
     using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -94,7 +100,7 @@ public static string TraerCategoria(int id)
     using (SqlConnection connection = new SqlConnection(_connectionString))
     {
         string query = "TraerCategoria";
-        string nombreCategoria = connection.QueryFirstOrDefault<string>(query, new { Id = id }, commandType:System.Data.CommandType.StoredProcedure);
+        string nombreCategoria = connection.QueryFirstOrDefault<string>(query, new { IdCategoria = id }, commandType:System.Data.CommandType.StoredProcedure);
         return nombreCategoria;
     }
 }

@@ -53,7 +53,7 @@
 <footer class="footer">
   <div class="footer-top">
       <div class="footer-logo">
-          <img src="c:\Users\48794948\Pictures\Screenshots\Captura de pantalla 2025-10-31 142500.png" alt="Logo FIFO">
+          <img src="img/Captura_de_pantalla_2025-03-28_122750-removebg-preview.png" alt="Logo FIFO">
           <p>Dale una segunda oportunidad a los alimentos. Reducí el desperdicio, ayudá al planeta 🌍</p>
       </div>
 
@@ -62,25 +62,25 @@
           <div>
               <h4>Sobre FIFO</h4>
               <ul>
-                  <li><a href="Index.cshtml">Que es FIFO?</a></li>
-                  <li><a href="Index.html">Nuestra propuesta</a></li>
-                  <li><a href="Index.html">Por qué lo hacemos?</a></li>
+                  <li><a href='@Url.Action("Index", "Account")'>Que es FIFO?</a></li>
+                  <li><a href='@Url.Action("Index", "Account")'>Nuestra propuesta</a></li>
+                  <li><a href='@Url.Action("Index", "Account")'>Por qué lo hacemos?</a></li>
               </ul>
           </div>
           <div>
               <h4>Dueño</h4>
               <ul>
-                  <li><a href="AgregarProducto.cshtml">Agregar producto</a></li>
-                  <li><a href="EliminarProducto.cshtml">Eliminar producto</a></li>
-                  <li><a href="ModificarProducto.cshtml">Modificar producto</a></li>
-                  <li><a href="VerProductosMiLocal">Ver productos</a></li>
+                  <li><a href='@Url.Action("AgregarProducto", "Dueño")'>Agregar producto</a></li>
+                  <li><a href='@Url.Action("EliminarProducto", "Dueño")'>Eliminar producto</a></li>
+                  <li><a href='@Url.Action("AgregarProducto", "Dueño")'>Modificar producto</a></li>
+                  <li><a href='@Url.Action("VerProductosMiLocal", "Dueño")'>Ver productos</a></li>
               </ul>
           </div>
           <div>
               <h4>Cliente</h4>
               <ul>
-                  <li><a href="VerEmpresas.cshtml">Ver empresas</a></li>
-                  <li><a href="VerProductos.chtml">Ver productos</a></li>
+                  <li><a href='@Url.Action("VerEmpresas", "Dueño")'>Ver empresas</a></li>
+                  <li><a href='@Url.Action("VerProductos", "Dueño")'>Ver productos</a></li>
               </ul>
           </div>
       </div>
