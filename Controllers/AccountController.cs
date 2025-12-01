@@ -84,6 +84,7 @@ namespace Info360.Controllers
                     Dueños dueño = new Dueños(idLocal, idUsuario);
                     BD.CrearDueño(dueño);
                     HttpContext.Session.SetString("user", Objeto.ObjectToString(dueño));
+                    HttpContext.Session.SetString("IdLocal", idLocal.ToString());
                     return RedirectToAction("HomeDueño", "Dueño");
                 }
             }

@@ -42,7 +42,7 @@ else
                 <h3>Fecha de vencimiento: @producto.FechaVencimiento.ToString("dd/MM/yyyy")</h3>
             
                 <form action= '@Url.Action("EliminarProducto", "Dueño")' method="POST" enctype="multipart/form-data">
-                <input type="hidden" name="Id" value="@ViewBag.producto.IdLocalesProductosVto">            
+                <input type="hidden" name="Id" value="@producto.IdLocalesProductosVto">            
                 <button type= "submit" class="btn-eliminar">Eliminar</button>
                 </form>
             </div>
