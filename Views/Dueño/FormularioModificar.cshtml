@@ -1,93 +1,445 @@
 @{
-  ViewData["Title"] = "FormularioModificar";
-}
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>@ViewData["Title"] - NombreProyecto</title>
-  <link rel="stylesheet" href="estilos.css" asp-append-version="true" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-</head>
+    ViewData["Title"] = "FormularioModificar";
+  }
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - NombreProyecto</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="estilo.css" asp-append-version="true" />
+  </head>
+  
+  
+  <body>
+    <header class="fifo-header">
+        <div class="header-inner">
+            <!-- Logo -->
+            <a class="navbar-brand d-flex align-items-center" href='@Url.Action("Index","Home")'>
+                <img src="img/Logo-removebg-preview.png" alt="FIFO" class="me-2">
+            </a>
+    
+            <!-- Botón hamburguesa SOLO para mobile -->
+            <button class="menu-toggle" type="button" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+    
+            <!-- Menú -->
+            <ul class="nav header-nav" id="headerMenu">
+                <li class="nav-item">
+                    <a class="nav-link" href='@Url.Action("NuevaView", "Dueño")'>Ver productos generales de mi local</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href='@Url.Action("VerProductosMiLocal", "Dueño")'> Ver productos con descuentos</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <main class="producto-add-main">
 
+        <section class="pasos-empresas pasos-desktop">
+            <div class="paso-item">
+                <span class="paso-num">1</span>
+                <h6>Revisá la info del producto</h6>
+                <p>Chequeá la fecha de vencimiento, el stock disponible y el precio actual con descuento.</p>
+            </div>
+            <div class="paso-item">
+                <span class="paso-num">2</span>
+                <h6>Definí el nuevo precio</h6>
+                <p>Ingresá el precio con descuento que quieras mostrar en FIFO para tus clientes.</p>
+            </div>
+            <div class="paso-item">
+                <span class="paso-num">3</span>
+                <h6>Guardá los cambios</h6>
+                <p>Hacé clic en <strong>“Guardar precio”</strong> para actualizar la oferta en la app.</p>
+            </div>
+        </section>
 
-<body>
-  <header>
-        <ul class="nav justify-content-end">
-    <li class="nav-item">
-      <a class="nav-link" href='@Url.Action("NuevaView", "Dueño")'>Ver productos generales de mi local</a>
-    </li>
-     <li class="nav-item">
-      <a class="nav-link" href='@Url.Action("VerProductosMiLocal", "Dueño")'> Ver productos con descuentos</a>
-    </li>
-  </ul>
-  </header>
-  <main class="registro">
-    <div class="producto-detalle">
-        <img src="~/img/@ViewBag.Producto.Foto" alt="Producto">
-        <h2>@ViewBag.Producto.Nombre</h2>
-        <h3>Categoria: @ViewBag.Producto.Categoria</h3>
-        <h3>Vence: @ViewBag.Producto.FechaVencimiento</h3>
-        <h3>Stock: @ViewBag.Producto.Cantidad</h3>
-        <h3>Precio con descuento: $@ViewBag.Producto.PrecioConDescuento</h3>
-    </div>
+        
+<!-- MOBILE: solo botón "¿Cómo funciona?" -->
+<div class="pasos-mobile">
+    <button class="btn-tutorial" type="button"
+            onclick="document.getElementById('tutorialModal').style.display='flex'">
+        ¿Cómo funciona?
+    </button>
+</div>
 
+  <!-- MODAL TUTORIAL (mismas clases que en la otra pantalla) -->
+  <div id="tutorialAgregar" class="tutorial-modal">
+    <div class="tutorial-content">
+        <h3>¿Cómo modificar el precio?</h3>
+        <ol>
+            <li>Revisá el stock, @{
+    ViewData["Title"] = "FormularioModificar";
+  }
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - NombreProyecto</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="estilo.css" asp-append-version="true" />
+  </head>
+  
+  
+  <body>
+    <header class="fifo-header">
+        <div class="header-inner">
+            <!-- Logo -->
+            <a class="navbar-brand d-flex align-items-center" href='@Url.Action("Index","Home")'>
+                <img src="img/Logo-removebg-preview.png" alt="FIFO" class="me-2">
+            </a>
+    
+            <!-- Botón hamburguesa SOLO para mobile -->
+            <button class="menu-toggle" type="button" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+    
+            <!-- Menú -->
+            <ul class="nav header-nav" id="headerMenu">
+                <li class="nav-item">
+                    <a class="nav-link" href='@Url.Action("NuevaView", "Dueño")'>Ver productos generales de mi local</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href='@Url.Action("VerProductosMiLocal", "Dueño")'> Ver productos con descuentos</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <main class="producto-add-main">
 
-    <form action='@Url.Action("RecibirModificarProducto", "Dueño")'
-          method="POST" class="formProducto">
+        <section class="pasos-empresas pasos-desktop">
+            <div class="paso-item">
+                <span class="paso-num">1</span>
+                <h6>Revisá la info del producto</h6>
+                <p>Chequeá la fecha de vencimiento, el stock disponible y el precio actual con descuento.</p>
+            </div>
+            <div class="paso-item">
+                <span class="paso-num">2</span>
+                <h6>Definí el nuevo precio</h6>
+                <p>Ingresá el precio con descuento que quieras mostrar en FIFO para tus clientes.</p>
+            </div>
+            <div class="paso-item">
+                <span class="paso-num">3</span>
+                <h6>Guardá los cambios</h6>
+                <p>Hacé clic en <strong>“Guardar precio”</strong> para actualizar la oferta en la app.</p>
+            </div>
+        </section>
 
-        <input type="hidden" name="Id" value="@ViewBag.Producto.IdProducto
-        ">
-        <label>Nuevo precio:</label>
-        <input type="number" name="Precio" placeholder="@ViewBag.Producto.PrecioInicial" required>
+        
+<!-- MOBILE: solo botón "¿Cómo funciona?" -->
+<div class="pasos-mobile">
+    <button class="btn-tutorial" type="button"
+            onclick="document.getElementById('tutorialAgregar').style.display='flex'">
+        ¿Cómo funciona?
+    </button>
+</div>
 
+  <!-- MODAL TUTORIAL (mismas clases que en la otra pantalla) -->
+  <div id="tutorialAgregar" class="tutorial-modal">
+    <div class="tutorial-content">
+        <h3>¿Cómo modificar el precio?</h3>
+        <ol>
+            <li>Revisá el stock, la fecha de vencimiento y el precio actual.</li>
+            <li>En <strong>“Nuevo precio”</strong>, escribí el valor final con descuento.</li>
+            <li>Ese es el precio que va a ver el cliente cuando navegue FIFO.</li>
+            <li>Hacé clic en <strong>“Guardar precio”</strong> para aplicar el cambio.</li>
+        </ol>
 
-        <button type="submit" class="btn-eliminar">
-            Guardar precio
+        <button id="btnCerrarTutorialAgregar" class="btn-cerrar"
+                onclick="document.getElementById('tutorialModificar').style.display='none'">
+            Entendido
         </button>
+    </div>
+</div>
 
-
-    </form>
-</main>
-<footer class="footer">
-  <div class="footer-top">
-      <div class="footer-logo">
-          <img src="img/Captura_de_pantalla_2025-03-28_122750-removebg-preview.png" alt="Logo FIFO">
-          <p>Dale una segunda oportunidad a los alimentos. Reducí el desperdicio, ayudá al planeta 🌍</p>
-      </div>
-
-
-      <div class="footer-links">
-          <div>
-              <h4>Sobre FIFO</h4>
-              <ul>
-                  <li><a href='@Url.Action("Index", "Account")'>Que es FIFO?</a></li>
-                  <li><a href='@Url.Action("Index", "Account")'>Nuestra propuesta</a></li>
-                  <li><a href='@Url.Action("Index", "Account")'>Por qué lo hacemos?</a></li>
-              </ul>
+      <section class="producto-add-container">
+  
+          <!-- CABECERA PRODUCTO (mismo estilo que Agregar) -->
+          <div class="producto-header">
+              @if (ViewBag.Producto.Foto != null)
+              {
+                  <img src="~/img/@ViewBag.Producto.Foto"
+                       alt="@ViewBag.Producto.Nombre"
+                       class="producto-img" />
+              }
+  
+              <div class="producto-info-top">
+                  <span class="producto-tag">@ViewBag.Producto.Categoria</span>
+  
+                  <h1 class="producto-nombre">
+                      @ViewBag.Producto.Nombre
+                  </h1>
+  
+                  <p class="producto-sub">
+                      Actualizá el <strong>precio con descuento</strong>
+                      que van a ver tus clientes en FIFO.
+                  </p>
+  
+                  <!-- NUEVO BLOQUE ORDENADO -->
+                  <ul class="producto-list">
+                      <li><strong>Vence:</strong> @ViewBag.Producto.FechaVencimiento</li>
+                      <li><strong>Stock:</strong> @ViewBag.Producto.Cantidad</li>
+                      <li><strong>Precio actual:</strong> $@ViewBag.Producto.PrecioConDescuento</li>
+                  </ul>
+              </div>
+  
+            </div>
+        
+  
+          <!-- CARD DEL FORM (igual que Agregar, pero con otro campo) -->
+          <div class="producto-card-add">
+              <form action='@Url.Action("RecibirModificarProducto", "Dueño")'
+                    method="POST">
+  
+                  <input type="hidden" name="Id" value="@ViewBag.Producto.IdProducto" />
+  
+                  <div class="mb-3">
+                      <label class="form-label">Nuevo precio</label>
+                      <input type="number"
+                             name="Precio"
+                             class="form-control"
+                             placeholder="@ViewBag.Producto.PrecioInicial"
+                             required />
+                  </div>
+  
+                  <button type="submit" class="btn btn-fifoO w-100">
+                      Guardar precio
+                  </button>
+              </form>
           </div>
-          <div>
-              <h4>Dueño</h4>
-              <ul>
-                  <li><a href='@Url.Action("AgregarProducto", "Dueño")'>Agregar producto</a></li>
-                  <li><a href='@Url.Action("EliminarProducto", "Dueño")'>Eliminar producto</a></li>
-                  <li><a href='@Url.Action("AgregarProducto", "Dueño")'>Modificar producto</a></li>
-                  <li><a href='@Url.Action("VerProductosMiLocal", "Dueño")'>Ver productos</a></li>
-              </ul>
-          </div>
-          <div>
-              <h4>Cliente</h4>
-              <ul>
-                  <li><a href='@Url.Action("VerEmpresas", "Dueño")'>Ver empresas</a></li>
-                  <li><a href='@Url.Action("VerProductos", "Dueño")'>Ver productos</a></li>
-              </ul>
-          </div>
-      </div>
+  
+      </section>
+  </main>
+  
+  
+  
+  <footer class="footer">
+    <div class="footer-top">
+        <div class="footer-logo">
+            <img src="img/Captura_de_pantalla_2025-03-28_122750-removebg-preview.png" alt="Logo FIFO">
+            <p>Dale una segunda oportunidad a los alimentos. Reducí el desperdicio, ayudá al planeta 🌍</p>
+        </div>
+  
+  
+        <div class="footer-links">
+            <div>
+                <h4>Sobre FIFO</h4>
+                <ul>
+                    <li><a href='@Url.Action("Index", "Account")'>Que es FIFO?</a></li>
+                    <li><a href='@Url.Action("Index", "Account")'>Nuestra propuesta</a></li>
+                    <li><a href='@Url.Action("Index", "Account")'>Por qué lo hacemos?</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Dueño</h4>
+                <ul>
+                    <li><a href='@Url.Action("AgregarProducto", "Dueño")'>Agregar producto</a></li>
+                    <li><a href='@Url.Action("EliminarProducto", "Dueño")'>Eliminar producto</a></li>
+                    <li><a href='@Url.Action("AgregarProducto", "Dueño")'>Modificar producto</a></li>
+                    <li><a href='@Url.Action("VerProductosMiLocal", "Dueño")'>Ver productos</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Cliente</h4>
+                <ul>
+                    <li><a href='@Url.Action("VerEmpresas", "Dueño")'>Ver empresas</a></li>
+                    <li><a href='@Url.Action("VerProductos", "Dueño")'>Ver productos</a></li>
+                </ul>
+            </div>
+        </div>
+  
+  
+    <div class="footer-bottom">
+        <p>© 2025 FIFO | Desarrollado por el equipo FIFO</p>
+    </div>
+  </footer>
+  <script src="./site.js"></script>
+  <script>
+    function toggleMenu() {
+          const menu = document.getElementById('headerMenu');
+          if (menu) {
+              menu.classList.toggle('menu-open');
+          }
+      }
+      document.addEventListener("DOMContentLoaded", function () {
+      const modal   = document.getElementById("tutorialAgregar");
+      const abrir   = document.getElementById("btnTutorialAgregar");
+      const cerrar  = document.getElementById("btnCerrarTutorialAgregar");
 
+      if (abrir && modal) {
+          abrir.addEventListener("click", function () {
+              modal.style.display = "flex";
+          });
+      }
 
-  <div class="footer-bottom">
-      <p>© 2025 FIFO | Desarrollado por el equipo FIFO</p>
-  </div>
-</footer>
-<script src="./site.js"></script>
-</body>
-</html>
+      if (cerrar && modal) {
+          cerrar.addEventListener("click", function () {
+              modal.style.display = "none";
+          });
+      }
+
+      // cerrar si hace click afuera del recuadro
+      window.addEventListener("click", function (e) {
+          if (e.target === modal) {
+              modal.style.display = "none";
+          }
+      });
+  });
+    </script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+  </html>
+  la fecha de vencimiento y el precio actual.</li>
+            <li>En <strong>“Nuevo precio”</strong>, escribí el valor final con descuento.</li>
+            <li>Ese es el precio que va a ver el cliente cuando navegue FIFO.</li>
+            <li>Hacé clic en <strong>“Guardar precio”</strong> para aplicar el cambio.</li>
+        </ol>
+
+        <button id="btnCerrarTutorialAgregar" class="btn-cerrar"
+                onclick="document.getElementById('tutorialModificar').style.display='none'">
+            Entendido
+        </button>
+    </div>
+</div>
+
+      <section class="producto-add-container">
+  
+          <!-- CABECERA PRODUCTO (mismo estilo que Agregar) -->
+          <div class="producto-header">
+              @if (ViewBag.Producto.Foto != null)
+              {
+                  <img src="~/img/@ViewBag.Producto.Foto"
+                       alt="@ViewBag.Producto.Nombre"
+                       class="producto-img" />
+              }
+  
+              <div class="producto-info-top">
+                  <span class="producto-tag">@ViewBag.Producto.Categoria</span>
+  
+                  <h1 class="producto-nombre">
+                      @ViewBag.Producto.Nombre
+                  </h1>
+  
+                  <p class="producto-sub">
+                      Actualizá el <strong>precio con descuento</strong>
+                      que van a ver tus clientes en FIFO.
+                  </p>
+  
+                  <!-- NUEVO BLOQUE ORDENADO -->
+                  <ul class="producto-list">
+                      <li><strong>Vence:</strong> @ViewBag.Producto.FechaVencimiento</li>
+                      <li><strong>Stock:</strong> @ViewBag.Producto.Cantidad</li>
+                      <li><strong>Precio actual:</strong> $@ViewBag.Producto.PrecioConDescuento</li>
+                  </ul>
+              </div>
+  
+            </div>
+        
+  
+          <!-- CARD DEL FORM (igual que Agregar, pero con otro campo) -->
+          <div class="producto-card-add">
+              <form action='@Url.Action("RecibirModificarProducto", "Dueño")'
+                    method="POST">
+  
+                  <input type="hidden" name="Id" value="@ViewBag.Producto.IdProducto" />
+  
+                  <div class="mb-3">
+                      <label class="form-label">Nuevo precio</label>
+                      <input type="number"
+                             name="Precio"
+                             class="form-control"
+                             placeholder="@ViewBag.Producto.PrecioInicial"
+                             required />
+                  </div>
+  
+                  <button type="submit" class="btn btn-fifoO w-100">
+                      Guardar precio
+                  </button>
+              </form>
+          </div>
+  
+      </section>
+  </main>
+  
+  
+  
+  <footer class="footer">
+    <div class="footer-top">
+        <div class="footer-logo">
+            <img src="img/Captura_de_pantalla_2025-03-28_122750-removebg-preview.png" alt="Logo FIFO">
+            <p>Dale una segunda oportunidad a los alimentos. Reducí el desperdicio, ayudá al planeta 🌍</p>
+        </div>
+  
+  
+        <div class="footer-links">
+            <div>
+                <h4>Sobre FIFO</h4>
+                <ul>
+                    <li><a href='@Url.Action("Index", "Account")'>Que es FIFO?</a></li>
+                    <li><a href='@Url.Action("Index", "Account")'>Nuestra propuesta</a></li>
+                    <li><a href='@Url.Action("Index", "Account")'>Por qué lo hacemos?</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Dueño</h4>
+                <ul>
+                    <li><a href='@Url.Action("AgregarProducto", "Dueño")'>Agregar producto</a></li>
+                    <li><a href='@Url.Action("EliminarProducto", "Dueño")'>Eliminar producto</a></li>
+                    <li><a href='@Url.Action("AgregarProducto", "Dueño")'>Modificar producto</a></li>
+                    <li><a href='@Url.Action("VerProductosMiLocal", "Dueño")'>Ver productos</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Cliente</h4>
+                <ul>
+                    <li><a href='@Url.Action("VerEmpresas", "Dueño")'>Ver empresas</a></li>
+                    <li><a href='@Url.Action("VerProductos", "Dueño")'>Ver productos</a></li>
+                </ul>
+            </div>
+        </div>
+  
+  
+    <div class="footer-bottom">
+        <p>© 2025 FIFO | Desarrollado por el equipo FIFO</p>
+    </div>
+  </footer>
+  <script src="./site.js"></script>
+  <script>
+    function toggleMenu() {
+          const menu = document.getElementById('headerMenu');
+          if (menu) {
+              menu.classList.toggle('menu-open');
+          }
+      }
+      document.addEventListener("DOMContentLoaded", function () {
+      const modal   = document.getElementById("tutorialAgregar");
+      const abrir   = document.getElementById("btnTutorialAgregar");
+      const cerrar  = document.getElementById("btnCerrarTutorialAgregar");
+
+      if (abrir && modal) {
+          abrir.addEventListener("click", function () {
+              modal.style.display = "flex";
+          });
+      }
+
+      if (cerrar && modal) {
+          cerrar.addEventListener("click", function () {
+              modal.style.display = "none";
+          });
+      }
+
+      // cerrar si hace click afuera del recuadro
+      window.addEventListener("click", function (e) {
+          if (e.target === modal) {
+              modal.style.display = "none";
+          }
+      });
+  });
+    </script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+  </html>
+  
