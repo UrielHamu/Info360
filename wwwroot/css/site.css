@@ -37,6 +37,36 @@ main {
   height: auto;
 }
 
+.nav-main,
+.nav-link {
+  color: #ffffff !important;
+  font-weight: 500;
+  padding: 8px 14px;
+  background: transparent !important;
+  border: none !important;
+  position: static;
+  text-decoration: none;
+  transition: none;     /* sin animación */
+}
+
+/* Eliminamos la "viborita" (la rayita animada) */
+.nav-main::after,
+.nav-link::after {
+  content: none !important;
+}
+
+/* Hover: solo subrayado, sin movimiento */
+.nav-main:hover,
+.nav-link:hover {
+  text-decoration: underline !important;
+  color: #ffffff !important;
+}
+
+/* Link activo (sección en pantalla): también subrayado */
+.nav-main.nav-main--active {
+  text-decoration: underline;
+}
+
 
 /* LINKS DEL MEDIO */
 .middle-links .nav-link {
@@ -105,31 +135,6 @@ header {
 }
 
 
-/* rayita de abajo (invisible por defecto) */
-.nav-main::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -3px;
-  width: 0;
-  height: 2px;
-  background-color: #ffffff;
-  transition: width 0.25s ease;
-}
-
-
-/* hover: rayita suave */
-.nav-main:hover::after {
-  width: 100%;
-}
-
-
-/* estado ACTIVO mientras la sección está en pantalla */
-.nav-main.nav-main--active::after {
-  width: 100%;
-}
-
-
 
 
 .owner-main {
@@ -137,6 +142,11 @@ header {
   margin: 32px auto;
   padding: 0 24px;
 }
+
+.owner-main .container {
+  max-width: 1100px; 
+}
+
 
 .tip-box {
   position: fixed;
@@ -164,179 +174,1150 @@ header {
   margin-top:2%;
 }
 
+/* =========================
+   LOGIN LAYOUT TIPO PINTEREST
+   ========================= */
+
+   .login-main {
+    padding: 60px 0;         /* fondito suave detrás del card */
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Caja grande de dos columnas */
+  .login-box {
+    width: 100%;
+    max-width: 960px;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+    background: #ffffff;
+  }
+  
+  /* Panel violeta izquierdo */
+  .login-left {
+    background: linear-gradient(135deg, #613dc1, #8759ff);
+    color: #ffffff;
+    padding: 36px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .login-left-top h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 16px 0 8px;
+  }
+  
+  .login-left-top p {
+    font-size: 14px;
+    opacity: 0.9;
+  }
+  
+  .login-left-bottom {
+    font-size: 13px;
+    opacity: 0.9;
+    margin-top: 20px;
+  }
+  
+  .login-logo {
+    width: 120px;
+    height: auto;
+  }
+  
+  /* Panel blanco derecho */
+  .login-right {
+    background: #ffffff;
+    padding: 36px 40px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .login-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+
+  select.form-control,
+select {
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-size: 14px;
+    border: 2px solid #6a3dc5 !important;   /* violeta FIFO */
+    background-color: #fff;
+    color: #444;
+}
+
+/* Quitar el borde azul de enfoque y reemplazarlo por violeta */
+select:focus {
+    outline: none !important;
+    border: 2px solid #6a3dc5 !important;    /* violeta */
+    box-shadow: 0 0 0 2px rgba(106, 61, 197, 0.25) !important; 
+}
+
+/* Opcional: que la flechita del select sea violeta (solo Chrome) */
+select::-ms-expand {
+    display: none;
+}
+
+select.form-control,
+select {
+    border: 2px solid #6a3dc5 !important; /* violeta FIFO */
+    border-radius: 12px !important;       /* redondeado igual que inputs */
+    padding: 10px 14px !important;
+    font-size: 14px;
+    background-color: #ffffff;
+    color: #444;
+    height: 48px;                         /* altura igual a inputs */
+}
+
+/* Al hacer foco: sin borde azul, solo violeta */
+select:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(106, 61, 197, 0.20) !important;
+    border: 2px solid #6a3dc5 !important;
+}
+
+/* Flechita violeta */
+select {
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg fill='%236a3dc5' height='18' viewBox='0 0 24 24' width='18' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 16px;
+}
+  
+  /* Form dentro del panel derecho */
+  .login-form {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .login-form .form-label {
+    font-weight: 600;
+    color: #333;
+    text-align: left;
+    display: block;
+  }
+  
+  .login-form .form-control {
+    border-radius: 10px;
+    padding: 10px 12px;
+    box-shadow: 0 0 0 2px #6a3dc5;
+  }
+
+  .login-form .form-control:focus {
+    border-radius: 10px;
+    padding: 10px 12px;
+    box-shadow: 0 0 0 2px #6a3dc5;
+  }
+  
+  /* Botón principal */
+  .login-btn {
+    width: 100%;
+    background-color: #613dc1;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 10px 0;
+    margin-top: 6px;
+  }
+  
+  .login-btn:hover {
+    background-color: #4a2f9a;
+  }
+  
+  /* Texto "¿No tenés cuenta?" */
+  .extra {
+    text-align: center;
+    margin-top: 18px;
+  }
+  
+  .extra h3 {
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+  
+  .extra a {
+    color: #613dc1;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  
+  .extra a:hover {
+    text-decoration: underline;
+  }
+
+
+  .btn-fifoO {
+    background-color: #E7DE3B !important;
+    color: #000 !important;
+    font-weight: 600;
+    padding: 10px 24px !important;
+    border-radius: 10px !important;
+    display: block !important;     /* <--- Asegura que el botón tenga tamaño real */
+    width: fit-content !important; /* <--- Que se expanda en ancho */
+    margin: 20px auto !important;  /* <--- Centrado perfecto */
+  }
+
+  .producto-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.producto-header img {
+    width: 120px;
+    height: auto;
+    border-radius: 12px;
+}
+
+.producto-info-top {
+    flex: 1;
+}
+
+.btn-tutorial {
+    background: transparent;
+    color: #613dc1;
+    border: 1px solid #613dc1;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 14px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.btn-tutorial:hover {
+    background: #613dc11a;
+}
+
+/* Botón hamburguesa: oculto en desktop */
+.menu-toggle {
+  display: none;              /* CLAVE: en PC no se ve */
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  margin: 4px 0;
+  background: #ffffff;
+  border-radius: 999px;
+}
 
 
 
-.registro {
+/* MODAL */
+.tutorial-modal {
+    display: none; /* Lo activamos con JS */
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.tutorial-content {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 420px;
+}
+
+.btn-cerrar {
+    margin-top: 12px;
+    padding: 8px 16px;
+    background: #613dc1;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-cerrar:hover {
+    background: #4e2fa5;
+}
+
+/* Layout general de esta pantalla */
+.producto-mod-main {
+  padding: 40px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.producto-mod-container {
+  width: 90%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Header de producto + botón */
+.producto-mod-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+/* Card de detalle */
+.producto-detalle {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px 24px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+.producto-detalle img {
+  max-width: 140px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+/* Botón de tutorial (igual que en la otra vista) */
+.btn-tutorial {
+  background: transparent;
+  color: #613dc1;
+  border: 1px solid #613dc1;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  height: fit-content;
+}
+
+.btn-tutorial:hover {
+  background: #613dc11a;
+}
+
+/* Modal reutilizable */
+.tutorial-modal {
+  display: none;       /* se muestra con JS */
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.tutorial-content {
+  background: #ffffff;
+  padding: 24px 28px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.22);
+}
+
+.btn-cerrar {
+  margin-top: 16px;
+  padding: 8px 16px;
+  background: #613dc1;
+  color: #ffffff;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-cerrar:hover {
+  background: #4e2fa5;
+}
+
+/* Opcional: que el form tenga aspecto de card y quede alineado */
+.formProducto {
+  background: #ffffff;
+  margin-top: 16px;
+  padding: 20px 24px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+.producto-list {
+  margin-top: 8px;
+  padding-left: 18px;
+  color: #333;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+}
+
+.producto-list li {
+  margin-bottom: 4px;
+}
+
+/* Contenedor general del dashboard de dueño */
+.owner-main {
+  max-width: 1200px;
+  margin: 32px auto;
+  padding: 0 24px;
+}
+
+/* Card de producto en el dashboard */
+.producto-card {
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* Imagen chiquita en la card */
+.producto-card-img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Título del dueño (ya tenías algo, esto lo armoniza con Bootstrap) */
+.owner-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* Botón amarillo FIFO (si no lo tenés ya definido así en otro lado) */
+.btn-fifoO {
+  background-color: #E7DE3B !important;
+  color: #000 !important;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+}
+
+/* Card general */
+.producto-card {
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.producto-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+/* Imagen del producto */
+.producto-img {
+  height: 170px;
+  object-fit: cover;
+  
+}
+
+/* Botón amarillo FIFO */
+.btn-fifo {
+  background-color: #E7DE3B !important;
+  color: black !important;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+/* Título general */
+.owner-title {
+  font-family: Poppins, sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+/* Ajuste general del card */
+.producto-card {
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.producto-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Imagen */
+.producto-img {
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  height: 180px;
+}
+
+.producto-card .card-body {
   display: flex;
   flex-direction: column;
+}
+/* Chip de info con tooltip */
+.info-chip {
+  position: relative;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: 2%;
+  gap: 6px;
+  padding: 6px 12px;
+  background: #f7f5ff;
+  border-radius: 999px;
+  font-size: 13px;
+  cursor: default;
+  align-items: center;
+
 }
 
-
-
-
-
-
-
-
-.form {
-  width: 60%;
-  background-color: #ffffff;
-  padding: 3.5%;
-  border-radius: 14px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
-  font-size: 16px;
-  margin: 0%;
+.owner-main {
+  padding: 40px 0 60px;
+            /* fondo suave */
 }
 
-
-
-
-
-
-
-
-.form .form-label {
-  font-weight: bold;
-  color: #333;
+/* Fondo transparente del nav */
+.buscador-transparente {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 
+/* Input */
+.buscador-input {
+  border: 1px solid #dddddd;
+  border-radius: 10px;
+  padding: 10px;
+  font-family: 'Poppins', sans-serif;
+}
 
-
-
-
-
-
-
-.form .form-control,
-.form .form-select {
+/* Botón amarillo FIFO */
+.btn-fifo-yellow {
+  background-color:#E6DE38 !important; /* Amarillo FIFO */
+  color: white !important;
+  border: none !important;
   border-radius: 8px;
-  margin-bottom: 1.2%;
+  padding: 8px 18px;
+  font-weight: 600;
+}
+
+.btn-fifo-yellow:hover {
+  background-color: #b6af2d !important; /* más oscuro */
+}
+
+.hint-busqueda {
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  color: #666;
+  margin-top: 2px;        /* separación del input */
+  margin-left: 16px;       /* alineadito con el buscador */
+  margin-bottom: 20px;    /* deja aire antes de las cards */
+}
+
+.dropdown .btn {
+  background-color: #E7DE3B !important;
+  color: #000 !important;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 8px 20px;
+  border: none;
+}
+
+.dropdown-menu {
+  border-radius: 12px;
+  padding: 10px 0;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.dropdown-item {
+  font-weight: 500;
+}
+
+.dropdown-item:hover {
+  background-color: #f0efc0;
+}
+
+/* Fondo del menú */
+.dropdown-menu {
+  border-radius: 14px !important;
+  padding: 6px 0 !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12) !important;
+  border: none !important;
+  background: #ffffff !important;
+}
+
+/* Ítems */
+.dropdown-item {
+  padding: 10px 16px !important;
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  color: #333 !important;
+  border-radius: 8px !important;
+  margin: 2px 6px; /* Separación entre items */
+}
+
+/* Hover */
+.dropdown-item:hover {
+  background: #f7f2a3 !important; /* amarillo claro FIFO */
+  color: #000 !important;
+}
+
+/* Active (seleccionado) */
+.dropdown-item:active {
+  background: #e7de3b !important; /* amarillo fuerte FIFO */
+  color: #000 !important;
+}
+
+.dropdown-menu {
+  border-radius: 12px;
+  padding: 4px 0;
+  border: none;
+  background: #ffffff;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.10);
+}
+
+/* Ítems simples, sin pill ni desplazamiento */
+.dropdown-item {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 16px;
+  margin: 0;
+  width: 100%;
+  color: #333;
+  background: transparent;
+}
+
+/* Sacamos el puntito violeta */
+.dropdown-item::before {
+  content: none;
+}
+
+/* Hover gris suave, sin amarillo raro */
+.dropdown-item:hover {
+  background-color: #f5f5f5;
+  color: #000;
+}
+
+/* Active igual que hover (nada de pill amarilla) */
+.dropdown-item.active,
+.dropdown-item:active {
+  background-color: #f5f5f5;
+  color: #000;
+}
+
+.dropdown-menu .dropdown-item::before {
+  content: none !important;
+  display: none !important;
+}
+
+.productos-resumen {
+  max-width: 850px;
+  margin: 15px auto 25px;
+  padding: 12px 18px;
+
+  background: #fff9c8;          
+  border-left: 5px solid #e7de3b; 
+  border-radius: 10px;
+
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  color: #333;
+  line-height: 1.45;
+
+  box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+}
+
+.productos-vacio {
+  max-width: 850px;
+  margin: 25px auto 10px;
+  padding: 10px 5px;
+  
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  color: #555;
+  text-align: center;
+  line-height: 1.45;
+
+  border: none;
+  background: none;
+}
+
+.productos-vacio a {
+  color: #5b2cff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.productos-vacio a:hover {
+  text-decoration: underline;
+}
+
+.owner-main .productos-grid {
+  justify-content: flex-start !important;
+}
+
+.productos-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: flex-start;  
+  width: 100%;                 
+}
+
+.producto-cardFIFO {
+  margin: 0;                   
 }
 
 
 
+.producto-cardFIFO {
+  width: 230px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  padding: 20px 15px;
+  text-align: center;
+  box-shadow: 0px 3px 10px rgba(0,0,0,0.08);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.producto-cardFIFO:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 6px 16px rgba(0,0,0,0.12);
+}
+
+/* IMAGEN PRODUCTO */
+.producto-imgFIFO {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  background: #f5f5f5;
+}
+
+/* INFO */
+.producto-infoFIFO p {
+  margin: 4px 0;
+  color: #333;
+  font-size: 14px;
+}
+
+/* NOMBRE EN NEGRITA */
+.prod-nombre {
+  font-weight: 700;
+  font-size: 16px;
+  color: #222;
+  margin-bottom: 6px;
+}
 
 
+/* Pasos visuales */
+.pasos-empresas {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
 
+}
 
-
-.form .form-check {
+.paso-item {
+  background: transparent;
+  border-radius: 14px;
+  padding: 10px 14px;
+  width: 220px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+  font-family: "Poppins", sans-serif;
   text-align: left;
 }
 
+.paso-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background: #613dc1;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
 
+.paso-item h6 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 2px 0 4px;
+}
 
+.paso-item p {
+  font-size: 13px;
+  color: #555;
+  margin: 0;
+}
 
+.pasos-desktop {
+  display: flex;
+}
 
-
-
-
-.form .btn-primary {
-  width: 100%;
-  background-color: #613dc1;
-  border: none;
-  border-radius: 10px;
-  font-weight: bold;
-  font-size: 16px;
-  padding: 1%;
+.pasos-mobile {
+  display: none;
+  margin-bottom: 12px;
 }
 
 
 
-
-
-
-
-
-.form .btn-primary:hover {
-  background-color: #4a2f9a;
-}
-
-
-
-
-
-
-
-
-.form h5 {
-  font-size: 18px;
-  margin-bottom: 0.5%;
-}
-
-
-
-
-
-
-
-
-.form a {
-  color: #613dc1;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-
-
-
-
-
-
-
-.form a:hover {
-  text-decoration: underline;
-}
-
-
-.extra {
+/* Título */
+.owner-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
   text-align: center;
-  margin-top: 2%;
+  margin-bottom: 8px;
 }
 
+/* Texto de resumen (cantidad, sin productos, etc.) */
+.productos-resumen {
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  margin-bottom: 24px;
+}
 
+/* ===== PILL DE INFORMACIÓN + TOOLTIP (igual estilo) ===== */
 
+.info-pill-wrapper {
+  position: relative;
+  display: inline-block;     
+  margin-bottom: 16px;
+  margin-top:2%;
+}
 
+.info-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: #6a3dc5;
+  color: #ffffff;
+  border-radius: 999px;
+  font-size: 13px;
+  font-family: "Poppins", sans-serif;
+  box-shadow: 0 4px 12px rgba(106, 61, 197, 0.35);
+  cursor: default;
+}
 
+.info-pill-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  border: 2px solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+}
 
+/* Tarjetita de ayuda */
+.info-tooltip-card {
+  position: absolute;
+  top: 36px;
+  left: 0;
+  width: 230px;
+  background: #111111;
+  color: #ffffff;
+  padding: 12px 14px;
+  border-radius: 14px;
+  font-size: 12px;
+  font-family: "Poppins", sans-serif;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 999;
+}
 
+.info-tooltip-card ul {
+  padding-left: 18px;
+  margin: 6px 0 0 0;
+}
 
-.extra h3 {
+.info-tooltip-card li {
+  margin-bottom: 4px;
+}
+
+/* Aparece al pasar el mouse por el pill */
+.info-pill-wrapper:hover .info-tooltip-card {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* ===== CARDS DE PRODUCTOS (mismo estilo que “Sumá nuevos productos…”) ===== */
+
+.producto-card {
+  border: none;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.producto-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.09);
+}
+
+/* Imagen */
+.producto-img {
+  width: 100%;
+  max-height: 180px;
+  object-fit: contain;
+  background: #f5f5f5;
+}
+
+/* Textos dentro de la card */
+.producto-card .card-title {
+  font-family: "Poppins", sans-serif;
   font-size: 18px;
-  margin-bottom: 5px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.producto-card .card-text {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+}
+
+/* Precio con descuento resaltado */
+.precio-descuento {
+  color: #1b7c1f !important;
+  font-weight: 600;
+}
+
+/* Fecha de vencimiento un poco más gris */
+.fecha-vto {
+  color: #555555;
+}
+
+/* ===== Botón eliminar (coherente con el resto) ===== */
+
+.btn-eliminar {
+  background-color: #E63946 !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  border: none !important;
+  border-radius: 10px;
+  padding: 8px 16px;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+}
+
+.btn-eliminar:hover {
+  background-color: #c92f3a !important;
+}
+
+.info-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #613dc1;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.info-label {
+  color: #444;
+}
+
+/* Tooltip */
+.info-tooltip {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background: #111;
+  color: #fff;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 12px;
+  max-width: 280px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6px);
+  transition: opacity .2s ease, transform .2s ease;
+  z-index: 30;
+}
+
+.info-chip:hover .info-tooltip {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- BOTONES ALINEADOS --- */
+.producto-card .card-body form {
+  margin: 0;            /* evita saltos raros */
+  flex: 1;              /* ambos ocupan lo mismo */
+}
+
+.producto-card .card-body button {
+  width: 100%;
+  padding: 10px 0;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+/* Botón FIFO amarillo */
+.btn-fifo {
+  background-color: #E6DE38 !important;
+  color: #000 !important;
+  border: none !important;
+}
+
+/* Botón Modificar */
+.btn-outline-dark {
+  border-width: 2px !important;
+  font-weight: 600;
 }
 
 
+  .producto-add-main {
+    padding: 40px 0 20px;
+}
 
+.producto-add-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
 
+/* Cabecera producto */
+.producto-header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 24px;
+}
 
+.producto-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    background: #fff;
+}
 
+.producto-info-top {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
 
+.producto-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background-color: rgba(97, 61, 193, 0.08);
+    color: #613dc1;
+    font-size: 12px;
+    font-weight: 600;
+}
 
-.extra a {
+.producto-nombre {
+    font-size: 26px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.producto-sub {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+}
+
+/* Card del formulario */
+.producto-card-add {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 24px 32px;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+    max-width: 450px;
+    margin: 0 auto 20px;
+}
+
+/* Reusa tu botón FIFO amarillo */
+.btn-fifoO {
+    background-color: #E7DE3B !important;
+    color: #000 !important;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: none;
+}
+
+.btn-tutorial {
+  background: transparent;
   color: #613dc1;
-  font-weight: bold;
-  text-decoration: none;
+  border: 1px solid #613dc1;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 15px;
 }
 
-
-
-
-
-
-
-
-.extra a:hover {
-  text-decoration: underline;
+.btn-tutorial:hover {
+  background: #613dc11a;
 }
 
+.empresas-mobile {
+  display: none;
+}
 
+.tutorial-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(4px);
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
 
+.tutorial-content {
+  background: white;
+  padding: 25px;
+  max-width: 400px;
+  border-radius: 14px;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+}
 
+.btn-cerrar {
+  background-color: #E7DE3B;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 15px;
+  width: 100%;
+}
 
 
 
@@ -1129,6 +2110,63 @@ header {
   border-radius: 12px;
 }
 
+.owner-main .row,
+.container .row {
+  row-gap: 24px;      /* separa filas */
+}
+
+/* Card */
+.producto-card {
+  border: none;
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  padding: 16px 18px 18px;
+  display: flex;              /* imagen arriba, texto abajo */
+  flex-direction: column;
+  background: #ffffff;
+}
+
+/* Imagen dentro de la card */
+.producto-card img.producto-img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;          /* o "contain" si tus fotos tienen fondo */
+  border-radius: 12px;
+  margin-bottom: 12px;
+  background: #f5f5f5;
+}
+
+/* Título y textos con más aire */
+.producto-card .card-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.producto-card .card-text {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+/* Botones más separados del texto */
+.producto-card .card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.producto-card .card-body .mt-auto {
+  margin-top: 10px;   /* separación texto ↔ botones */
+}
+
+/* Botones parejitos */
+.producto-card .card-body button {
+  padding: 9px 0;
+  font-weight: 600;
+  border-radius: 8px;
+}
 
 
 
@@ -1281,8 +2319,134 @@ form button {
 }
 
 
+/* ===== HEADER FIFO ORDENADO ===== */
 
+.fifo-header {
+  background-color: #613dc1;
+  padding: 8px 24px;          /* más finito */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
 
+/* Contenedor interno: logo + links en una fila */
+.header-inner {
+  display: flex;
+  align-items: center;        /* centra verticalmente logo y textos */
+  justify-content: space-between; /* logo a la izq, links a la der */
+}
+
+/* Lista de navegación sin márgenes raros */
+.header-nav {
+  margin: 0;
+}
+
+/* Items del menú: separación justa */
+.header-nav .nav-item {
+  margin-left: 12px;          /* separa Productos de Empresas */
+}
+
+/* Links del header, sin fondo raro ni padding gigante extra */
+.header-nav .nav-link {
+  background: transparent !important;
+  border: none !important;
+  padding: 6px 10px;          /* más chica la “pastilla” */
+  color: #ffffff !important;
+  font-weight: 500;
+}
+
+/* Hover: solo subrayado suave */
+.header-nav .nav-link:hover {
+  text-decoration: underline;
+  color: #ffffff !important;
+}
+
+/* Logo chico para que no agrande el header */
+.fifo-header .navbar-brand img {
+  width: 50px;
+  height: auto;
+}
+
+/* Barra violeta fija arriba */
+.fifo-header {
+  background-color: #613dc1;
+  padding: 6px 0;                     /* más finito */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.18);  /* sombrita tipo app */
+}
+
+/* Contenido centrado como una app seria */
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo */
+.fifo-header .navbar-brand img {
+  width: 52px;
+  height: auto;
+}
+
+/* Nav desktop */
+.header-nav {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.header-nav .nav-item {
+  margin: 0; /* usamos el gap */
+}
+
+/* Links con look más limpio */
+.header-nav .nav-link {
+  position: relative;
+  padding: 6px 0;
+  background: transparent !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-weight: 500;
+  text-decoration: none !important;
+}
+
+/* Subrayado suave al estilo sitio institucional */
+.header-nav .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: #E7DE3B;
+  border-radius: 999px;
+  transition: width 0.2s ease;
+}
+
+.header-nav .nav-link:hover::after {
+  width: 100%;
+}
+
+/* Link activo (si querés marcar la sección actual) */
+.header-nav .nav-link.active::after {
+  width: 100%;
+}
+
+.footer {
+  background-color: #613dc1;
+  color: white;
+  text-align: center;
+  padding: 16px 0;          /* padding arriba y abajo */
+  font-size: 13px;
+  margin: 0;                /* sin margen arriba/abajo */
+  overflow: hidden;         /* 💥 evita que las margins internas se escapen */
+}
 
 
 
@@ -1291,83 +2455,413 @@ form button {
   html {
     font-size: 11px;
   }
-
-
-
-
-
-
-
-
-  header {
-    padding: 10px 12px;
-  }
-
-
-
-
-
-
-
-
-  .nav {
-    justify-content: center;
-    gap: 8px;
-  }
-
-
-
-
-
-
-
-
-  .nav-link {
-    padding: 4px 10px;
-    font-size: 12px;
-  }
-  .nav-owner {
-    display: flex;
-    flex-wrap: nowrap; /* NO baja nada */
-    overflow-x: auto; /* scroll horizontal */
-    gap: 10px;
-    padding: 8px 0;
+  html, body {
     margin: 0;
-    scrollbar-width: none; /* Firefox oculta scrollbar */
+    padding: 0;
+    max-width: 100%;
+    overflow-x: hidden;  
+    height: 100%;
+
   }
 
-
-
-
-  .nav-owner::-webkit-scrollbar {
-    display: none; /* Chrome oculta scrollbar */
+  .header-actions {
+    display: none !important;
   }
 
-
-
-
-  .nav-owner .nav-item {
-    flex: 0 0 auto; /* tamaño justo */
+  /* HEADER MOBILE MÁS CHICO */
+  header {
+    padding: 0;                 /* que no sume altura extra */
   }
 
-
-
-
-  .nav-owner .nav-link {
-    white-space: nowrap;
-    font-size: 12px;
-    padding: 6px 10px;
+  .fifo-header {
+    padding: 6px 10px;          /* barrita finita */
   }
 
+  .header-inner {
+    max-width: 100%;
+    padding: 0;                 /* sin padding interno grande */
+  }
 
-
-
-  .header .navbar-brand img {
-    width: 50px;              /* mismo tamaño visual que en Index */
+  .fifo-header .navbar-brand img {
+    width: 40px;                /* logo un poco más chico */
     height: auto;
   }
 
+  .header-nav .nav-link {
+    font-size: 12px;
+    padding: 4px 6px;           /* menos alto cada link */
+  }
 
+  .fifo-header {
+    padding: 6px 10px;
+    box-sizing: border-box;
+  }
+
+  
+  /* fondo violeta del menú */
+  .navbar-collapse.show {
+    background: #613dc1 !important;
+    padding: 14px 0 !important;
+  }
+
+  /* links centrados, blancos, sin bordes */
+  .navbar-collapse.show .nav-link,
+  .navbar-collapse.show a {
+    color: white !important;
+    font-size: 18px !important;
+    text-align: center;
+    padding: 12px 0 !important;
+    border: none !important;
+    width: 100%;
+  }
+
+  /* ocultar los botones gigantes duplicados de abajo */
+  .mobile-actions {
+    display: none !important;
+  }
+
+  /* ocultar botones desktop arriba */
+  .header-actions {
+    display: none !important;
+  }
+
+  .header-inner {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .fifo-header .navbar-brand img {
+    width: 40px;
+    height: auto;
+  }
+
+  /* Mostrar hamburguesa en mobile */
+  .menu-toggle {
+    display: block;
+  }
+
+  /* Menú oculto por defecto en mobile */
+  .header-nav {
+    display: none;
+    position: absolute;
+    top: 52px;
+    right: 0;
+    left: 0;
+    background-color: #613dc1;
+    flex-direction: column;
+    gap: 6px;
+    padding: 8px 16px 12px;
+    margin: 0;
+    z-index: 999;
+  }
+
+  /* Cuando tiene menu-open, se muestra */
+  .header-nav.menu-open {
+    display: flex;
+  }
+
+  .header-nav .nav-item {
+    margin: 0;
+  }
+
+  .header-nav .nav-link {
+    padding: 6px 0;
+    font-size: 14px;
+    text-align: left;
+  }
+
+  .pasos-desktop {
+    display: none;
+  }
+
+  .pasos-mobile {
+    display: flex;
+    justify-content: center;
+  }
+
+  .pasos-mobile .btn-tutorial {
+    font-size: 13px;
+    padding: 6px 14px;
+    border-radius: 999px;
+  }
+
+  .info-pill-wrapper {
+    display: none !important;
+}
+
+.dropdown {
+  width: fit-content !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+
+main .dropdown .btn {
+  font-size: 11px !important;        /* letra más chica */
+  padding: 6px 10px !important;      /* menos alto y menos ancho */
+  border-radius: 8px !important;     /* bordes suaves */
+  min-height: 32px !important;       /* evita que se aplaste */
+  max-width: 160px !important;       /* límite para que no se haga gigante */
+  white-space: nowrap; 
+}
+
+
+.dropdown-menu {
+  min-width: 180px !important;       /* tamaño cómodo */
+  transform: translateX(-8px); 
+}
+
+.dropdown-item {
+  padding: 8px 14px !important;
+  font-size: 13px;
+}
+
+.empresas-pill,
+.pasos-empresas {
+    display: none !important;
+}
+
+/* Contenedor del botón “¿Cómo funciona?” en mobile */
+.empresas-mobile {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+    margin-top: 4px;
+}
+
+.empresas-mobile .btn-tutorial {
+    font-size: 13px;
+    padding: 6px 14px;
+    border-radius: 999px;
+}
+/* ===== DROPDOWN FIFO PREMIUM ===== */
+
+
+/* Animación leve */
+@keyframes fadeDown {
+from { opacity: 0; transform: translateY(-6px); }
+to   { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown-item {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 12px 18px !important;
+  color: #333 !important;
+  border-radius: 10px !important;
+  margin: 4px 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Iconito círculo FIListico */
+.dropdown-item::before {
+  content: "•";
+  font-size: 16px;
+  color: #6a3dc5;      /* violeta FIFO */
+  opacity: 0.7;
+}
+
+/* Hover amarillo */
+.dropdown-item:hover {
+  background: #fcefb3 !important; /* amarillo pastel FIFO */
+  color: #000 !important;
+  transform: translateX(4px); /* micro movimiento */
+}
+
+/* Item activado (opción seleccionada) */
+.dropdown-item.active,
+.dropdown-item:active {
+  background: #e7de3b !important; /* amarillo principal FIFO */
+  color: #000 !important;
+  box-shadow: 0 0 0 2px rgba(231,222,59,0.4);
+  transform: none;
+}
+
+.dropdown-item {
+  margin: 4px 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Hover amarillo */
+.dropdown-item:hover {
+  background: #fcefb3 !important;
+  color: #000 !important;
+  transform: translateX(4px); /* micro movimiento */
+}
+
+.dropdown-item {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 12px 18px !important;
+  color: #333 !important;
+  border-radius: 10px !important;
+  /* que ocupe todo el ancho, sin correrse */
+  margin: 2px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+/* Hover amarillo, sin moverse */
+.dropdown-item:hover {
+  background: #fcefb3 !important;
+  color: #000 !important;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+    background: #e7de3b !important;
+    color: #000 !important;
+    box-shadow: none;
+}
+
+
+
+
+/* Botón amarillo ya lo tenés chico, lo dejamos así o como lo tengas */
+.dropdown .btn {
+  font-size: 12px !important;
+  padding: 6px 12px !important;
+  border-radius: 10px !important;
+  line-height: 1.2;
+}
+
+
+
+.dropdown-item {
+  font-size: 13px;
+  padding: 8px 14px !important;
+  margin: 2px 0;
+  width: 100%;
+}
+
+.hint-busqueda {
+  margin: 4px 0 10px;
+  font-size: 12px;
+  text-align: left;
+}
+.productos-grid {
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.producto-cardFIFO {
+  width: 100%;
+  max-width: 320px;
+  padding: 16px 14px;
+  border-radius: 14px;
+}
+
+.producto-imgFIFO {
+  width: 90px;
+  height: 90px;
+  margin-bottom: 8px;
+}
+
+.producto-infoFIFO p {
+  font-size: 13px;
+}
+
+.prod-nombre {
+  font-size: 15px;
+}
+
+.productos-vacio,
+.productos-resumen {
+  width: 100%;
+  max-width: 340px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 13px;
+  text-align: left;
+}
+
+#lista-empresas {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 0 16px;
+  align-items: center; /* Centra las cards */
+}
+
+/* Card estilo mobile: ancho grande y centrado */
+.empresa-card {
+  width: 90%;
+  max-width: 360px;
+  padding: 18px;
+  border-radius: 18px;
+  text-align: center;
+}
+
+/* Imagen un toque más chica */
+.empresa-card img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+.nombre-empresa {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.productos-grid {
+  display: flex;
+    flex-direction: column;   /* una abajo de la otra */
+    align-items: center;      /* centradas */
+    gap: 14px;
+    padding: 0 0 16px;      
+}
+
+.producto-cardFIFO {
+  width: 100%;
+  max-width: 260px;         /* cajita, no rectángulo gigante */
+  margin: 0 auto;           /* centrada */
+  padding: 14px 12px;
+  border-radius: 18px;
+}
+
+.producto-cardFIFO img {
+  width: 110px;
+  height: auto;
+  margin: 0 auto 10px;
+  display: block;
+  border-radius: 12px;
+}
+
+.producto-infoFIFO h5 {
+  font-size: 15px;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.producto-infoFIFO p {
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.producto-cardFIFO .d-flex {
+  gap: 8px;
+}
+
+.producto-cardFIFO button {
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 10px;
+}
 
 
   /* --- CONTENEDOR GENERAL --- */
@@ -1617,7 +3111,29 @@ form button {
 
 
 
+  .productos-grid {
+    flex-direction: column;
+    align-items: stretch;      /* 👉 deja de centrar las cards */
+    gap: 14px;
+    padding: 0 12px;           /* margen lindo a los costados */
+  }
 
+  .producto-cardFIFO {
+    width: 100%;
+    max-width: none;           /* 👉 sin límite de 320px */
+    padding: 16px 14px;
+    border-radius: 14px;
+    margin: 0;                 /* sin márgenes raros extra */
+  }
+
+  /* opcional: imagen mejor en mobile */
+  .producto-cardFIFO img {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    margin: 0 auto 10px;
+    display: block;
+  }
 
 
   /* ------------------ BENEFICIOS ------------------ */
@@ -1801,24 +3317,501 @@ form button {
   display: block;
 }
 
+.producto-add-container {
+  padding: 0 16px;
+  margin-top: 12px;
+}
 
+/* ENCABEZADO DEL PRODUCTO */
+.producto-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+}
 
+/* Imagen centrada y más chica */
+.producto-img {
+  width: 120px;
+  height: auto;
+  border-radius: 12px;
+  margin-bottom: 4px;
+}
 
+/* Categoría */
+.producto-tag {
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
 
+/* Nombre del producto */
+.producto-nombre {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
 
+/* Subtítulo */
+.producto-sub {
+  font-size: 14px;
+  padding: 0 12px;
+  margin-top: 4px;
+}
 
+/* FORM CARD */
+.producto-card-add {
+  width: 100%;
+  margin: 20px auto 0;
+  padding: 20px 16px;
+  border-radius: 16px;
+  box-shadow: 0px 4px 14px rgba(0,0,0,0.05);
+}
 
+.producto-card-add input {
+  font-size: 14px;
+  padding: 10px 12px;
+}
 
+.producto-card-add label {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
 
+.producto-card-add small {
+  font-size: 12px;
+}
 
+.btn-fifoO {
+  margin-top: 12px;
+  padding: 10px 0;
+  font-size: 15px;
+  border-radius: 12px;
+}
 
+.producto-cardFIFO {
+  width: 260px !important;        /* 👉 tamaño fijo de card */
+  max-width: 260px !important;    /* 👉 evita que se estire */
+  margin: 0 auto !important;      /* 👉 centrada */
+  padding: 16px 14px;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+.producto-cardFIFO img {
+  width: 120px !important;
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
 
+.producto-infoFIFO {
+  text-align: center;
+}
 
+.producto-infoFIFO p,
+.producto-infoFIFO h5 {
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.producto-cardFIFO .d-flex {
+  width: 100%;
+  gap: 6px;
+}
+
+.producto-cardFIFO button {
+  font-size: 12px;
+  padding: 6px 0;
+  border-radius: 10px;
+}
+
+.producto-cardFIFO .btn-eliminar,
+.producto-cardFIFO .btn-fifo,
+.producto-cardFIFO button {
+    font-size: 12px !important;
+    padding: 6px 0 !important;         /* más finito */
+    border-radius: 10px !important;
+    width: 50% !important;             /* 👉 más corto */
+    margin: 0 auto !important;         /* 👉 centrado */
+    display: block !important;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 20px;
+  margin: 0 auto;
+  gap: 0;
+}
+
+/* Caja violeta (ahora arriba y más compacta) */
+.login-left {
+  width: 100%;
+  padding: 24px 20px;
+  border-radius: 22px 22px 0 0; /* redondeado arriba */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.login-left img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.login-left h2 {
+  font-size: 20px;
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+
+.login-left p {
+  font-size: 13px;
+  line-height: 1.3;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+/* Caja blanca del formulario */
+.login-right {
+  width: 100%;
+  padding: 26px 20px;
+  background: #ffffff;
+  border-radius: 0 0 22px 22px; /* redondeado abajo */
+  box-shadow: 0px 4px 16px rgba(0,0,0,0.08);
+  margin-top: -10px;  /* unión suave */
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Título “Iniciar sesión” */
+.login-right h3 {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+/* Inputs */
+.login-right input {
+  border-radius: 12px;
+  padding: 10px;
+  font-size: 14px;
+}
+
+/* Botón */
+.login-right .btn-fifo {
+  width: 100%;
+  padding: 10px;
+  border-radius: 12px;
+  font-size: 15px;
+  margin-top: 6px;
+}
+
+/* ¿No tenés cuenta? */
+.login-right small {
+  font-size: 13px;
+  text-align: center;
+  margin-top: 4px;
+}
+
+.login-main {
+  display: flex;
+  justify-content: center;
+  padding: 16px 12px;
+}
+
+.login-box {
+  /* deja de ser layout horizontal y pasa a “cajita” vertical */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 340px;
+  margin: 24px auto;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.15);
+  padding: 0; /* que el padding lo manejen los paneles */
+}
+
+/* PARTE VIOLETA SUPERIOR (como el header celeste del ejemplo) */
+.login-left {
+  width: 100%;
+  padding: 24px 20px 28px;
+  background: linear-gradient(135deg, #6a3dc5, #9b57ff);
+  color: #ffffff;
+  text-align: center;
+}
+
+.login-left-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.login-logo {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  margin-bottom: 4px;
+}
+
+.login-left h2 {
+  font-size: 20px;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+.login-left p {
+  font-size: 13px;
+  margin: 0;
+  max-width: 260px;
+}
+
+/* La frase de abajo la sacamos en mobile para que quede limpio */
+.login-left-bottom {
+  display: none;
+}
+
+/* PARTE BLANCA INFERIOR (formulario) */
+.login-right {
+  width: 100%;
+  padding: 22px 20px 24px;
+  background: #ffffff;
+  text-align: center;
+}
+
+.login-title {
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.login-form .mb-3 {
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.login-form .form-label {
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.login-form .form-control {
+          /* pills como la referencia */
+  padding: 10px 14px;
+  font-size: 14px;
+  border: none;
+  box-shadow: 0 0 0 2px #6a3dc5;
+}
+
+.login-form .form-control:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #6a3dc5;
+}
+
+.btn-fifoO {
+  width: 100%;
+  border-radius: 999px;
+  padding: 10px 0;
+  font-size: 15px;
+  margin-top: 8px;
+}
+
+.extra {
+  margin-top: 12px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.extra h3 {
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.extra a {
+  font-size: 13px;
+}
+
+#mainNavbar.show {
+  background-color: #613dc1 !important;
+  padding: 16px 0 !important;
+  text-align: center;
+}
+
+/* Ocultar los botones duplicados (mobile-actions) */
+.mobile-actions {
+  display: none !important;
+}
+
+/* Ocultar los botones de desktop dentro del menu */
+.header-actions {
+  display: none !important;
+}
+
+/* ESTILO DE LOS ITEMS DEL MENÚ */
+#mainNavbar .nav-link {
+  color: #ffffff !important;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 14px 0 !important;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+/* Ajuste de tamaño del botón hamburguesa */
+.navbar-toggler {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Fondo violeta del header */
+.fifo-header {
+  background-color: #613dc1 !important;
+}
+
+.fifo-header {
+  padding: 8px 10px;
+}
+
+/* En mobile NO queremos los botones de desktop */
+.header-actions {
+  display: none !important;
+}
+
+/* Por defecto, ocultamos el bloque mobile-actions */
+.mobile-actions {
+  display: none;
+}
+
+/* Cuando el navbar está abierto (.show) */
+#mainNavbar.show {
+  background-color: #613dc1 !important;   /* violeta FIFO */
+  padding: 8px 0 10px !important;
+}
+
+/* Dentro del menú abierto mostramos mobile-actions
+   como columna, centrado, uno abajo del otro */
+#mainNavbar.show .mobile-actions {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 4px 16px 10px;
+}
+
+/* Links del menú mobile: texto blanco centrado,
+   sin fondo amarillo ni bordes de botón */
+#mainNavbar.show .mobile-actions a {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+
+  color: #ffffff !important;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+
+  padding: 8px 0 !important;
+  width: 100%;
+  border-radius: 0 !important;
+}
+
+/* De paso, aseguramos que el toggler se vea prolijo */
+.navbar-toggler {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+  /* 1) El collapse NO se ve cuando está cerrado */
+  #mainNavbar {
+    display: none !important;
+  }
+
+  /* 2) Cuando se abre, se muestra como panel violeta */
+  #mainNavbar.show {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    background-color: #613dc1 !important;
+    padding: 8px 0 12px !important;
+  }
+
+  /* 3) NUNCA mostrar los botones de desktop dentro del nav */
+  #mainNavbar .header-actions {
+    display: none !important;
+  }
+
+  /* 4) Solo usamos mobile-actions dentro del menú abierto */
+  #mainNavbar .mobile-actions {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+    padding: 4px 16px 10px;
+  }
+
+  #mainNavbar .mobile-actions a {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #ffffff !important;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    padding: 8px 0 !important;
+    width: 100%;
+    border-radius: 0 !important;
+  }
+
+   /* Ocultar todos los links del menú mobile */
+   #mainNavbar .nav-link {
+    display: none !important;
+  }
+
+  /* Mostrar solo estos dos */
+  #mainNavbar .nav-link[href*="IniciarSesion"],
+  #mainNavbar .nav-link[href*="Registrarse"] {
+    display: block !important;
+  }
+
+  /* Estilo del menú */
+  #mainNavbar.show {
+    background-color: #613dc1 !important;
+    padding: 14px 0 !important;
+    text-align: center;
+  }
+
+  #mainNavbar.show .nav-link {
+    color: #ffffff !important;
+    font-size: 18px;
+    padding: 10px 0 !important;
+  }
 
   .footer {
+    margin-top: auto;      /* EMPUJA el footer hacia abajo */
     padding: 1.5%;
     font-size: 12px;
+    margin-bottom:0%;
+    margin-top: auto !important;
+      margin-bottom: 0 !important;
+      padding-top: 12px;
+      padding-bottom: 12px;
+      font-size: 12px;
+      padding: 12px 0;
   }
 
 
