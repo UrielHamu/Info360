@@ -1,113 +1,208 @@
 @{
-  ViewData["Title"] = "RegistrarseDueño";
-}
-
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>@ViewData["Title"] - FIFO</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="site.css" />
-</head>
-
-<body>
-  <header>
-      <ul class="nav justify-content-end">
-  <li class="nav-item">
-    <a class="nav-link" href='@Url.Action("IniciarSesion", "Account")'>Iniciar sesión</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href='@Url.Action("RegistrarseCliente", "Account")'>Registrarse</a>
-  </li>
-</ul>
-  </header>
-
-  <main class="registro">
-      <img src="~/img/Logo.png" alt="Logo FIFO" class="logo">
-
-      <form action='@Url.Action("recibirRegistroDueño", "Account")' method="POST" class="form">
-            <input type="hidden" name="rol" value="Dueño">
-
-          <div class="mb-3">
-              <label class="form-label">Nombre de usuario</label>
-              <input type="text" name="username" class="form-control" required>
+    ViewData["Title"] = "RegistrarseDueño";
+  }
+  
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - FIFO</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="estilo.css" />
+  </head>
+  
+  <body>
+    <header class="fifo-header">
+      <nav class="navbar navbar-expand-lg navbar-dark fifo-navbar">
+        <div class="container">
+  
+  
+    
+          <a class="navbar-brand d-flex align-items-center" href='@Url.Action("Index","Home")'>
+            <img src="img/Logo-removebg-preview.png" alt="FIFO" class="me-2">
+          </a>
+  
+  
+         
+          <button class="navbar-toggler" type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#mainNavbar">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+  
+  
+    
+          <div class="collapse navbar-collapse" id="mainNavbar">
+  
+          
+            <div class="ms-auto d-flex gap-2 header-actions">
+              <a class="btn btn-outline-light btn-sm header-btn"
+                 href='@Url.Action("IniciarSesion","Account")'>
+                Iniciar sesión
+              </a>
+              <a class="btn btn-warning btn-sm header-btn header-btn-cta"
+                 href='@Url.Action("RegistrarseCliente","Account")'>
+                Registrarse
+              </a>
+            </div>
+  
+  
+            <div class="mobile-actions d-lg-none w-100 mt-3">
+              <a class="btn btn-outline-light w-100 mb-2"
+                 href='@Url.Action("IniciarSesion","Account")'>
+                Iniciar sesión
+              </a>
+              <a class="btn btn-warning w-100"
+                 href='@Url.Action("RegistrarseCliente","Account")'>
+                Registrarse
+              </a>
+            </div>
+  
+  
           </div>
-
-          <div class="mb-3">
-              <label class="form-label">Contraseña</label>
-              <input type="password" name="password" class="form-control" required>
+        </div>
+      </nav>
+    </header>
+  
+    <main class="login-main">
+      <section class="login-box">
+  
+          <!-- PANEL IZQUIERDO -->
+          <div class="login-left">
+              <div class="login-left-top">
+                  <img src="~/img/Logo.png" alt="Logo FIFO" class="login-logo">
+                  <h2>Registrá tu local en FIFO</h2>
+                  <p>Publicá tus productos próximos a vencer y reducí pérdidas de forma inteligente.</p>
+              </div>
+  
+              <p class="login-left-bottom">
+                  “Unite a la comunidad FIFO y transformá cómo gestionás tu stock.” 🌍
+              </p>
           </div>
-
-          <div class="mb-3">
-              <label class="form-label">Email</label>
-              <input type="email" name="mail" class="form-control" required>
+  
+          <!-- PANEL DERECHO (FORMULARIO DUEÑO) -->
+          <div class="login-right">
+              <h2 class="login-title">Crear cuenta de dueño</h2>
+  
+              <form action='@Url.Action("recibirRegistroDueño", "Account")' 
+                    method="POST" 
+                    class="login-form form">
+  
+                  <input type="hidden" name="rol" value="Dueño">
+  
+                  <div class="mb-3">
+                      <label class="form-label">Nombre de usuario</label>
+                      <input type="text" name="username" class="form-control" required>
+                  </div>
+  
+                  <div class="mb-3">
+                      <label class="form-label">Contraseña</label>
+                      <input type="password" name="password" class="form-control" required>
+                  </div>
+  
+                  <div class="mb-3">
+                      <label class="form-label">Email</label>
+                      <input type="email" name="mail" class="form-control" required>
+                  </div>
+  
+                  <div class="mb-3">
+                      <label class="form-label">Local</label>
+                      <select name="idLocal" class="form-select">
+                          @foreach (Locales local in ViewBag.Locales)
+                          {
+                              <option value="@local.Id">@local.Nombre</option>
+                          }
+                      </select>
+                  </div>
+  
+                  <div class="mb-3 form-check">
+                      <input type="checkbox" class="form-check-input" id="checkRobot" required>
+                      <label class="form-check-label" for="checkRobot">No soy un robot</label>
+                  </div>
+  
+                  <button type="submit" class="btn btn-fifoO">Registrarse</button>
+              </form>
+  
+              <div class="extra">
+                  <h3>¿Ya tenés cuenta?</h3>
+                  <a href='@Url.Action("IniciarSesion", "Account")'>Iniciar sesión</a>
+              </div>
           </div>
-
-          <div class="mb-3">
-
-
-          </div>
-          <div class="mb-3">
-              <label class="form-label">Local</label>
-              <select name="idLocal" class="form-select" aria-label="Seleccionar local">
-                  @foreach(Locales local in ViewBag.Locales){
-                      <option value=@local.Id>@local.Nombre</option>
-                  }
-              </select>
-          </div>
-
-          <div class="mb-3 form-check">
-              <input type="checkbox" class="form-check-input" id="checkRobot" required>
-              <label class="form-check-label" for="checkRobot">No soy un robot</label>
-          </div>
-
-          <div class="mb-3 text-center">
-              <h5>¿Ya tenés cuenta?</h5>
-              <a href='@Url.Action("IniciarSesion", "Account")'>Iniciar sesión</a>
-          </div>
-
-          <button type="submit" class="btn btn-primary w-100">Registrarse</button>
-      </form>
+  
+      </section>
   </main>
-
-  <footer class="footer">
-    <div class="footer-top">
-        <div class="footer-logo">
-            <img src="img/Captura_de_pantalla_2025-03-28_122750-removebg-preview.png" alt="Logo FIFO">
-            <p>Dale una segunda oportunidad a los alimentos. Reducí el desperdicio, ayudá al planeta 🌍</p>
-        </div>
-
-        <div class="footer-links">
+  
+  
+    <footer class="footer">
+      <div class="footer-top">
+          <div class="footer-logo">
+              <img src="img/Captura_de_pantalla_2025-03-28_122750-removebg-preview.png" alt="Logo FIFO">
+              <p>Dale una segunda oportunidad a los alimentos. Reducí el desperdicio, ayudá al planeta 🌍</p>
+          </div>
+  
+          <div class="footer-links">
+              <div>
+                 <h4>Sobre FIFO</h4>
+                <ul>
+                    <li><a href='@Url.Action("Index", "Account")'>Que es FIFO?</a></li>
+                    <li><a href='@Url.Action("Index", "Account")'>Nuestra propuesta</a></li>
+                    <li><a href='@Url.Action("Index", "Account")'>Por qué lo hacemos?</a></li>
+                </ul>
+            </div>
             <div>
-               <h4>Sobre FIFO</h4>
-              <ul>
-                  <li><a href='@Url.Action("Index", "Account")'>Que es FIFO?</a></li>
-                  <li><a href='@Url.Action("Index", "Account")'>Nuestra propuesta</a></li>
-                  <li><a href='@Url.Action("Index", "Account")'>Por qué lo hacemos?</a></li>
-              </ul>
+                <h4>Dueño</h4>
+                <ul>
+                    <li><a href='@Url.Action("AgregarProducto", "Dueño")'>Agregar producto</a></li>
+                    <li><a href='@Url.Action("EliminarProducto", "Dueño")'>Eliminar producto</a></li>
+                    <li><a href='@Url.Action("AgregarProducto", "Dueño")'>Modificar producto</a></li>
+                    <li><a href='@Url.Action("VerProductosMiLocal", "Dueño")'>Ver productos</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Cliente</h4>
+                <ul>
+                    <li><a href='@Url.Action("VerEmpresas", "Dueño")'>Ver empresas</a></li>
+                    <li><a href='@Url.Action("VerProductos", "Dueño")'>Ver productos</a></li>
+                </ul>
+            </div>
           </div>
-          <div>
-              <h4>Dueño</h4>
-              <ul>
-                  <li><a href='@Url.Action("AgregarProducto", "Dueño")'>Agregar producto</a></li>
-                  <li><a href='@Url.Action("EliminarProducto", "Dueño")'>Eliminar producto</a></li>
-                  <li><a href='@Url.Action("AgregarProducto", "Dueño")'>Modificar producto</a></li>
-                  <li><a href='@Url.Action("VerProductosMiLocal", "Dueño")'>Ver productos</a></li>
-              </ul>
-          </div>
-          <div>
-              <h4>Cliente</h4>
-              <ul>
-                  <li><a href='@Url.Action("VerEmpresas", "Dueño")'>Ver empresas</a></li>
-                  <li><a href='@Url.Action("VerProductos", "Dueño")'>Ver productos</a></li>
-              </ul>
-          </div>
-        </div>
-
-    <div class="footer-bottom">
-        <p>© 2025 FIFO | Desarrollado por el equipo FIFO</p>
-    </div>
-</footer>
-</body>
-</html>
-
+  
+      <div class="footer-bottom">
+          <p>© 2025 FIFO | Desarrollado por el equipo FIFO</p>
+      </div>
+  </footer>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const inputBuscador = document.getElementById("buscadorEmpresas");
+      const tarjetasEmpresas = document.querySelectorAll(".empresa-card");
+      const mensajeNoResultados = document.getElementById("no-coincidencias");
+    
+      inputBuscador.addEventListener("input", function () {
+          const texto = inputBuscador.value.toLowerCase();
+          let hayCoincidencias = false;
+    
+          tarjetasEmpresas.forEach(card => {
+              const nombre = card.querySelector(".nombre-empresa").innerText.toLowerCase();
+              if (nombre.includes(texto)) {
+                  card.style.display = "block";
+                  hayCoincidencias = true;
+              } else {
+                  card.style.display = "none";
+              }
+          });
+    
+          mensajeNoResultados.style.display = hayCoincidencias ? "none" : "block";
+      });
+    });
+    function toggleMenu() {
+          const menu = document.getElementById('headerMenu');
+          if (menu) {
+              menu.classList.toggle('menu-open');
+          }
+      }
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+  </html>
+  
+  
