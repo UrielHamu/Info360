@@ -1,148 +1,216 @@
 @{
-  ViewData["Title"] = "VerEmpresas";
-  var locales = ViewBag.Locales as List<dynamic>;
-}
-
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>@ViewData["Title"] - NombreProyecto</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="estilos.css" asp-append-version="true" />
+    ViewData["Title"] = "VerEmpresas";
+    var locales = ViewBag.Locales as List<dynamic>;
+  }
   
-</head>
-
-<body>
-  <header>
-    <nav class="navbar">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
-                <span class="navbar-toggler-icon"></span>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - NombreProyecto</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="estilo.css" asp-append-version="true" />
+    
+  </head>
+  
+  <body>
+    <header class="fifo-header">
+        <div class="header-inner">
+            <!-- Logo -->
+            <a class="navbar-brand d-flex align-items-center" href='@Url.Action("Index","Home")'>
+                <img src="img/Logo-removebg-preview.png" alt="FIFO" class="me-2">
+            </a>
+    
+            <!-- Botón hamburguesa SOLO para mobile -->
+            <button class="menu-toggle" type="button" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
-            
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
-                <div class="offcanvas-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-                </div>
+    
+            <!-- Menú -->
+            <ul class="nav header-nav" id="headerMenu">
+                <li class="nav-item">
+                    <a class="nav-link" href='@Url.Action("VerDescuentos", "Cliente")'>Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href='@Url.Action("VerEmpresas", "Cliente")'>Empresas</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    
 
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-start">
-                        <li class="nav-item">
-                            <a class="nav-link1" href='@Url.Action("VerProductos", "Cliente")'>Productos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link1" href='@Url.Action("VerEmpresas", "Cliente")'>Empresas</a>
-                        </li>
-                    </ul>
-                </div>
+  
+  
+  <main>
+    <h4 class="text-center mb-4 fw-semibold" style="font-family:'Poppins', sans-serif;">Explorá marcas y negocios para vos:</h4>
 
-            </div>
+    <div class="info-pill-wrapper empresas-pill">
+        <div class="info-pill">
+            <span class="info-pill-icon">i</span>
+            <span>¿Por qué estas empresas aparecen en FIFO?</span>
+        </div>
+    
+        <div class="info-tooltip-card">
+            <p>
+                Son supermercados y negocios que eligieron sumarse a FIFO para ofrecer 
+                productos próximos a vencer con descuento. 
+                Así venden más, vos ahorrás plata y juntos reducen el desperdicio de comida 🌍
+            </p>
+        </div>
+    </div>
+
+  <!-- PASOS VISUALES (MINI TUTORIAL) -->
+  <section class="pasos-empresas">
+    <div class="paso-item">
+        <span class="paso-num">1</span>
+        <h6>Buscá una empresa</h6>
+        <p>Escribí el nombre del local o marca que quieras encontrar.</p>
+    </div>
+    <div class="paso-item">
+        <span class="paso-num">2</span>
+        <h6>Elegí el negocio</h6>
+        <p>Hacé clic en la tarjeta para ver más información del local.</p>
+    </div>
+    <div class="paso-item">
+        <span class="paso-num">3</span>
+        <h6>Mirá sus descuentos</h6>
+        <p>Explorá los productos próximos a vencer y aprovechá las ofertas.</p>
+    </div>
+</section>
+
+<div class="empresas-mobile">
+    <button class="btn-tutorial" type="button"
+            onclick="document.getElementById('tutorialEmpresas').style.display='flex'">
+        ¿Cómo funciona?
+    </button>
+</div>
+
+<!-- MODAL MOBILE EMPRESAS -->
+<div id="tutorialEmpresas" class="tutorial-modal">
+    <div class="tutorial-content">
+        <h3>¿Cómo usar esta pantalla?</h3>
+        <ol>
+            <li><strong>Buscá una empresa</strong> escribiendo el nombre del local o la marca.</li>
+            <li><strong>Elegí el negocio</strong> tocando la tarjeta de la empresa que te interese.</li>
+            <li><strong>Mirá sus descuentos</strong> y descubrí los productos próximos a vencer que ofrece.</li>
+        </ol>
+
+        <button class="btn-cerrar" type="button"
+                onclick="document.getElementById('tutorialEmpresas').style.display='none'">
+            Entendido
+        </button>
+    </div>
+</div>
+
+    <nav  class="navbar buscador-transparente">
+        <div class="container-fluid">
+            <form class="d-flex" role="search" onsubmit="event.preventDefault();">
+                <input id="buscadorEmpresas" class="form-control me-2" type="search" placeholder="Buscar empresa" aria-label="Search"/>
+                <button class="btn btn-fifo-yellow" type="submit">Buscar</button>
+            </form>
         </div>
     </nav>
-</header>
+    <p class="hint-busqueda">Tip: escribí "Carrefour", "Dia", "Jumbo"…</p>
 
-
-<main>
-  <h4 class="Tit">Explorá marcas y negocios para vos:</h4>
-
-  <nav class="navbar bg-body-tertiary">
-      <div class="container-fluid">
-          <form class="d-flex" role="search" onsubmit="event.preventDefault();">
-              <input id="buscadorEmpresas" class="form-control me-2" type="search" placeholder="Buscar empresa" aria-label="Search"/>
-              <button class="btn btn-outline-success" type="submit">Buscar</button>
-          </form>
-      </div>
-  </nav>
-
-  <section id="lista-empresas">
-      @if (ViewBag.Locales != null && ViewBag.Locales.Count > 0)
-      {
-          foreach (Locales local in ViewBag.Locales)
-          {
-              <div class="empresa-card">
-                  <img src="~/img/@local.Foto" alt="Logo @local.Nombre" />
-                  <p class="nombre-empresa">@local.Nombre</p>
-              </div>
-          }
-      }
-      else
-      {
-          <p id="mensaje-no">No hay empresas disponibles.</p>
-      }
-  </section>
-
-  <p id="no-coincidencias" style="display:none; text-align:center; margin-top:15px;">
-      No hay empresas que coincidan con tu búsqueda ❌
-  </p>
-
-</main>
-
-<footer class="footer">
-  <div class="footer-top">
-      <div class="footer-logo">
-          <img src="img/Captura_de_pantalla_2025-03-28_122750-removebg-preview.png" alt="Logo FIFO">
-          <p>Dale una segunda oportunidad a los alimentos. Reducí el desperdicio, ayudá al planeta 🌍</p>
-      </div>
-
-      <div class="footer-links">
-          <div>
-              <h4>Sobre FIFO</h4>
-              <ul>
-                  <li><a href='@Url.Action("Index", "Account")'>Que es FIFO?</a></li>
-                  <li><a href='@Url.Action("Index", "Account")'>Nuestra propuesta</a></li>
-                  <li><a href='@Url.Action("Index", "Account")'>Por qué lo hacemos?</a></li>
-              </ul>
-          </div>
-          <div>
-              <h4>Dueño</h4>
-              <ul>
-                  <li><a href='@Url.Action("AgregarProducto", "Dueño")'>Agregar producto</a></li>
-                  <li><a href='@Url.Action("EliminarProducto", "Dueño")'>Eliminar producto</a></li>
-                  <li><a href='@Url.Action("AgregarProducto", "Dueño")'>Modificar producto</a></li>
-                  <li><a href='@Url.Action("VerProductosMiLocal", "Dueño")'>Ver productos</a></li>
-              </ul>
-          </div>
-          <div>
-              <h4>Cliente</h4>
-              <ul>
-                  <li><a href='@Url.Action("VerEmpresas", "Dueño")'>Ver empresas</a></li>
-                  <li><a href='@Url.Action("VerProductos", "Dueño")'>Ver productos</a></li>
-              </ul>
-          </div>
-      </div>
-
-      <div class="footer-bottom">
-          <p>© 2025 FIFO | Desarrollado por el equipo FIFO</p>
-      </div>
-  </div>
-</footer>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const inputBuscador = document.getElementById("buscadorEmpresas");
-  const tarjetasEmpresas = document.querySelectorAll(".empresa-card");
-  const mensajeNoResultados = document.getElementById("no-coincidencias");
-
-  inputBuscador.addEventListener("input", function () {
-      const texto = inputBuscador.value.toLowerCase();
-      let hayCoincidencias = false;
-
-      tarjetasEmpresas.forEach(card => {
-          const nombre = card.querySelector(".nombre-empresa").innerText.toLowerCase();
-          if (nombre.includes(texto)) {
-              card.style.display = "block";
-              hayCoincidencias = true;
-          } else {
-              card.style.display = "none";
-          }
-      });
-
-      mensajeNoResultados.style.display = hayCoincidencias ? "none" : "block";
+  
+    <section id="lista-empresas">
+        @if (ViewBag.Locales != null && ViewBag.Locales.Count > 0)
+        {
+            foreach (Locales local in ViewBag.Locales)
+            {
+                <div class="empresa-card">
+                    <img src="~/img/@local.Foto" alt="Logo @local.Nombre" />
+                    <p class="nombre-empresa">@local.Nombre</p>
+                </div>
+            }
+        }
+        else
+        {
+            <p class="productos-vacio">
+                Hoy no hay productos con descuento disponibles.  
+                Volvé más tarde o explorá las <a href='@Url.Action("VerEmpresas","Cliente")'>empresas adheridas</a>.
+            </p>
+        }
+    </section>
+  
+  
+  
+  </main>
+  
+  <footer class="footer">
+    <div class="footer-top">
+        <div class="footer-logo">
+            <img src="img/Captura_de_pantalla_2025-03-28_122750-removebg-preview.png" alt="Logo FIFO">
+            <p>Dale una segunda oportunidad a los alimentos. Reducí el desperdicio, ayudá al planeta 🌍</p>
+        </div>
+  
+        <div class="footer-links">
+            <div>
+                <h4>Sobre FIFO</h4>
+                <ul>
+                    <li><a href='@Url.Action("Index", "Account")'>Que es FIFO?</a></li>
+                    <li><a href='@Url.Action("Index", "Account")'>Nuestra propuesta</a></li>
+                    <li><a href='@Url.Action("Index", "Account")'>Por qué lo hacemos?</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Dueño</h4>
+                <ul>
+                    <li><a href='@Url.Action("AgregarProducto", "Dueño")'>Agregar producto</a></li>
+                    <li><a href='@Url.Action("EliminarProducto", "Dueño")'>Eliminar producto</a></li>
+                    <li><a href='@Url.Action("AgregarProducto", "Dueño")'>Modificar producto</a></li>
+                    <li><a href='@Url.Action("VerProductosMiLocal", "Dueño")'>Ver productos</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Cliente</h4>
+                <ul>
+                    <li><a href='@Url.Action("VerEmpresas", "Dueño")'>Ver empresas</a></li>
+                    <li><a href='@Url.Action("VerProductos", "Dueño")'>Ver productos</a></li>
+                </ul>
+            </div>
+        </div>
+  
+        <div class="footer-bottom">
+            <p>© 2025 FIFO | Desarrollado por el equipo FIFO</p>
+        </div>
+    </div>
+  </footer>
+  
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const inputBuscador = document.getElementById("buscadorEmpresas");
+    const tarjetasEmpresas = document.querySelectorAll(".empresa-card");
+    const mensajeNoResultados = document.getElementById("no-coincidencias");
+  
+    inputBuscador.addEventListener("input", function () {
+        const texto = inputBuscador.value.toLowerCase();
+        let hayCoincidencias = false;
+  
+        tarjetasEmpresas.forEach(card => {
+            const nombre = card.querySelector(".nombre-empresa").innerText.toLowerCase();
+            if (nombre.includes(texto)) {
+                card.style.display = "block";
+                hayCoincidencias = true;
+            } else {
+                card.style.display = "none";
+            }
+        });
+  
+        mensajeNoResultados.style.display = hayCoincidencias ? "none" : "block";
+    });
   });
-});
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
-
+  function toggleMenu() {
+        const menu = document.getElementById('headerMenu');
+        if (menu) {
+            menu.classList.toggle('menu-open');
+        }
+    }
+  </script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+  </html>
+  
+  
