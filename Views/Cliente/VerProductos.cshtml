@@ -8,24 +8,101 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - NombreProyecto</title>
-    <link rel="stylesheet" href="site.css" asp-append-version="true" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="estilo.css" asp-append-version="true" />
 </head>
 
 <body>
-<header> 
-  <ul class="nav justify-content-end">
-    <li class="nav-item">
-      <a class="nav-link" href='@Url.Action("VerProductos", "Cliente")'>Productos</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href='@Url.Action("VerEmpresas", "Cliente")'>Empresas</a>
-    </li>
-  </ul>
-    </div>
-</nav>
-</header>
+    <header class="fifo-header">
+        <div class="header-inner">
+            <!-- Logo -->
+            <a class="navbar-brand d-flex align-items-center" href='@Url.Action("Index","Home")'>
+                <img src="img/Logo-removebg-preview.png" alt="FIFO" class="me-2">
+            </a>
+    
+            <!-- Botón hamburguesa SOLO para mobile -->
+            <button class="menu-toggle" type="button" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+    
+            <!-- Menú -->
+            <ul class="nav header-nav" id="headerMenu">
+                <li class="nav-item">
+                    <a class="nav-link" href='@Url.Action("VerDescuentos", "Cliente")'>Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href='@Url.Action("VerEmpresas", "Cliente")'>Empresas</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    
+    
+    
  <main>
+    <h4 class="text-center mb-4 fw-semibold" style="font-family:'Poppins', sans-serif;">Explorá productos para vos:</h4>
+    <div class="info-pill-wrapper">
+        <div class="info-pill">
+            <span class="info-pill-icon">i</span>
+            <span>¿Por qué estos productos tienen descuento?</span>
+        </div>
+
+        <div class="info-tooltip-card">
+            <p>
+                Son alimentos que todavía están en buen estado, pero se acercan a su vencimiento.
+                Al comprarlos, ahorrás plata y ayudás a reducir el desperdicio de comida. 🌍
+            </p>
+        </div>
+    </div>
+
+      
+      <!-- DESKTOP: tarjetitas visibles -->
+<section class="pasos-empresas pasos-desktop">
+    <div class="paso-item">
+        <span class="paso-num">1</span>
+        <h6>Elegí cómo ordenar</h6>
+        <p>Usá el menú de arriba para filtrar por categoría o por nivel de descuento.</p>
+    </div>
+    <div class="paso-item">
+        <span class="paso-num">2</span>
+        <h6>Mirá la info del producto</h6>
+        <p>Revisá el supermercado, el precio original, el precio con descuento y la fecha de vencimiento.</p>
+    </div>
+    <div class="paso-item">
+        <span class="paso-num">3</span>
+        <h6>Acercate al local</h6>
+        <p>Comprá el producto en el supermercado indicado y evitá que termine en la basura.</p>
+    </div>
+</section>
+
+<!-- MOBILE: botón “¿Cómo funciona?” -->
+<div class="pasos-mobile">
+    <button class="btn-tutorial" type="button"
+            onclick="document.getElementById('tutorialProductos').style.display='flex'">
+        ¿Cómo funciona?
+    </button>
+</div>
+
+<!-- MODAL MOBILE -->
+<div id="tutorialProductos" class="tutorial-modal">
+    <div class="tutorial-content">
+        <h3>¿Cómo aprovechar estos descuentos?</h3>
+        <ol>
+            <li><strong>Elegí cómo ordenar</strong> los productos usando el menú amarillo.</li>
+            <li><strong>Mirá la info del producto</strong>: supermercado, precio original, precio con descuento y fecha de vencimiento.</li>
+            <li><strong>Acercate al local</strong> indicado y comprá el producto antes de que se venza.</li>
+        </ol>
+
+        <button class="btn-cerrar" type="button"
+                onclick="document.getElementById('tutorialProductos').style.display='none'">
+            Entendido
+        </button>
+    </div>
+</div>
+
+
 <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
       @(filtroActual == "1" ? "Categoria" :
@@ -38,33 +115,45 @@
     <li><a class="dropdown-item" href="#" onclick="aplicarFiltro(2)">Menor a mayor precio</a></li>
     <li><a class="dropdown-item" href="#" onclick="aplicarFiltro(3)">Mayor a menor precio</a></li>
   </ul>
+  <p class="hint-busqueda">
+    Usá el menú amarillo para ordenar por categoría o por nivel de descuento.
+</p>
 </div>
 
 
-<div>
-            @if (ViewBag.Productos != null && ViewBag.Productos.Count > 0)
-            {
-                foreach (ProductosTemporales producto in ViewBag.Productos)
-                {
-                    <section>
-                        <img src="~/img/@producto.Foto"/>
-                            <div>
-                                <p>Producto:@producto.Nombre</p>
-                                <p>Supermercado: @producto.Local</p>
-                                <p>Precio original:$@producto.PrecioInicial</p>
-                                <p>Precio con descuento: $@producto.PrecioConDescuento</p>
-                                <p>Catergoria: @producto.Categoria</p>
-                                <p>Fecha de vencimiento: @producto.FechaVencimiento.ToString("dd/MM/yyyy")</p>
-                            </div>
-                    </section>
-                }
-            }
-            else
-            {
-                <p>No hay productos con descuento disponibles.</p>
-            }
-        </div>
+@if (ViewBag.Productos != null && ViewBag.Productos.Count > 0)
+{
+    <div class="productos-grid">
+        @foreach (ProductosTemporales producto in ViewBag.Productos)
+        {
+            <section class="producto-cardFIFO">
+                <img src="~/img/@producto.Foto" alt="@producto.Nombre" class="producto-imgFIFO" />
+
+                <div class="producto-infoFIFO">
+                    <h5 class="prod-nombre">@producto.Nombre</h5>
+                    <p>Supermercado: @producto.Local</p>
+                    <p>Precio original: $@producto.PrecioInicial</p>
+                    <p>Precio con descuento: $@producto.PrecioConDescuento</p>
+                    <p>Categoría: @producto.Categoria</p>
+                    <p>Vence: @producto.FechaVencimiento.ToString("dd/MM/yyyy")</p>
+                </div>
+            </section>
+        }
+    </div>
+}
+else
+{
+    <p class="productos-vacio">
+        Hoy no hay productos con descuento disponibles.  
+        Volvé más tarde o explorá las <a href='@Url.Action("VerEmpresas","Cliente")'>empresas adheridas</a>.
+    </p>
+}
+
+
 </main>
+<p class="productos-resumen">
+    FIFO no vende online. Para comprar estos productos, acercate directamente al supermercado indicado.
+</p>
 <footer class="footer">
     <div class="footer-top">
         <div class="footer-logo">
@@ -104,9 +193,18 @@
     </div>
 </footer>
 <script>
-    function aplicarFiltro(filtro) {
+     function aplicarFiltro(filtro) {
         window.location.href = '@Url.Action("VerProductos", "Cliente")?filtro=' + filtro;
     }
+
+    // Menú hamburguesa: toggle clase menu-open
+    function toggleMenu() {
+        const menu = document.getElementById('headerMenu');
+        if (menu) {
+            menu.classList.toggle('menu-open');
+        }
+    }
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
