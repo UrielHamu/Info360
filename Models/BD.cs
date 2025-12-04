@@ -6,7 +6,7 @@ namespace Info360.Models
     public static class BD
     {
         private static string _connectionString =
-            "Server=localhost;Database=aa;;Integrated Security=True;TrustServerCertificate=True;";
+            "Server=localhost;Database=FIFO;;Integrated Security=True;TrustServerCertificate=True;";
 
         public static Usuarios Login(string NombreUsuario, string Contraseña)
         {
