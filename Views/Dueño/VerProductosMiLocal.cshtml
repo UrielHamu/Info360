@@ -14,7 +14,7 @@
     <header class="fifo-header">
         <div class="header-inner">
             <a class="navbar-brand d-flex align-items-center" href='@Url.Action("Index","Home")'>
-                <img src="img/Logo-removebg-preview.png" alt="FIFO" class="me-2">
+           <img src="~/img/LogoA.png" alt="Logo FIFO">
             </a>
     
             <button class="menu-toggle" type="button" onclick="toggleMenu()">
@@ -35,7 +35,7 @@
     </header>
    
   <main class="owner-main">
-    <h4 class="text-center mb-4 fw-semibold" style="font-family:'Poppins', sans-serif;">Estos son los productos de tu negocio:</h4>
+    <h4 class="text-center mb-4 fw-semibold" style="font-family:'Poppins', sans-serif;">Has ingresado al panel de dueño:</h4>
 
     <section class="pasos-empresas pasos-desktop">
         <div class="paso-item">
@@ -101,10 +101,8 @@
                 @foreach (ProductosTemporalesVto producto in ViewBag.ProductosMiLocal)
                 {
                     <section class="producto-cardFIFO">
-                            <!-- Imagen del producto -->
-                            <img src="~/img/@producto.Foto"
-                                 class="card-img-top producto-img"
-                                 alt="Foto de @producto.Nombre" />
+                            
+                            <img src="~/img/@producto.Foto" class="card-img-top producto-img" alt="Foto" />
 
                                  <div class="producto-infoFIFO">
 
@@ -151,7 +149,7 @@
   <footer class="footer">
     <div class="footer-top">
         <div class="footer-logo">
-            <img src="img/Captura_de_pantalla_2025-03-28_122750-removebg-preview.png" alt="Logo FIFO">
+            <img src="~/img/LogoA.png" alt="Logo FIFO">
             <p>Dale una segunda oportunidad a los alimentos. Reducí el desperdicio, ayudá al planeta 🌍</p>
         </div>
   
@@ -189,38 +187,51 @@
     </div>
   </footer>
   <script src="./site.js"></script>
-  <script>
-    function toggleMenu() {
-          const menu = document.getElementById('headerMenu');
-          if (menu) {
-              menu.classList.toggle('menu-open');
-          }
-      }
-      document.addEventListener("DOMContentLoaded", function () {
-      const modal   = document.getElementById("tutorialAgregar");
-      const abrir   = document.getElementById("btnTutorialAgregar");
-      const cerrar  = document.getElementById("btnCerrarTutorialAgregar");
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById('headerMenu');
+    if (menu) {
+      menu.classList.toggle('menu-open');
+    }
+  }
 
-      if (abrir && modal) {
-          abrir.addEventListener("click", function () {
-              modal.style.display = "flex";
-          });
-      }
+  document.addEventListener("DOMContentLoaded", function () {
+    // Modal tutorial (tu código existente)
+    const modal   = document.getElementById("tutorialAgregar");
+    const abrir   = document.getElementById("btnTutorialAgregar");
+    const cerrar  = document.getElementById("btnCerrarTutorialAgregar");
 
-      if (cerrar && modal) {
-          cerrar.addEventListener("click", function () {
-              modal.style.display = "none";
-          });
-      }
-
-      window.addEventListener("click", function (e) {
-          if (e.target === modal) {
-              modal.style.display = "none";
-          }
+    if (abrir && modal) {
+      abrir.addEventListener("click", function () {
+        modal.style.display = "flex";
       });
+    }
+
+    if (cerrar && modal) {
+      cerrar.addEventListener("click", function () {
+        modal.style.display = "none";
+      });
+    }
+
+    window.addEventListener("click", function (e) {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+
+    // Cerrar menú cuando clickeas un enlace dentro
+    const menu = document.getElementById('headerMenu');
+    if (menu) {
+      menu.querySelectorAll('a.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          menu.classList.remove('menu-open');
+        });
+      });
+    }
   });
-    </script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
   </body>
   </html>
   

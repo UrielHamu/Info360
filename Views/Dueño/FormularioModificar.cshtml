@@ -14,7 +14,7 @@
     <header class="fifo-header">
         <div class="header-inner">
             <a class="navbar-brand d-flex align-items-center" href='@Url.Action("Index","Home")'>
-                <img src="img/Logo-removebg-preview.png" alt="FIFO" class="me-2">
+                   <img src="~/img/LogoA.png" alt="Logo FIFO">
             </a>
     
             <button class="menu-toggle" type="button" onclick="toggleMenu()">
@@ -79,12 +79,8 @@
       <section class="producto-add-container">
   
           <div class="producto-header">
-              @if (ViewBag.Producto.Foto != null)
-              {
-                  <img src="~/img/@ViewBag.Producto.Foto"
-                       alt="@ViewBag.Producto.Nombre"
-                       class="producto-img" />
-              }
+                <img src="~/img/@ViewBag.Producto.Foto"class="card-img-top producto-img"alt="Foto de @ViewBag.Producto.Nombre">
+
   
               <div class="producto-info-top">
                   <span class="producto-tag">@ViewBag.Producto.Categoria</span>
@@ -137,7 +133,7 @@
   <footer class="footer">
     <div class="footer-top">
         <div class="footer-logo">
-            <img src="img/Captura_de_pantalla_2025-03-28_122750-removebg-preview.png" alt="Logo FIFO">
+              <img src="~/img/LogoA.png" alt="Logo FIFO">
             <p>Dale una segunda oportunidad a los alimentos. Reducí el desperdicio, ayudá al planeta 🌍</p>
         </div>
   

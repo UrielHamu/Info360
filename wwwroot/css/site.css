@@ -408,6 +408,8 @@ select {
   border: none;
   padding: 4px;
   cursor: pointer;
+  position: relative;
+  z-index: 9999;
 }
 
 .menu-toggle span {
@@ -863,7 +865,7 @@ select {
 
 .productos-grid {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 25px;
   justify-content: flex-start;  
   width: 100%;                 
@@ -2542,6 +2544,8 @@ form button {
   /* Mostrar hamburguesa en mobile */
   .menu-toggle {
     display: block;
+    position: relative;
+    z-index: 9999;
   }
 
   /* Menú oculto por defecto en mobile */
@@ -3113,20 +3117,20 @@ to   { opacity: 1; transform: translateY(0); }
 
   .productos-grid {
     flex-direction: column;
-    align-items: stretch;      /* 👉 deja de centrar las cards */
+    align-items: stretch;      
     gap: 14px;
-    padding: 0 12px;           /* margen lindo a los costados */
+    padding: 0 12px; 
+    flex-wrap: nowrap;          
   }
 
   .producto-cardFIFO {
     width: 100%;
-    max-width: none;           /* 👉 sin límite de 320px */
+    max-width: none;           
     padding: 16px 14px;
     border-radius: 14px;
-    margin: 0;                 /* sin márgenes raros extra */
+    margin: 0;                
   }
 
-  /* opcional: imagen mejor en mobile */
   .producto-cardFIFO img {
     width: 100%;
     max-width: 150px;
