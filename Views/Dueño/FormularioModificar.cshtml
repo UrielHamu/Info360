@@ -13,19 +13,16 @@
   <body>
     <header class="fifo-header">
         <div class="header-inner">
-            <!-- Logo -->
             <a class="navbar-brand d-flex align-items-center" href='@Url.Action("Index","Home")'>
                 <img src="img/Logo-removebg-preview.png" alt="FIFO" class="me-2">
             </a>
     
-            <!-- Botón hamburguesa SOLO para mobile -->
             <button class="menu-toggle" type="button" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
     
-            <!-- Menú -->
             <ul class="nav header-nav" id="headerMenu">
                 <li class="nav-item">
                     <a class="nav-link" href='@Url.Action("NuevaView", "Dueño")'>Ver productos generales de mi local</a>
@@ -57,14 +54,12 @@
         </section>
 
         
-<!-- MOBILE: solo botón "¿Cómo funciona?" -->
 <div class="pasos-mobile">
     <button id="btnTutorialModificar" class="btn-tutorial" type="button">
         ¿Cómo funciona?
     </button>
   </div>
   
-  <!-- MODAL TUTORIAL -->
   <div id="tutorialModal" class="tutorial-modal">
     <div class="tutorial-content">
         <h3>¿Cómo modificar el precio?</h3>
@@ -83,7 +78,6 @@
 
       <section class="producto-add-container">
   
-          <!-- CABECERA PRODUCTO (mismo estilo que Agregar) -->
           <div class="producto-header">
               @if (ViewBag.Producto.Foto != null)
               {
@@ -104,7 +98,6 @@
                       que van a ver tus clientes en FIFO.
                   </p>
   
-                  <!-- NUEVO BLOQUE ORDENADO -->
                   <ul class="producto-list">
                       <li><strong>Vence:</strong> @ViewBag.Producto.FechaVencimiento</li>
                       <li><strong>Stock:</strong> @ViewBag.Producto.Cantidad</li>
@@ -115,7 +108,6 @@
             </div>
         
   
-          <!-- CARD DEL FORM (igual que Agregar, pero con otro campo) -->
           <div class="producto-card-add">
               <form action='@Url.Action("RecibirModificarProducto", "Dueño")'
                     method="POST">
@@ -207,7 +199,6 @@
           });
       }
 
-      // cerrar si hace click afuera del recuadro
       window.addEventListener("click", function (e) {
           if (e.target === modal) {
               modal.style.display = "none";

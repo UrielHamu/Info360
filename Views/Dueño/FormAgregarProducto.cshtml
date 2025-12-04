@@ -13,19 +13,17 @@
   <body>
     <header class="fifo-header">
         <div class="header-inner">
-            <!-- Logo -->
+        
             <a class="navbar-brand d-flex align-items-center" href='@Url.Action("Index","Home")'>
                 <img src="img/Logo-removebg-preview.png" alt="FIFO" class="me-2">
             </a>
     
-            <!-- Botón hamburguesa SOLO para mobile -->
             <button class="menu-toggle" type="button" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
     
-            <!-- Menú -->
             <ul class="nav header-nav" id="headerMenu">
                 <li class="nav-item">
                     <a class="nav-link" href='@Url.Action("NuevaView", "Dueño")'>Ver productos generales de mi local</a>
@@ -38,7 +36,6 @@
     </header>
     <main class="producto-add-main">
 
-                  <!-- DESKTOP: mini recorrido de pasos -->
 <section class="pasos-empresas pasos-desktop">
     <div class="paso-item">
         <span class="paso-num">1</span>
@@ -57,7 +54,6 @@
     </div>
 </section>
 
-<!-- MOBILE: solo botón "¿Cómo funciona?" -->
 <div class="pasos-mobile">
     <button class="btn-tutorial" type="button"
             onclick="document.getElementById('tutorialModal').style.display='flex'">
@@ -65,7 +61,6 @@
     </button>
 </div>
 
-<!-- MODAL reutilizado -->
 <div id="tutorialModal" class="tutorial-modal">
     <div class="tutorial-content">
         <h3>¿Cómo usar esta pantalla?</h3>
@@ -85,7 +80,6 @@
   
       <section class="producto-add-container">
   
-          <!-- CABECERA PRODUCTO -->
           <div class="producto-header">
   
               @if (ViewBag.producto.Foto != null)
@@ -107,14 +101,13 @@
   
   
   
-          <!-- CARD DEL FORM -->
           <div class="producto-card-add">
               <form method="post" action='@Url.Action("RecibirAgregarProducto", "Dueño")'>
                   <div class="mb-3">
                       <label class="form-label">Cantidad</label>
                       <input type="number" class="form-control" name="cantidad" min="1" required />
                   </div>
-                  <input type="hidden" name="IdProducto" value="@ViewBag.producto.IdLocalesProductosVto">
+                  <input type="hidden" name="IdProducto" value="@ViewBag.producto.Id">
   
                   <div class="mb-3">
                       <label class="form-label">Fecha de vencimiento</label>
