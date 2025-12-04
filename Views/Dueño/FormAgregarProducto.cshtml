@@ -109,15 +109,16 @@
   
           <!-- CARD DEL FORM -->
           <div class="producto-card-add">
-              <form method="post" action='@Url.Action("AgregarProducto", "Dueño")'>
+              <form method="post" action='@Url.Action("RecibirAgregarProducto", "Dueño")'>
                   <div class="mb-3">
                       <label class="form-label">Cantidad</label>
                       <input type="number" class="form-control" name="cantidad" min="1" required />
                   </div>
+                  <input type="hidden" name="IdProducto" value="@ViewBag.producto.IdLocalesProductosVto">
   
                   <div class="mb-3">
                       <label class="form-label">Fecha de vencimiento</label>
-                      <input type="date" class="form-control" name="fechaVencimiento" required />
+                      <input type="date" class="form-control" name="Fecha" required />
                       <small class="form-text text-muted">
                           FIFO prioriza los productos que vencen antes para que no se desperdicien.
                       </small>

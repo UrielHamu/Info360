@@ -32,15 +32,15 @@ public int SacarPrecioConDto(int precioInicial, DateTime fechaVencimiento)
 
     else if (diasRestantes <= 7)
     {
-        return (precioInicial * 0.5);
+        return (int)(precioInicial * 0.5);
     }
     else if (diasRestantes <= 14)
     {
-        return (precioInicial * 0.7);
+        return (int)(precioInicial * 0.7);
     }
     else if (diasRestantes <= 30)
     {
-        return (precioInicial * 0.9);
+        return (int)(precioInicial * 0.9);
     }
     else{
         return precioInicial;
