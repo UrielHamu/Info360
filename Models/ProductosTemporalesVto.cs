@@ -10,6 +10,7 @@ public class ProductosTemporalesVto
     public string Local;
     public int PrecioConDescuento;
     public int IdLocalesProductosVto;
+
         public ProductosTemporalesVto(Productos producto, LocalesProductosInicial localesProductosInicial, LocalesProductosVto localesProductosVto){
         Nombre=producto.Nombre;
         Categoria= BD.TraerCategoria(producto.IdCategoria);
@@ -18,7 +19,32 @@ public class ProductosTemporalesVto
         Foto=producto.Foto;
         PrecioInicial=localesProductosInicial.PrecioInicial;
         Local=BD.TraerLocal(localesProductosInicial.IdLocal);
-        PrecioConDescuento=localesProductosInicial.PrecioInicial * 10 / 20;//ACA HAY QUE HACER EL SISTEMA DE DESCUENTOS
+        PrecioConDescuento=SacarPrecioConDto(PrecioInicial, FechaVencimiento);
         IdLocalesProductosVto=localesProductosVto.Id;
     }
+
+public int SacarPrecioConDto(int precioInicial, DateTime fechaVencimiento)
+{
+    int diasRestantes = (fechaVencimiento - DateTime.Now).Days;
+
+    if (diasRestantes < 0)
+        return 0;
+
+    else if (diasRestantes <= 7)
+    {
+        return (precioInicial * 0.5);
+    }
+    else if (diasRestantes <= 14)
+    {
+        return (precioInicial * 0.7);
+    }
+    else if (diasRestantes <= 30)
+    {
+        return (precioInicial * 0.9);
+    }
+    else{
+        return precioInicial;
+    }
+}
+
 }
